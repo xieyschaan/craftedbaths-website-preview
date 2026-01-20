@@ -1,0 +1,293 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Gilroy Font Family */
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy/gilroy-thin-webfont.woff2') format('woff2'),
+       url('/assets/fonts/Gilroy/gilroy-thin-webfont.woff') format('woff');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy/gilroy-ultralightitalic-webfont.woff') format('woff');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy/gilroy-light-webfont.woff2') format('woff2'),
+       url('/assets/fonts/Gilroy/gilroy-light-webfont.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy/gilroy-lightitalic-webfont.woff2') format('woff2'),
+       url('/assets/fonts/Gilroy/gilroy-lightitalic-webfont.woff') format('woff');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy/gilroy-regular-webfont.woff2') format('woff2'),
+       url('/assets/fonts/Gilroy/gilroy-regular-webfont.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy/gilroy-regularitalic-webfont.woff2') format('woff2'),
+       url('/assets/fonts/Gilroy/gilroy-regularitalic-webfont.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy/gilroy-medium-webfont.woff2') format('woff2'),
+       url('/assets/fonts/Gilroy/gilroy-medium-webfont.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy/gilroy-mediumitalic-webfont.woff2') format('woff2'),
+       url('/assets/fonts/Gilroy/gilroy-mediumitalic-webfont.woff') format('woff');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy/gilroy-semibold-webfont.woff2') format('woff2'),
+       url('/assets/fonts/Gilroy/gilroy-semibold-webfont.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy/gilroy-semibolditalic-webfont.woff2') format('woff2'),
+       url('/assets/fonts/Gilroy/gilroy-semibolditalic-webfont.woff') format('woff');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy/gilroy-bold-webfont.woff2') format('woff2'),
+       url('/assets/fonts/Gilroy/gilroy-bold-webfont.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy/gilroy-bolditalic-webfont.woff2') format('woff2'),
+       url('/assets/fonts/Gilroy/gilroy-bolditalic-webfont.woff') format('woff');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy/gilroy-extrabold-webfont.woff2') format('woff2'),
+       url('/assets/fonts/Gilroy/gilroy-extrabold-webfont.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy/gilroy-extrabolditalic-webfont.woff2') format('woff2'),
+       url('/assets/fonts/Gilroy/gilroy-extrabolditalic-webfont.woff') format('woff');
+  font-weight: 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy/gilroy-heavy-webfont.woff2') format('woff2'),
+       url('/assets/fonts/Gilroy/gilroy-heavy-webfont.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy/gilroy-heavyitalic-webfont.woff2') format('woff2'),
+       url('/assets/fonts/Gilroy/gilroy-heavyitalic-webfont.woff') format('woff');
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy/gilroy-black-webfont.woff2') format('woff2'),
+       url('/assets/fonts/Gilroy/gilroy-black-webfont.woff') format('woff');
+  font-weight: 950;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy/gilroy-blackitalic-webfont.woff2') format('woff2'),
+       url('/assets/fonts/Gilroy/gilroy-blackitalic-webfont.woff') format('woff');
+  font-weight: 950;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Rexton Font Family */
+@font-face {
+  font-family: 'Rexton';
+  src: url('/assets/fonts/Rexton/rexton_light-webfont.woff2') format('woff2'),
+       url('/assets/fonts/Rexton/rexton_light-webfont.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Rexton';
+  src: url('/assets/fonts/Rexton/rexton_regular-webfont.woff2') format('woff2'),
+       url('/assets/fonts/Rexton/rexton_regular-webfont.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Rexton';
+  src: url('/assets/fonts/Rexton/rexton_medium-webfont.woff2') format('woff2'),
+       url('/assets/fonts/Rexton/rexton_medium-webfont.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Rexton';
+  src: url('/assets/fonts/Rexton/rexton_bold-webfont.woff2') format('woff2'),
+       url('/assets/fonts/Rexton/rexton_bold-webfont.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Rexton';
+  src: url('/assets/fonts/Rexton/rexton_extra_bold-webfont.woff2') format('woff2'),
+       url('/assets/fonts/Rexton/rexton_extra_bold-webfont.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Rexton';
+  src: url('/assets/fonts/Rexton/rexton_black-webfont.woff2') format('woff2'),
+       url('/assets/fonts/Rexton/rexton_black-webfont.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 255, 255, 255;
+  --background-end-rgb: 255, 255, 255;
+  
+  /* Brand colors */
+  --color-primary: #302620;
+  --color-accent: #bea98e;
+  --color-background: #ffffff;
+  
+  /* Container & Content Widths */
+  --container-max-width: 1440px;
+  --container-narrow-width: 1280px;
+  --container-tight-width: 1120px;
+  --text-max-width: 65ch;
+  --text-narrow-width: 55ch;
+  
+  /* Container Padding */
+  --container-padding-mobile: 1rem;      /* 16px */
+  --container-padding-sm: 1.5rem;        /* 24px */
+  --container-padding-lg: 2rem;          /* 32px */
+  --container-padding-xl: 2.5rem;        /* 40px */
+  
+  /* Section Spacing (Vertical) */
+  --spacing-section: 120px;              /* Large sections */
+  --spacing-section-md: 80px;            /* Medium sections */
+  --spacing-section-sm: 60px;            /* Small sections */
+  
+  /* Component Spacing */
+  --spacing-xs: 0.25rem;                 /* 4px */
+  --spacing-sm: 0.5rem;                  /* 8px */
+  --spacing-md: 1rem;                    /* 16px */
+  --spacing-lg: 1.5rem;                  /* 24px */
+  --spacing-xl: 2rem;                    /* 32px */
+  --spacing-2xl: 3rem;                   /* 48px */
+  --spacing-3xl: 4rem;                   /* 64px */
+  
+  /* Grid Gaps */
+  --gap-sm: 1rem;                        /* 16px */
+  --gap-md: 1.5rem;                      /* 24px */
+  --gap-lg: 2rem;                        /* 32px */
+  --gap-xl: 3rem;                        /* 48px */
+  
+  /* Header & Footer */
+  --header-height: 80px;
+  --footer-padding: 3rem;
+  
+  /* Border Widths */
+  --border-thin: 1px;
+  --border-medium: 2px;
+  --border-thick: 3px;
+  
+  /* Border Colors */
+  --border-color-light: #e5e5e5;
+  --border-color-medium: #d4d4d4;
+  --border-color-dark: #a3a3a3;
+  
+  /* Shadows (for depth and luxury feel) */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04);
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: var(--color-background);
+  font-family: 'Gilroy', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+

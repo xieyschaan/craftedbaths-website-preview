@@ -1,0 +1,3 @@
+# Place your PDF catalog file here
+# Name it catalog.pdf to automatically load, or use the loadPDFFile() function in the browser console
+
