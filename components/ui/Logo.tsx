@@ -17,12 +17,12 @@ export default function Logo({
   const getLogoSrc = () => {
     switch (variant) {
       case 'white':
-        return '/assets/logo.svg/Logo SVG-White.svg'
+        return '/assets/logo/Logo-SVG-White.svg'
       case 'with-tagline':
-        return '/assets/logo.svg/Logo+Tagline PNGs-05.png'
+        return '/assets/logo/Logo-Tagline.png'
       case 'black':
       default:
-        return '/assets/logo.svg/Logo SVG-Black.svg'
+        return '/assets/logo/Logo-SVG-Black.svg'
     }
   }
 

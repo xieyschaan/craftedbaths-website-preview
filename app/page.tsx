@@ -54,22 +54,22 @@ export default async function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gap-lg">
               <ShopCard
                 title="Shop Taps"
-                image="/assets/shop online/tap.webp"
+                image="/assets/shop-online/tap.webp"
                 href="#"
               />
               <ShopCard
                 title="Shop Showers"
-                image="/assets/shop online/shower.webp"
+                image="/assets/shop-online/shower.webp"
                 href="#"
               />
               <ShopCard
                 title="Shop Baths"
-                image="/assets/shop online/bath.webp"
+                image="/assets/shop-online/bath.webp"
                 href="#"
               />
               <ShopCard
                 title="Shop Basins"
-                image="/assets/shop online/basin.webp"
+                image="/assets/shop-online/basin.webp"
                 href="#"
               />
             </div>
@@ -147,7 +147,7 @@ export default async function Home() {
             {/* Image */}
             <div className="relative w-full h-[250px] md:h-[300px] lg:h-[350px] bg-gray-100 overflow-hidden mb-[90px]">
               <Image
-                src="/assets/hero assets/dominik-5z7ERdLbJ0U-unsplash.webp"
+                src="/assets/hero-assets/dominik-5z7ERdLbJ0U-unsplash.webp"
                 alt="Luxury bathroom brands"
                 fill
                 className="object-cover"
@@ -193,7 +193,7 @@ export default async function Home() {
               {/* Left Column - Image */}
               <div className="relative w-full h-[325px] md:h-[390px] lg:h-[455px] bg-gray-100 overflow-hidden">
                 <Image
-                  src="/assets/hero assets/smart-renovations-qiclFfG4KFM-unsplash.webp"
+                  src="/assets/hero-assets/smart-renovations-qiclFfG4KFM-unsplash.webp"
                   alt="Get a quote for your bathroom project"
                   fill
                   className="object-cover"
@@ -232,7 +232,7 @@ export default async function Home() {
             {/* Image */}
             <div className="relative w-full h-[250px] md:h-[300px] lg:h-[350px] bg-gray-100 overflow-hidden mb-[90px]">
               <Image
-                src="/assets/hero assets/lotus-design-n-print-Dk_o7KQyGkI-unsplash.webp"
+                src="/assets/hero-assets/lotus-design-n-print-Dk_o7KQyGkI-unsplash.webp"
                 alt="Luxury bathroom design"
                 fill
                 className="object-cover"
@@ -275,49 +275,49 @@ export default async function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gap-lg">
               <ShopCard
                 title="Shop Taps"
-                image="/assets/shop online/tap.webp"
+                image="/assets/shop-online/tap.webp"
                 href="#"
                 showText={false}
               />
               <ShopCard
                 title="Shop Showers"
-                image="/assets/shop online/shower.webp"
+                image="/assets/shop-online/shower.webp"
                 href="#"
                 showText={false}
               />
               <ShopCard
                 title="Shop Baths"
-                image="/assets/shop online/bath.webp"
+                image="/assets/shop-online/bath.webp"
                 href="#"
                 showText={false}
               />
               <ShopCard
                 title="Shop Basins"
-                image="/assets/shop online/basin.webp"
+                image="/assets/shop-online/basin.webp"
                 href="#"
                 showText={false}
               />
               <ShopCard
                 title="Bathroom Design 1"
-                image="/assets/hero assets/dominik-5z7ERdLbJ0U-unsplash.webp"
+                image="/assets/hero-assets/dominik-5z7ERdLbJ0U-unsplash.webp"
                 href="#"
                 showText={false}
               />
               <ShopCard
                 title="Bathroom Design 2"
-                image="/assets/hero assets/smart-renovations-qiclFfG4KFM-unsplash.webp"
+                image="/assets/hero-assets/smart-renovations-qiclFfG4KFM-unsplash.webp"
                 href="#"
                 showText={false}
               />
               <ShopCard
                 title="Bathroom Design 3"
-                image="/assets/hero assets/toa-heftiba-PUMw1z67VmQ-unsplash.webp"
+                image="/assets/hero-assets/toa-heftiba-PUMw1z67VmQ-unsplash.webp"
                 href="#"
                 showText={false}
               />
               <ShopCard
                 title="Bathroom Design 4"
-                image="/assets/hero assets/zac-gudakov-T5CraEJfXIU-unsplash.webp"
+                image="/assets/hero-assets/zac-gudakov-T5CraEJfXIU-unsplash.webp"
                 href="#"
                 showText={false}
               />

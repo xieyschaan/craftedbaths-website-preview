@@ -4,11 +4,11 @@ import { useState, useEffect } from 'react'
 import Image from 'next/image'
 
 const heroImages = [
-  '/assets/hero assets/dominik-5z7ERdLbJ0U-unsplash.webp',
-  '/assets/hero assets/lotus-design-n-print-Dk_o7KQyGkI-unsplash.webp',
-  '/assets/hero assets/smart-renovations-qiclFfG4KFM-unsplash.webp',
-  '/assets/hero assets/toa-heftiba-PUMw1z67VmQ-unsplash.webp',
-  '/assets/hero assets/zac-gudakov-T5CraEJfXIU-unsplash.webp',
+  '/assets/hero-assets/dominik-5z7ERdLbJ0U-unsplash.webp',
+  '/assets/hero-assets/lotus-design-n-print-Dk_o7KQyGkI-unsplash.webp',
+  '/assets/hero-assets/smart-renovations-qiclFfG4KFM-unsplash.webp',
+  '/assets/hero-assets/toa-heftiba-PUMw1z67VmQ-unsplash.webp',
+  '/assets/hero-assets/zac-gudakov-T5CraEJfXIU-unsplash.webp',
 ]
 
 export default function HeroSection() {
