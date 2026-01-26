@@ -10,15 +10,27 @@ interface ProjectDetailPageProps {
   }
 }
 
+type ProjectRow = {
+  title: string
+  featured_image: string | null
+  category: string | null
+  location: string | null
+  completed_date: string | null
+  description: string | null
+  images: string[] | null
+  tags: string[] | null
+}
+
 export default async function ProjectDetailPage({ params }: ProjectDetailPageProps) {
   const supabase = await createClient()
-  const { data: project, error } = await supabase
+  const { data, error } = await supabase
     .from('projects')
     .select('*')
     .eq('slug', params.slug)
     .eq('is_published', true)
     .single()
 
+  const project = data as ProjectRow | null
   if (error || !project) {
     notFound()
   }
