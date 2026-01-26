@@ -9,6 +9,8 @@ import { Button } from '@/components/ui'
 import { createClient } from '@/lib/supabase/server'
 import { ExternalLink } from 'lucide-react'
 
+export const runtime = 'edge'
+
 export default async function Home() {
   // Fetch featured projects for homepage
   let featuredProjects: Array<{

@@ -4,6 +4,8 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import { createClient } from '@/lib/supabase/server'
 
+export const runtime = 'edge'
+
 interface ProjectDetailPageProps {
   params: Promise<{ slug: string }>
 }

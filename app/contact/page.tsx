@@ -3,6 +3,8 @@ import Footer from '@/components/layout/Footer'
 import ContactForm from '@/components/forms/ContactForm'
 import { createClient } from '@/lib/supabase/server'
 
+export const runtime = 'edge'
+
 interface ContactPageProps {
   searchParams: Promise<{ showroom?: string }>
 }
