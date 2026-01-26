@@ -15,13 +15,14 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
 
   if (searchParams.showroom) {
     const supabase = await createClient()
-    const { data: showroom } = await supabase
+    const { data } = await supabase
       .from('showrooms')
       .select('id, name')
       .eq('id', searchParams.showroom)
       .eq('is_active', true)
       .single()
 
+    const showroom = data as { id: string; name: string } | null
     if (showroom) {
       showroomId = showroom.id
       showroomName = showroom.name
