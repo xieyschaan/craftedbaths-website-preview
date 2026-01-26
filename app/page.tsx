@@ -11,21 +11,29 @@ import { ExternalLink } from 'lucide-react'
 
 export default async function Home() {
   // Fetch featured projects for homepage
-  const supabase = await createClient()
-  const { data: featuredProjects } = await supabase
-    .from('projects')
-    .select('id, title, slug, short_description, featured_image, category')
-    .eq('is_published', true)
-    .eq('is_featured', true)
-    .order('created_at', { ascending: false })
-    .limit(3) as { data: Array<{
-      id: string;
-      title: string;
-      slug: string;
-      short_description: string | null;
-      featured_image: string | null;
-      category: string | null;
-    }> | null }
+  let featuredProjects: Array<{
+    id: string;
+    title: string;
+    slug: string;
+    short_description: string | null;
+    featured_image: string | null;
+    category: string | null;
+  }> | null = null
+
+  try {
+    const supabase = await createClient()
+    const { data } = await supabase
+      .from('projects')
+      .select('id, title, slug, short_description, featured_image, category')
+      .eq('is_published', true)
+      .eq('is_featured', true)
+      .order('created_at', { ascending: false })
+      .limit(3)
+    featuredProjects = data
+  } catch (error) {
+    console.error('Error fetching featured projects:', error)
+    // Continue with null featuredProjects - page will render without featured projects section
+  }
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -37,7 +45,7 @@ export default async function Home() {
 
         {/* Shop Online Section */}
         <section className="py-section-md bg-white">
-          <div className="container max-w-content px-container-base">
+          <div className="mx-3.5 md:mx-7 lg:mx-9 xl:mx-12">
             <h1 className="text-[44px] font-light text-black mb-[60px] text-center">
               Shop Online
             </h1>
@@ -78,7 +86,7 @@ export default async function Home() {
 
         {/* Services Cards Section */}
         <section className="py-section-md bg-white">
-          <div className="container max-w-content px-container-base">
+          <div className="mx-3.5 md:mx-7 lg:mx-9 xl:mx-12">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-gap-lg w-full">
               {/* Card 1 - Products */}
               <Link
@@ -133,7 +141,7 @@ export default async function Home() {
 
         {/* Find All Big Brands Section */}
         <section className="py-section-md bg-white">
-          <div className="container max-w-content px-container-base">
+          <div className="mx-3.5 md:mx-7 lg:mx-9 xl:mx-12">
             {/* Image */}
             <div className="relative w-full h-[250px] md:h-[300px] lg:h-[350px] bg-gray-100 overflow-hidden mb-[90px]">
               <Image
@@ -147,10 +155,18 @@ export default async function Home() {
             {/* Text Content */}
             <div className="w-full grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-gap-lg">
               {/* Heading */}
-              <div className="flex items-start min-w-0">
-                <h2 className="text-[50px] font-light text-black break-words">
+              <div className="flex flex-col items-start min-w-0">
+                <h2 className="text-[44px] font-light text-black break-words mb-6">
                   Find All Big Brands With Us
                 </h2>
+                <Link href="#">
+                  <Button 
+                    variant="outline" 
+                    className="bg-white text-black border border-black hover:bg-gray-50 px-[39px] py-2 uppercase text-[12px]"
+                  >
+                    VIEW BRANDS
+                  </Button>
+                </Link>
               </div>
               
               {/* Paragraph */}
@@ -162,7 +178,7 @@ export default async function Home() {
             </div>
             
             {/* Brand Slider */}
-            <div className="mt-16">
+            <div className="mt-[84px]">
               <BrandSlider />
             </div>
           </div>
@@ -170,7 +186,7 @@ export default async function Home() {
 
         {/* Match a Quote Section */}
         <section className="py-section-md bg-white">
-          <div className="container max-w-content px-container-base">
+          <div className="mx-3.5 md:mx-7 lg:mx-9 xl:mx-12">
             <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-gap-lg">
               {/* Left Column - Image */}
               <div className="relative w-full h-[325px] md:h-[390px] lg:h-[455px] bg-gray-100 overflow-hidden">
@@ -183,7 +199,7 @@ export default async function Home() {
               </div>
               
               {/* Right Column - Title and Paragraph */}
-              <div className="flex flex-col min-w-0 -mt-[18px]">
+              <div className="flex flex-col justify-center min-w-0">
                 {/* Heading */}
                 <h2 className="text-[50px] font-light text-black break-words mb-6">
                   Match a Quote
@@ -210,7 +226,7 @@ export default async function Home() {
 
         {/* Image and Text Section */}
         <section className="py-section-md bg-white">
-          <div className="container max-w-content px-container-base">
+          <div className="mx-3.5 md:mx-7 lg:mx-9 xl:mx-12">
             {/* Image */}
             <div className="relative w-full h-[250px] md:h-[300px] lg:h-[350px] bg-gray-100 overflow-hidden mb-[90px]">
               <Image
@@ -224,10 +240,18 @@ export default async function Home() {
             {/* Text Content */}
             <div className="w-full grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-gap-lg">
               {/* Heading */}
-              <div className="flex items-start min-w-0">
-                <h2 className="text-[50px] font-light text-black break-words">
-                  Exceptional Bespoke Design Service
+              <div className="flex flex-col items-start min-w-0">
+                <h2 className="text-[44px] font-light text-black break-words mb-6">
+                  Bespoke Design Service
                 </h2>
+                <Link href="#">
+                  <Button 
+                    variant="outline" 
+                    className="bg-white text-black border border-black hover:bg-gray-50 px-[39px] py-2 uppercase text-[12px]"
+                  >
+                    Consultation and Design Services
+                  </Button>
+                </Link>
               </div>
               
               {/* Paragraph */}
@@ -242,7 +266,7 @@ export default async function Home() {
 
         {/* Shop Online Section (Duplicate) */}
         <section className="py-section-md bg-white">
-          <div className="container max-w-content px-container-base">
+          <div className="mx-3.5 md:mx-7 lg:mx-9 xl:mx-12">
             <h1 className="text-[44px] font-light text-black mb-[60px] text-center">
               View Our Bathroom Inspirations
             </h1>
@@ -311,7 +335,7 @@ export default async function Home() {
 
         {/* Brochures and Enquiry Cards Section */}
         <section className="pt-section-sm pb-[180px] bg-white">
-          <div className="container max-w-content px-container-base">
+          <div className="mx-3.5 md:mx-7 lg:mx-9 xl:mx-12">
             <div className="flex justify-center">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-gap-lg max-w-[800px] w-full">
               {/* Card 1 - View Our Brochures */}
@@ -347,7 +371,7 @@ export default async function Home() {
         {/* Featured Projects Section */}
         {featuredProjects && featuredProjects.length > 0 && (
           <section className="py-section-md bg-gray-50">
-            <div className="container max-w-content px-container-base">
+            <div className="mx-3.5 md:mx-7 lg:mx-9 xl:mx-12">
               <div className="mb-spacing-xl">
                 <h2 className="font-h2 text-black mb-spacing-md">
                   Featured Projects

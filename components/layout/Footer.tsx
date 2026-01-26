@@ -4,7 +4,7 @@ import Link from 'next/link'
 export default function Footer() {
   return (
       <footer className="bg-white pt-[30px] pb-[15px]">
-      <div className="container max-w-content px-container-base py-spacing-xl">
+      <div className="mx-3.5 md:mx-7 lg:mx-9 xl:mx-12 py-spacing-xl">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-gap-lg w-full">
           {/* Column 1 - Logo */}
           <div>
@@ -99,8 +99,8 @@ export default function Footer() {
         </div>
 
             {/* Copyright */}
-            <div className="border-t border-gray-200 mt-[84px] py-spacing-xl text-center flex items-center justify-center">
-              <p className="text-gray-500 font-body-sm font-light">
+            <div className="mt-[84px] py-spacing-xl text-center flex items-center justify-center">
+              <p className="text-gray-500 text-xs font-light uppercase">
                 © {new Date().getFullYear()} Crafted Bathrooms. All rights reserved.
               </p>
             </div>
