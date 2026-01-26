@@ -31,7 +31,8 @@ export default function ContactForm({
     setLoading(true)
 
     try {
-      const { error: submitError } = await supabase
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Supabase inferred types cause insert to be 'never'
+      const { error: submitError } = await (supabase as any)
         .from('contact_submissions')
         .insert({
           form_type: formType,

@@ -5,9 +5,7 @@ import Footer from '@/components/layout/Footer'
 import { createClient } from '@/lib/supabase/server'
 
 interface ProjectDetailPageProps {
-  params: {
-    slug: string
-  }
+  params: Promise<{ slug: string }>
 }
 
 type ProjectRow = {
@@ -22,11 +20,12 @@ type ProjectRow = {
 }
 
 export default async function ProjectDetailPage({ params }: ProjectDetailPageProps) {
+  const { slug } = await params
   const supabase = await createClient()
   const { data, error } = await supabase
     .from('projects')
     .select('*')
-    .eq('slug', params.slug)
+    .eq('slug', slug)
     .eq('is_published', true)
     .single()
 

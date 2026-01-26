@@ -4,21 +4,20 @@ import ContactForm from '@/components/forms/ContactForm'
 import { createClient } from '@/lib/supabase/server'
 
 interface ContactPageProps {
-  searchParams: {
-    showroom?: string
-  }
+  searchParams: Promise<{ showroom?: string }>
 }
 
 export default async function ContactPage({ searchParams }: ContactPageProps) {
+  const resolved = await searchParams
   let showroomId: string | undefined
   let showroomName: string | undefined
 
-  if (searchParams.showroom) {
+  if (resolved.showroom) {
     const supabase = await createClient()
     const { data } = await supabase
       .from('showrooms')
       .select('id, name')
-      .eq('id', searchParams.showroom)
+      .eq('id', resolved.showroom)
       .eq('is_active', true)
       .single()
 
