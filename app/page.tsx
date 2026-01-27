@@ -1,16 +1,13 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import dynamic from 'next/dynamic'
 import { Button } from '@/components/ui'
 import { createClient } from '@/lib/supabase/server'
 import { ExternalLink } from 'lucide-react'
-
-// Dynamically import client components to reduce bundle size
-const Header = dynamic(() => import('@/components/layout/Header'), { ssr: true })
-const Footer = dynamic(() => import('@/components/layout/Footer'), { ssr: true })
-const HeroSection = dynamic(() => import('@/components/hero/HeroSection'), { ssr: true })
-const ShopCard = dynamic(() => import('@/components/shop/ShopCard'), { ssr: true })
-const BrandSlider = dynamic(() => import('@/components/brands/BrandSlider'), { ssr: true })
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
+import HeroSection from '@/components/hero/HeroSection'
+import ShopCard from '@/components/shop/ShopCard'
+import BrandSlider from '@/components/brands/BrandSlider'
 
 export default async function Home() {
   // Fetch featured projects for homepage
@@ -154,7 +151,9 @@ export default async function Home() {
                 src="/assets/hero-assets/dominik-5z7ERdLbJ0U-unsplash.webp"
                 alt="Luxury bathroom brands"
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1440px"
                 className="object-cover"
+                priority
               />
             </div>
             
@@ -200,7 +199,9 @@ export default async function Home() {
                   src="/assets/hero-assets/smart-renovations-qiclFfG4KFM-unsplash.webp"
                   alt="Get a quote for your bathroom project"
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover"
+                  loading="lazy"
                 />
               </div>
               
@@ -241,7 +242,9 @@ export default async function Home() {
                 src="/assets/hero-assets/lotus-design-n-print-Dk_o7KQyGkI-unsplash.webp"
                 alt="Luxury bathroom design"
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1440px"
                 className="object-cover"
+                loading="lazy"
               />
             </div>
             
@@ -397,10 +400,13 @@ export default async function Home() {
                   >
                     {project.featured_image && (
                       <div className="relative w-full h-64 bg-gray-100 overflow-hidden">
-                        <img
+                        <Image
                           src={project.featured_image}
                           alt={project.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                          loading="lazy"
                         />
                       </div>
                     )}

@@ -9,7 +9,7 @@
        url('/assets/fonts/Gilroy/gilroy-thin-webfont.woff') format('woff');
   font-weight: 100;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -17,7 +17,7 @@
   src: url('/assets/fonts/Gilroy/gilroy-ultralightitalic-webfont.woff') format('woff');
   font-weight: 100;
   font-style: italic;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -26,7 +26,7 @@
        url('/assets/fonts/Gilroy/gilroy-light-webfont.woff') format('woff');
   font-weight: 300;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -35,7 +35,7 @@
        url('/assets/fonts/Gilroy/gilroy-lightitalic-webfont.woff') format('woff');
   font-weight: 300;
   font-style: italic;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -44,7 +44,7 @@
        url('/assets/fonts/Gilroy/gilroy-regular-webfont.woff') format('woff');
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -53,7 +53,7 @@
        url('/assets/fonts/Gilroy/gilroy-regularitalic-webfont.woff') format('woff');
   font-weight: 400;
   font-style: italic;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -62,7 +62,7 @@
        url('/assets/fonts/Gilroy/gilroy-medium-webfont.woff') format('woff');
   font-weight: 500;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -71,7 +71,7 @@
        url('/assets/fonts/Gilroy/gilroy-mediumitalic-webfont.woff') format('woff');
   font-weight: 500;
   font-style: italic;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -80,7 +80,7 @@
        url('/assets/fonts/Gilroy/gilroy-semibold-webfont.woff') format('woff');
   font-weight: 600;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -89,7 +89,7 @@
        url('/assets/fonts/Gilroy/gilroy-semibolditalic-webfont.woff') format('woff');
   font-weight: 600;
   font-style: italic;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -98,7 +98,7 @@
        url('/assets/fonts/Gilroy/gilroy-bold-webfont.woff') format('woff');
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -107,7 +107,7 @@
        url('/assets/fonts/Gilroy/gilroy-bolditalic-webfont.woff') format('woff');
   font-weight: 700;
   font-style: italic;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -116,7 +116,7 @@
        url('/assets/fonts/Gilroy/gilroy-extrabold-webfont.woff') format('woff');
   font-weight: 800;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -125,7 +125,7 @@
        url('/assets/fonts/Gilroy/gilroy-extrabolditalic-webfont.woff') format('woff');
   font-weight: 800;
   font-style: italic;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -134,7 +134,7 @@
        url('/assets/fonts/Gilroy/gilroy-heavy-webfont.woff') format('woff');
   font-weight: 900;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -143,7 +143,7 @@
        url('/assets/fonts/Gilroy/gilroy-heavyitalic-webfont.woff') format('woff');
   font-weight: 900;
   font-style: italic;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -152,7 +152,7 @@
        url('/assets/fonts/Gilroy/gilroy-black-webfont.woff') format('woff');
   font-weight: 950;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -161,7 +161,7 @@
        url('/assets/fonts/Gilroy/gilroy-blackitalic-webfont.woff') format('woff');
   font-weight: 950;
   font-style: italic;
-  font-display: swap;
+  font-display: optional;
 }
 
 /* Rexton Font Family */
@@ -171,7 +171,7 @@
        url('/assets/fonts/Rexton/rexton_light-webfont.woff') format('woff');
   font-weight: 300;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -180,7 +180,7 @@
        url('/assets/fonts/Rexton/rexton_regular-webfont.woff') format('woff');
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -189,7 +189,7 @@
        url('/assets/fonts/Rexton/rexton_medium-webfont.woff') format('woff');
   font-weight: 500;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -198,7 +198,7 @@
        url('/assets/fonts/Rexton/rexton_bold-webfont.woff') format('woff');
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -207,7 +207,7 @@
        url('/assets/fonts/Rexton/rexton_extra_bold-webfont.woff') format('woff');
   font-weight: 800;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -216,7 +216,7 @@
        url('/assets/fonts/Rexton/rexton_black-webfont.woff') format('woff');
   font-weight: 900;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 :root {
@@ -289,5 +289,22 @@ body {
   font-family: 'Gilroy', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Prevent layout shift for images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevent content flash during load */
+* {
+  box-sizing: border-box;
 }
 

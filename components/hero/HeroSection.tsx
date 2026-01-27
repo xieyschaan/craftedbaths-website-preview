@@ -13,6 +13,7 @@ const heroImages = [
 
 export default function HeroSection() {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [imagesLoaded, setImagesLoaded] = useState<boolean[]>(new Array(heroImages.length).fill(false))
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -21,6 +22,14 @@ export default function HeroSection() {
 
     return () => clearInterval(interval)
   }, [])
+
+  const handleImageLoad = (index: number) => {
+    setImagesLoaded((prev) => {
+      const newState = [...prev]
+      newState[index] = true
+      return newState
+    })
+  }
 
   const goToSlide = (index: number) => {
     setCurrentIndex(index)
@@ -33,19 +42,26 @@ export default function HeroSection() {
         <div className="relative w-full h-full overflow-hidden">
           {/* Images */}
           <div className="relative w-full h-full">
+            {/* Loading placeholder - show until first image loads */}
+            {!imagesLoaded[0] && (
+              <div className="absolute inset-0 bg-gray-100 animate-pulse z-0" />
+            )}
             {heroImages.map((image, index) => (
               <div
                 key={index}
                 className={`absolute inset-0 transition-opacity duration-1000 ${
-                  index === currentIndex ? 'opacity-100' : 'opacity-0'
+                  index === currentIndex && imagesLoaded[index] ? 'opacity-100 z-10' : 'opacity-0 z-0'
                 }`}
               >
                 <Image
                   src={image}
                   alt={`Hero image ${index + 1}`}
                   fill
+                  sizes="100vw"
                   className="object-cover"
                   priority={index === 0}
+                  loading={index === 0 ? undefined : 'lazy'}
+                  onLoad={() => handleImageLoad(index)}
                 />
               </div>
             ))}

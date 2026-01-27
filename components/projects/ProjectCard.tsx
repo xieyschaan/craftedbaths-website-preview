@@ -1,4 +1,9 @@
+'use client'
+
 import Link from 'next/link'
+import Image from 'next/image'
+import { useState } from 'react'
+import Skeleton from '@/components/ui/Skeleton'
 
 interface ProjectCardProps {
   project: {
@@ -13,17 +18,32 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project }: ProjectCardProps) {
+  const [imageLoaded, setImageLoaded] = useState(false)
+
   return (
     <Link href={`/projects/${project.slug}`} className="group">
       <div className="bg-white border-2 border-gray-200 overflow-hidden transition-all hover:border-primary-900">
         {/* Image */}
         <div className="relative w-full h-64 bg-gray-100 overflow-hidden">
           {project.featured_image ? (
-            <img
-              src={project.featured_image}
-              alt={project.title}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[600ms] ease-in-out"
-            />
+            <>
+              {!imageLoaded && (
+                <div className="absolute inset-0">
+                  <Skeleton className="w-full h-full" />
+                </div>
+              )}
+              <Image
+                src={project.featured_image}
+                alt={project.title}
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className={`object-cover group-hover:scale-105 transition-transform duration-[600ms] ease-in-out ${
+                  imageLoaded ? 'opacity-100' : 'opacity-0'
+                }`}
+                loading="lazy"
+                onLoad={() => setImageLoaded(true)}
+              />
+            </>
           ) : (
             <div className="w-full h-full flex items-center justify-center">
               <span className="text-gray-400 font-gilroy">No Image</span>

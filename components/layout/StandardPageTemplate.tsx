@@ -1,13 +1,6 @@
-import dynamic from 'next/dynamic'
-import PageBanner from '@/components/layout/PageBanner'
-
-// Dynamically import client components to reduce bundle size
-const Header = dynamic(() => import('@/components/layout/Header'), {
-  ssr: true,
-})
-const Footer = dynamic(() => import('@/components/layout/Footer'), {
-  ssr: true,
-})
+import Header from './Header'
+import Footer from './Footer'
+import PageBanner from './PageBanner'
 
 /**
  * Standard layout for content pages:

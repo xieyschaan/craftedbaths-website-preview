@@ -1,11 +1,8 @@
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
-import dynamic from 'next/dynamic'
 import { createClient } from '@/lib/supabase/server'
-
-// Dynamically import client components to reduce bundle size
-const Header = dynamic(() => import('@/components/layout/Header'), { ssr: true })
-const Footer = dynamic(() => import('@/components/layout/Footer'), { ssr: true })
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
 
 interface ProjectDetailPageProps {
   params: Promise<{ slug: string }>
@@ -49,6 +46,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
               src={project.featured_image}
               alt={project.title}
               fill
+              sizes="100vw"
               className="object-cover"
               priority
             />
@@ -103,7 +101,9 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
                         src={image}
                         alt={`${project.title} - Image ${index + 1}`}
                         fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
                         className="object-cover"
+                        loading="lazy"
                       />
                     </div>
                   ))}
