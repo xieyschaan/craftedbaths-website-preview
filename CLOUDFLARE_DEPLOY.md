@@ -86,9 +86,38 @@ Use these settings and the project name below.
 
 ## 6. Deploy
 
+### Option A: Git Integration (Automatic)
+
 1. Click **Save and Deploy**.
-2. Wait for the build to finish. The site will be at:
-   - **Production:** `https://craftedbaths-website-preview.pages.dev`
+2. Wait for the build to finish.
+3. **Important:** After the build completes, check the **Functions** tab in the deployment details. If you see a Worker function listed, the deployment is complete. If not, the Worker may not have been deployed - use Option B below.
+
+### Option B: Manual Deploy with Wrangler (If Worker Not Deployed)
+
+If the Worker function is not showing in the Functions tab after Git deployment, deploy it manually:
+
+1. Install Wrangler globally (if not already installed):
+   ```powershell
+   npm install -g wrangler
+   ```
+
+2. Authenticate with Cloudflare:
+   ```powershell
+   npx wrangler login
+   ```
+
+3. Build and deploy:
+   ```powershell
+   npm run deploy
+   ```
+   Or manually:
+   ```powershell
+   npx opennextjs-cloudflare build
+   npx opennextjs-cloudflare deploy
+   ```
+
+The site will be at:
+- **Production:** `https://craftedbaths-website-preview.pages.dev`
 
 ---
 
