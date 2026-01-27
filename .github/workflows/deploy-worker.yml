@@ -31,21 +31,14 @@ jobs:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
 
-      - name: Copy Worker to functions directory for Pages
-        # Pages expects functions in /functions directory
-        run: |
-          mkdir -p functions
-          cp .open-next/worker.js functions/_worker.js
-
-      - name: Deploy Worker to Cloudflare Workers
-        # Deploy Worker separately (for Worker URL)
-        run: npx wrangler deploy
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      - name: Copy Worker to Pages build output
+        # Pages Advanced Mode: _worker.js in build output directory enables Worker
+        # This is the standard way to deploy Workers with Cloudflare Pages
+        run: cp .open-next/worker.js .open-next/assets/_worker.js
 
       - name: Deploy to Cloudflare Pages
-        # Deploy Pages with Worker in functions directory
+        # Deploy Pages with _worker.js in assets directory
+        # Pages will automatically use _worker.js for routing
         run: npx wrangler pages deploy .open-next/assets --project-name=craftedbaths-website-preview --branch=main
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
