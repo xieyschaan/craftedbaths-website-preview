@@ -31,10 +31,17 @@ jobs:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
 
-      - name: Copy Worker to Pages build output
-        # Pages Advanced Mode: _worker.js in build output directory enables Worker
-        # This is the standard way to deploy Workers with Cloudflare Pages
-        run: cp .open-next/worker.js .open-next/assets/_worker.js
+      - name: Copy Worker and dependencies to Pages build output
+        # Pages Advanced Mode: _worker.js needs all its dependencies
+        # Copy the entire .open-next structure so relative imports work
+        run: |
+          # Copy worker.js as _worker.js
+          cp .open-next/worker.js .open-next/assets/_worker.js
+          # Copy all dependencies that _worker.js imports
+          cp -r .open-next/cloudflare .open-next/assets/
+          cp -r .open-next/middleware .open-next/assets/
+          cp -r .open-next/.build .open-next/assets/
+          cp -r .open-next/server-functions .open-next/assets/
 
       - name: Deploy to Cloudflare Pages
         # Deploy Pages with _worker.js in assets directory
