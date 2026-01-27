@@ -41,12 +41,12 @@ export default function BrandSlider() {
     const slider = sliderRef.current
     if (!slider) return
 
-    let animationId: number
+    let animationId: number | null = null
     const speed = 0.3 // pixels per frame
 
     const animate = () => {
       // Only animate if not hovering and not dragging
-      if (!isHovered && !isDragging) {
+      if (!isHovered && !isDragging && slider) {
         positionRef.current -= speed
         
         // Reset position when we've scrolled through one set of brands
@@ -56,15 +56,16 @@ export default function BrandSlider() {
         }
         
         slider.style.transform = `translateX(${positionRef.current}px)`
+        animationId = requestAnimationFrame(animate)
+      } else if (slider) {
+        animationId = requestAnimationFrame(animate)
       }
-      
-      animationId = requestAnimationFrame(animate)
     }
 
-    animate()
+    animationId = requestAnimationFrame(animate)
 
     return () => {
-      if (animationId) {
+      if (animationId !== null) {
         cancelAnimationFrame(animationId)
       }
     }
