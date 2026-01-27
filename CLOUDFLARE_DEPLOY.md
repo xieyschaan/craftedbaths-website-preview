@@ -63,7 +63,7 @@ Use these settings and the project name below.
 | **Project name** | `craftedbaths-website-preview` |
 | **Production branch** | `main` |
 | **Framework preset** | `None` (or leave blank) |
-| **Build command** | `npx opennextjs-cloudflare build && cp -r public/* .open-next/assets/ && cp .open-next/worker.js .open-next/assets/_worker.js && cp -r .open-next/cloudflare .open-next/assets/ && cp -r .open-next/middleware .open-next/assets/ && cp -r .open-next/.build .open-next/assets/ && cp -r .open-next/server-functions .open-next/assets/ && echo -e "_worker.js\ncloudflare/\nmiddleware/\n.build/\nserver-functions/" > .open-next/assets/.assetsignore` |
+| **Build command** | `npx opennextjs-cloudflare build && cp -r public/* .open-next/assets/ && cp -r .open-next/assets/* .open-next/ && cp .open-next/worker.js .open-next/_worker.js && cp -r .open-next/cloudflare .open-next/ && cp -r .open-next/middleware .open-next/ && cp -r .open-next/.build .open-next/ && cp -r .open-next/server-functions .open-next/ && node -e "require('fs').writeFileSync('.open-next/_routes.json', JSON.stringify({version:1,include:['/*'],exclude:['/_next/static/*','/_next/data/*','/assets/*','/favicon.ico','/robots.txt','/sitemap.xml','/404.html']},null,2))"` |
 | **Build output directory** | `.open-next/assets` |
 | **Root directory** | *(leave blank)* |
 

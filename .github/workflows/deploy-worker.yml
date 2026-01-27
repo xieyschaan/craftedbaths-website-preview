@@ -38,24 +38,27 @@ jobs:
             cp -r public/* .open-next/assets/ || true
           fi
 
-      - name: Copy Worker and dependencies to Pages build output
-        # Pages Advanced Mode: _worker.js needs all its dependencies
-        # Copy the entire .open-next structure so relative imports work
+      - name: Prepare Pages build output
+        # Fix path mismatch: Copy assets to root so /_next/static/ paths work
+        # Cloudflare Pages uses .open-next/ as root, so files must be at root level
         run: |
+          # Copy all assets to root (this moves _next/static/ to the correct location)
+          cp -r .open-next/assets/* .open-next/ || true
           # Copy worker.js as _worker.js
-          cp .open-next/worker.js .open-next/assets/_worker.js
+          cp .open-next/worker.js .open-next/_worker.js
           # Copy all dependencies that _worker.js imports
-          cp -r .open-next/cloudflare .open-next/assets/
-          cp -r .open-next/middleware .open-next/assets/
-          cp -r .open-next/.build .open-next/assets/
-          cp -r .open-next/server-functions .open-next/assets/
-          # Create .assetsignore to exclude Worker files from static asset serving
-          echo -e "_worker.js\ncloudflare/\nmiddleware/\n.build/\nserver-functions/" > .open-next/assets/.assetsignore
+          cp -r .open-next/cloudflare .open-next/ || true
+          cp -r .open-next/middleware .open-next/ || true
+          cp -r .open-next/.build .open-next/ || true
+          cp -r .open-next/server-functions .open-next/ || true
+          # Create _routes.json to exclude static assets from Worker processing
+          # This allows Cloudflare CDN to serve CSS/JS directly (faster, cheaper)
+          node -e "require('fs').writeFileSync('.open-next/_routes.json', JSON.stringify({version:1,include:['/*'],exclude:['/_next/static/*','/_next/data/*','/assets/*','/favicon.ico','/robots.txt','/sitemap.xml','/404.html']},null,2))"
 
       - name: Deploy to Cloudflare Pages
-        # Deploy Pages with _worker.js in assets directory
-        # Pages will automatically use _worker.js for routing
-        run: npx wrangler pages deploy .open-next/assets --project-name=craftedbaths-website-preview --branch=main
+        # Deploy Pages with _worker.js and _routes.json in root directory
+        # Pages will use _worker.js for routing and serve static files directly
+        run: npx wrangler pages deploy .open-next --project-name=craftedbaths-website-preview --branch=main
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
