@@ -1,8 +1,8 @@
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
+import StandardPageTemplate from '@/components/layout/StandardPageTemplate'
 import ContactForm from '@/components/forms/ContactForm'
 import { createClient } from '@/lib/supabase/server'
 
+// Cloudflare Pages: dynamic route needs Edge runtime. See DEPLOYMENT_AND_DEVELOPMENT_NOTES.md
 export const runtime = 'edge'
 
 interface ContactPageProps {
@@ -31,13 +31,10 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
-
-      <main className="flex-grow">
-        {/* Hero Section */}
-        <section className="bg-white py-section-md">
-          <div className="container max-w-content-narrow px-container-base">
+    <StandardPageTemplate>
+      {/* Hero Section */}
+      <section className="bg-white py-section-md">
+        <div className="max-w-content-narrow">
             <h1 className="font-display text-black mb-spacing-md">
               Contact Us
             </h1>
@@ -47,9 +44,9 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
           </div>
         </section>
 
-        {/* Contact Form Section */}
-        <section className="bg-gray-50 py-section-md">
-          <div className="container max-w-content-tight px-container-base">
+      {/* Contact Form Section */}
+      <section className="bg-gray-50 py-section-md">
+        <div className="max-w-content-tight">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-gap-xl">
               {/* Contact Form */}
               <div className="bg-white border-2 border-gray-200 p-spacing-lg">
@@ -106,10 +103,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
               </div>
             </div>
           </div>
-        </section>
-      </main>
-
-      <Footer />
-    </div>
+      </section>
+    </StandardPageTemplate>
   )
 }

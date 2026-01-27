@@ -84,9 +84,9 @@ export default function HeroSection() {
               return (
                 <p
                   key={index}
-                  className={`font-rexton text-display text-white absolute inset-0 transition-opacity duration-1000 ${
-                    index === currentIndex ? 'opacity-100' : 'opacity-0'
-                  }`}
+                  className={`font-rexton text-white absolute inset-0 transition-opacity duration-1000 leading-[1.15] tracking-[-0.02em] font-bold
+                    text-[1.35rem] sm:text-3xl md:text-4xl lg:text-5xl xl:text-display
+                    ${index === currentIndex ? 'opacity-100' : 'opacity-0'}`}
                 >
                   {slideTexts[index]}
                 </p>

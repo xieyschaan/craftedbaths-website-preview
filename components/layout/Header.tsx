@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Logo from '@/components/ui/Logo'
 import Link from 'next/link'
-import { Menu, X } from 'lucide-react'
+import { X } from 'lucide-react'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -31,11 +31,17 @@ export default function Header() {
     setIsMenuOpen(false)
   }
 
-  const menuCategories = [
-    { name: 'Taps', href: '#' },
-    { name: 'Showers', href: '#' },
-    { name: 'Baths', href: '#' },
-    { name: 'Basins', href: '#' },
+  const pageLinks = [
+    { name: 'About Us', href: '/about' },
+    { name: 'Projects', href: '/projects' },
+    { name: 'Design Services', href: '/design-services' },
+    { name: 'Showrooms', href: '/showrooms' },
+    { name: 'FAQs', href: '/faq' },
+    { name: 'Brands', href: '/brands' },
+    { name: 'Contact Us', href: '/contact' },
+    { name: 'Inspiration', href: '/inspiration' },
+    { name: 'Brochures', href: '/brochures' },
+    { name: 'Match a Quote', href: '/match-a-quote' },
   ]
 
   return (
@@ -52,37 +58,22 @@ export default function Header() {
             />
           </Link>
 
-          {/* Right Side - Menu and Online Shop */}
-          <div className="flex items-center gap-6">
-            {/* Hamburger Menu */}
-            <button
-              onClick={toggleMenu}
-              className="flex items-center gap-2 p-2 transition-colors"
-              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-            >
-              {isMenuOpen ? (
-                <X className="h-8 w-[60px] text-black stroke-[1px]" />
-              ) : (
-                <div className="flex flex-col gap-1.5 w-[30px]">
-                  <div className="h-[1px] w-full bg-black"></div>
-                  <div className="h-[1px] w-full bg-black"></div>
-                  <div className="h-[1px] w-full bg-black"></div>
-                </div>
-              )}
-              {!isMenuOpen && (
-                <span className="font-body text-black ml-[10px]">Main Menu</span>
-              )}
-            </button>
-
-            {/* Online Shop Link */}
-            <Link
-              href="#"
-              className="font-body text-black hover:text-gray-800 hover:underline transition-colors"
-              onClick={closeMenu}
-            >
-              Online Shop
-            </Link>
-          </div>
+          {/* Right side: menu icon only */}
+          <button
+            onClick={toggleMenu}
+            className="flex items-center justify-center p-2 -mr-2 transition-colors"
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+          >
+            {isMenuOpen ? (
+              <X className="h-8 w-8 md:w-[60px] text-black stroke-[1px]" />
+            ) : (
+              <div className="flex flex-col gap-1.5 w-6 md:w-[30px]">
+                <div className="h-[1px] w-full bg-black" />
+                <div className="h-[1px] w-full bg-black" />
+                <div className="h-[1px] w-full bg-black" />
+              </div>
+            )}
+          </button>
         </div>
       </header>
 
@@ -94,14 +85,14 @@ export default function Header() {
         >
           <div className="container max-w-content px-container-base py-section-md">
             <nav className="space-y-8">
-              {menuCategories.map((category) => (
+              {pageLinks.map((link) => (
                 <Link
-                  key={category.name}
-                  href={category.href}
+                  key={link.name}
+                  href={link.href}
                   onClick={closeMenu}
                   className="block text-black hover:text-gray-800 transition-colors"
                 >
-                  <h2 className="text-[44px] font-light">{category.name}</h2>
+                  <h2 className="text-[44px] font-light">{link.name}</h2>
                 </Link>
               ))}
             </nav>

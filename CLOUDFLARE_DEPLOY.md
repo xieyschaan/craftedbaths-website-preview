@@ -2,6 +2,8 @@
 
 Use this guide to deploy the Crafted Bathrooms site to Cloudflare Pages using the GitHub repo **craftedbaths-website-preview** and the Cloudflare project **craftedbaths-website-preview**.
 
+**Before changing code or redeploying:** see **DEPLOYMENT_AND_DEVELOPMENT_NOTES.md** for patterns that avoid recurring build/runtime issues (params & searchParams, Supabase typings, Edge runtime, asset paths, images).
+
 ---
 
 ## 1. Create the GitHub repository
@@ -16,24 +18,17 @@ Use this guide to deploy the Crafted Bathrooms site to Cloudflare Pages using th
 
 ## 2. Push this project to GitHub
 
-In your project folder, run (replace `YOUR_USERNAME` with your GitHub username):
+The project is already wired to use `origin` for **craftedbaths-website-preview**. Point it at your repo and push (replace `YOUR_USERNAME` with your GitHub username, or use your org name instead):
 
 ```powershell
 cd "G:\Crafted Bathrooms Website"
 
-# Add the GitHub remote
-git remote add origin https://github.com/YOUR_USERNAME/craftedbaths-website-preview.git
-
-# Rename branch to main (GitHub default)
+git remote set-url origin https://github.com/YOUR_USERNAME/craftedbaths-website-preview.git
 git branch -M main
-
-# Push to GitHub
 git push -u origin main
 ```
 
-If the repo is under an organization, use:
-
-`https://github.com/ORG_NAME/craftedbaths-website-preview.git`
+After this, every `git push origin main` will update GitHub and (once Cloudflare is connected) trigger an automatic deploy.
 
 ---
 
@@ -45,6 +40,17 @@ If the repo is under an organization, use:
 4. Choose **GitHub** and authorize Cloudflare if prompted.
 5. Select the repository **craftedbaths-website-preview**.
 6. Click **Begin setup**.
+
+### If **craftedbaths-website-preview** is not in the repo list
+
+Cloudflare can only see repos you’ve allowed for the Cloudflare Pages app. Fix it like this:
+
+1. On the same Cloudflare “Select a repository” screen, click the link: **“configure repository access for the Cloudflare Pages app on GitHub”** (under the repo dropdown).
+2. Or open GitHub → **Settings** → **Applications** → **Installed GitHub Apps** → **Cloudflare Pages** → **Configure**.
+3. Under **Repository access**, choose **Only select repositories**.
+4. Click **Select repositories** and add **craftedbaths-website-preview**.
+5. Click **Save**.
+6. Back in Cloudflare, refresh the page or open “Create project” again; **craftedbaths-website-preview** should appear. Select it and click **Begin setup**.
 
 ---
 
@@ -97,3 +103,29 @@ git push origin main
 ```
 
 Cloudflare Pages will auto-build and deploy from the `main` branch.
+
+---
+
+## Before each deploy (checklist)
+
+- [ ] `npm run build` passes locally.
+- [ ] Any new page with `params` / `searchParams` uses `Promise<…>` and `await`.
+- [ ] Any new dynamic route that uses Supabase or cookies has `export const runtime = 'edge'`.
+- [ ] Any new Supabase query that errors with “never” has a type assertion.
+- [ ] Any new assets use hyphenated paths (e.g. `hero-assets/`), no spaces.
+- [ ] `images.unoptimized` is still `true` in `next.config.js` (for Cloudflare).
+- [ ] Cloudflare project has `nodejs_compat` set (Settings → Functions) for Production (and Preview if used).
+
+Full checklist and patterns: **DEPLOYMENT_AND_DEVELOPMENT_NOTES.md** §7.
+
+---
+
+## Avoiding recurring issues
+
+If a deploy fails or images/scripts break, use the checklist in **DEPLOYMENT_AND_DEVELOPMENT_NOTES.md**. In particular:
+
+- New pages with **`params` or `searchParams`** must use `Promise<…>` and `await`.
+- New **dynamic** routes that use Supabase or cookies need `export const runtime = 'edge'`.
+- New **Supabase** `.single()` / `.insert()` may need explicit types or assertions if the build reports `never`.
+- New **assets** under `public/`: use hyphenated paths (e.g. `hero-assets/`), no spaces.
+- **Compatibility flag** `nodejs_compat` must be set in Cloudflare (Settings → Functions) for Production (and Preview if used).

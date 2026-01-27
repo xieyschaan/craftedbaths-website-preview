@@ -1,16 +1,18 @@
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
+import StandardPageTemplate from '@/components/layout/StandardPageTemplate'
+
+export const runtime = 'edge'
 
 export default function ShowroomsPage() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
-
-      <main className="flex-grow">
-        {/* Content will be added here */}
-      </main>
-
-      <Footer />
-    </div>
+    <StandardPageTemplate>
+      <section className="py-section-md bg-white">
+        <h1 className="text-[44px] font-light text-black mb-6">
+          Showrooms
+        </h1>
+        <p className="font-body text-gray-700 max-w-text">
+          Content for Showrooms will be added here.
+        </p>
+      </section>
+    </StandardPageTemplate>
   )
 }

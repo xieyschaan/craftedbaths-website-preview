@@ -36,6 +36,27 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
+## Docs
+
+- **DEPLOYMENT_AND_DEVELOPMENT_NOTES.md** – Patterns for Next.js 15/16, Supabase typings, Edge runtime, and asset paths so build and Cloudflare deploy keep working.
+- **CLOUDFLARE_DEPLOY.md** – Step-by-step Cloudflare Pages deploy via GitHub.
+- **PROJECT_CONTEXT.md** – Architecture, stack, and project overview.
+
+## Pre-push / pre-deploy checklist
+
+Before `git push` (or before triggering a Cloudflare deploy), run `npm run build` and confirm:
+
+- [ ] **New page with `params`?** – Typed as `Promise<{ ... }>`, and you `await params` before use.
+- [ ] **New page with `searchParams`?** – Typed as `Promise<{ ... }>`, and you `await searchParams` before use.
+- [ ] **New dynamic route** (Supabase/cookies)? – It has `export const runtime = 'edge'`.
+- [ ] **New Supabase** `.single()` / `.insert()`? – No “never” type errors; add a type assertion if needed.
+- [ ] **New assets** under `public/`? – Folder and file names use **hyphens** (e.g. `hero-assets/`), no spaces.
+- [ ] **New `/assets/...` references in code?** – Path matches the actual path on disk.
+- [ ] **`next.config.js` changes?** – `images.unoptimized` is still `true` if you deploy to Cloudflare Pages.
+- [ ] **New Cloudflare project or env?** – `nodejs_compat` is set (Settings → Functions) for Production (and Preview if used).
+
+Full table and examples: **DEPLOYMENT_AND_DEVELOPMENT_NOTES.md** §7.
+
 ## Project Structure
 
 ```

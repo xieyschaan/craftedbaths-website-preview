@@ -9,6 +9,7 @@ import { Button } from '@/components/ui'
 import { createClient } from '@/lib/supabase/server'
 import { ExternalLink } from 'lucide-react'
 
+// Cloudflare Pages: dynamic route needs Edge runtime. See DEPLOYMENT_AND_DEVELOPMENT_NOTES.md
 export const runtime = 'edge'
 
 export default async function Home() {
@@ -92,7 +93,7 @@ export default async function Home() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-gap-lg w-full">
               {/* Card 1 - Products */}
               <Link
-                href="/services"
+                href="/design-services"
                 className="group bg-white border border-black p-8 min-h-[160px] flex flex-col hover:bg-gray-50 transition-all"
               >
                 <h3 className="font-h4 text-black mb-4 group-hover:text-gray-800 transition-colors">
@@ -161,7 +162,7 @@ export default async function Home() {
                 <h2 className="text-[44px] font-light text-black break-words mb-6">
                   Find All Big Brands With Us
                 </h2>
-                <Link href="#">
+                <Link href="/brands">
                   <Button 
                     variant="outline" 
                     className="bg-white text-black border border-black hover:bg-gray-50 px-[39px] py-2 uppercase text-[12px]"
@@ -214,12 +215,14 @@ export default async function Home() {
                 
                 {/* Button */}
                 <div className="mt-5">
-                  <Button 
-                    variant="outline" 
-                    className="bg-white text-black border border-black hover:bg-gray-50 px-[39px] py-2 uppercase text-[12px]"
-                  >
-                    Send Quote Details
-                  </Button>
+                  <Link href="/match-a-quote">
+                    <Button 
+                      variant="outline" 
+                      className="bg-white text-black border border-black hover:bg-gray-50 px-[39px] py-2 uppercase text-[12px]"
+                    >
+                      Send Quote Details
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -246,7 +249,7 @@ export default async function Home() {
                 <h2 className="text-[44px] font-light text-black break-words mb-6">
                   Bespoke Design Service
                 </h2>
-                <Link href="#">
+                <Link href="/design-services">
                   <Button 
                     variant="outline" 
                     className="bg-white text-black border border-black hover:bg-gray-50 px-[39px] py-2 uppercase text-[12px]"
@@ -323,7 +326,7 @@ export default async function Home() {
               />
             </div>
             <div className="mt-[60px] text-center">
-              <Link href="#">
+              <Link href="/inspiration">
                 <Button 
                   variant="outline" 
                   className="bg-white text-black border border-black hover:bg-gray-50 px-[39px] py-2 uppercase text-[12px]"
@@ -342,7 +345,7 @@ export default async function Home() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-gap-lg max-w-[800px] w-full">
               {/* Card 1 - View Our Brochures */}
               <Link
-                href="#"
+                href="/brochures"
                 className="group bg-white border border-black p-8 min-h-[80px] flex flex-col items-center justify-center hover:bg-gray-50 transition-all"
               >
                 <div className="flex items-center gap-2">
@@ -355,7 +358,7 @@ export default async function Home() {
 
               {/* Card 2 - Send an Enquiry */}
               <Link
-                href="#"
+                href="/contact"
                 className="group bg-white border border-black p-8 min-h-[80px] flex flex-col items-center justify-center hover:bg-gray-50 transition-all"
               >
                 <div className="flex items-center gap-2">

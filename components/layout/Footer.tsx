@@ -46,8 +46,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="hover:text-black hover:underline transition-colors">
-                  Services
+                <Link href="/design-services" className="hover:text-black hover:underline transition-colors">
+                  Design Services
                 </Link>
               </li>
               <li>
@@ -57,7 +57,27 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/faq" className="hover:text-black hover:underline transition-colors">
-                  FAQ
+                  FAQs
+                </Link>
+              </li>
+              <li>
+                <Link href="/brands" className="hover:text-black hover:underline transition-colors">
+                  Brands
+                </Link>
+              </li>
+              <li>
+                <Link href="/inspiration" className="hover:text-black hover:underline transition-colors">
+                  Inspiration
+                </Link>
+              </li>
+              <li>
+                <Link href="/brochures" className="hover:text-black hover:underline transition-colors">
+                  Brochures
+                </Link>
+              </li>
+              <li>
+                <Link href="/match-a-quote" className="hover:text-black hover:underline transition-colors">
+                  Match a Quote
                 </Link>
               </li>
             </ul>
