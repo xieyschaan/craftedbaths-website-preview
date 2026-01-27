@@ -39,10 +39,10 @@ export default async function Home() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex flex-col">
       <Header />
 
-      <main className="flex-grow">
+      <main className="flex-grow w-full">
         {/* Hero Section - Full Page with Carousel */}
         <HeroSection />
 
@@ -398,7 +398,7 @@ export default async function Home() {
                     href={`/projects/${project.slug}`}
                     className="group bg-white border-2 border-gray-200 overflow-hidden hover:border-primary-900 transition-colors"
                   >
-                    {project.featured_image && (
+                    {project.featured_image ? (
                       <div className="relative w-full h-64 bg-gray-100 overflow-hidden">
                         <Image
                           src={project.featured_image}
@@ -408,6 +408,10 @@ export default async function Home() {
                           className="object-cover group-hover:scale-105 transition-transform duration-300"
                           loading="lazy"
                         />
+                      </div>
+                    ) : (
+                      <div className="relative w-full h-64 bg-gray-100 flex items-center justify-center">
+                        <span className="text-gray-400 font-body text-sm">No Image</span>
                       </div>
                     )}
                     <div className="p-spacing-lg">

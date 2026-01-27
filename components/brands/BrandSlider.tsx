@@ -125,6 +125,7 @@ export default function BrandSlider() {
         setIsDragging(false)
       }}
       onMouseDown={handleMouseDown}
+      style={{ willChange: 'transform' }}
     >
       {/* Left fade gradient */}
       <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
