@@ -327,3 +327,26 @@ img:not([src]) {
   opacity: 0;
 }
 
+/* Prevent content from disappearing */
+section {
+  min-height: 0;
+  position: relative;
+}
+
+/* Ensure footer is always visible */
+footer {
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Prevent layout collapse */
+main {
+  min-height: 0;
+}
+
+/* Ensure all content is visible */
+div[class*="flex"] {
+  min-height: 0;
+}
+

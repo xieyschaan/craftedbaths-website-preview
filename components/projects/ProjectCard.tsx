@@ -37,11 +37,12 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 alt={project.title}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className={`object-cover group-hover:scale-105 transition-transform duration-[600ms] ease-in-out ${
+                className={`object-cover group-hover:scale-105 transition-opacity duration-300 ${
                   imageLoaded ? 'opacity-100' : 'opacity-0'
                 }`}
                 loading="lazy"
                 onLoad={() => setImageLoaded(true)}
+                onError={() => setImageLoaded(true)} // Show placeholder even on error
               />
             </>
           ) : (

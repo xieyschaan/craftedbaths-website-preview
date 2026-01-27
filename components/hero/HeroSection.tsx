@@ -46,25 +46,29 @@ export default function HeroSection() {
             {!imagesLoaded[0] && (
               <div className="absolute inset-0 bg-gray-100 animate-pulse z-0" />
             )}
-            {heroImages.map((image, index) => (
-              <div
-                key={index}
-                className={`absolute inset-0 transition-opacity duration-1000 ${
-                  index === currentIndex && imagesLoaded[index] ? 'opacity-100 z-10' : 'opacity-0 z-0'
-                }`}
-              >
-                <Image
-                  src={image}
-                  alt={`Hero image ${index + 1}`}
-                  fill
-                  sizes="100vw"
-                  className="object-cover"
-                  priority={index === 0}
-                  loading={index === 0 ? undefined : 'lazy'}
-                  onLoad={() => handleImageLoad(index)}
-                />
-              </div>
-            ))}
+            {heroImages.map((image, index) => {
+              const isVisible = index === currentIndex && imagesLoaded[index]
+              return (
+                <div
+                  key={index}
+                  className={`absolute inset-0 transition-opacity duration-1000 ${
+                    isVisible ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+                  }`}
+                  style={{ display: isVisible || index === 0 ? 'block' : 'none' }}
+                >
+                  <Image
+                    src={image}
+                    alt={`Hero image ${index + 1}`}
+                    fill
+                    sizes="100vw"
+                    className="object-cover"
+                    priority={index === 0}
+                    loading={index === 0 ? undefined : 'lazy'}
+                    onLoad={() => handleImageLoad(index)}
+                  />
+                </div>
+              )
+            })}
           </div>
 
           {/* Dots Indicator */}

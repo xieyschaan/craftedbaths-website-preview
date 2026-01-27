@@ -1,11 +1,9 @@
-'use client'
-
 import Logo from '@/components/ui/Logo'
 import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <footer className="bg-white pt-[30px] pb-[15px] w-full">
+    <footer className="bg-white pt-[30px] pb-[15px] w-full mt-auto">
       <div className="mx-3.5 md:mx-7 lg:mx-9 xl:mx-12 py-spacing-xl">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-gap-lg w-full">
           {/* Column 1 - Logo */}

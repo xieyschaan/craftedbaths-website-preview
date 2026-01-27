@@ -39,10 +39,10 @@ export default async function Home() {
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col min-h-screen">
       <Header />
 
-      <main className="flex-grow w-full">
+      <main className="flex-grow w-full flex-shrink-0">
         {/* Hero Section - Full Page with Carousel */}
         <HeroSection />
 
@@ -380,7 +380,7 @@ export default async function Home() {
         </section>
 
         {/* Featured Projects Section */}
-        {featuredProjects && featuredProjects.length > 0 && (
+        {featuredProjects && featuredProjects.length > 0 ? (
           <section className="py-section-md bg-gray-50">
             <div className="mx-3.5 md:mx-7 lg:mx-9 xl:mx-12">
               <div className="mb-spacing-xl">
@@ -442,7 +442,7 @@ export default async function Home() {
               </div>
             </div>
           </section>
-        )}
+        ) : null}
       </main>
 
       <Footer />
