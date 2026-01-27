@@ -63,8 +63,9 @@ Use these settings and the project name below.
 | **Project name** | `craftedbaths-website-preview` |
 | **Production branch** | `main` |
 | **Framework preset** | `None` (or leave blank) |
-| **Build command** | `npx opennextjs-cloudflare build && cp -r public/* .open-next/assets/ && cp -r .open-next/assets/* .open-next/ && cp .open-next/worker.js .open-next/_worker.js && cp -r .open-next/cloudflare .open-next/ && cp -r .open-next/middleware .open-next/ && cp -r .open-next/.build .open-next/ && cp -r .open-next/server-functions .open-next/ && node -e "require('fs').writeFileSync('.open-next/_routes.json', JSON.stringify({version:1,include:['/*'],exclude:['/_next/static/*','/_next/data/*','/assets/*','/favicon.ico','/robots.txt','/sitemap.xml','/404.html']},null,2))"` |
-| **Build output directory** | `.open-next/assets` |
+| **Build command** | `npm run build:cloudflare` |
+| **Build output directory** | `.open-next` |
+| **Note** | The build script automatically handles copying assets, creating `_worker.js`, and generating `_routes.json` |
 | **Root directory** | *(leave blank)* |
 
 ---
@@ -139,7 +140,7 @@ Cloudflare Pages will auto-build and deploy from the `main` branch.
 
 - [ ] `npm run build` passes locally.
 - [ ] Any new page with `params` / `searchParams` uses `Promise<…>` and `await`.
-- [ ] Any new dynamic route that uses Supabase or cookies has `export const runtime = 'edge'`.
+- [ ] Any new dynamic route that uses Supabase or cookies does NOT have `export const runtime = 'edge'` (OpenNext doesn't support it).
 - [ ] Any new Supabase query that errors with “never” has a type assertion.
 - [ ] Any new assets use hyphenated paths (e.g. `hero-assets/`), no spaces.
 - [ ] `images.unoptimized` is still `true` in `next.config.js` (for Cloudflare).
@@ -154,7 +155,7 @@ Full checklist and patterns: **DEPLOYMENT_AND_DEVELOPMENT_NOTES.md** §7.
 If a deploy fails or images/scripts break, use the checklist in **DEPLOYMENT_AND_DEVELOPMENT_NOTES.md**. In particular:
 
 - New pages with **`params` or `searchParams`** must use `Promise<…>` and `await`.
-- New **dynamic** routes that use Supabase or cookies need `export const runtime = 'edge'`.
+- New **dynamic** routes that use Supabase or cookies should NOT have `export const runtime = 'edge'` (OpenNext doesn't support it).
 - New **Supabase** `.single()` / `.insert()` may need explicit types or assertions if the build reports `never`.
 - New **assets** under `public/`: use hyphenated paths (e.g. `hero-assets/`), no spaces.
 - **Compatibility flag** `nodejs_compat` must be set in Cloudflare (Settings → Functions) for Production (and Preview if used).

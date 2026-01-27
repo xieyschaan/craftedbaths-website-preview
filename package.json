@@ -5,12 +5,14 @@
   "scripts": {
     "dev": "cross-env BROWSER=none next dev",
     "build": "next build",
+    "build:cloudflare": "bash scripts/build-cloudflare.sh || powershell -ExecutionPolicy Bypass -File scripts/build-cloudflare.ps1",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
     "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "verify": "npm run build && npm run lint"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

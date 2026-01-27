@@ -34,7 +34,10 @@ export default async function Home() {
       .limit(3)
     featuredProjects = data
   } catch (error) {
-    console.error('Error fetching featured projects:', error)
+    // Log error in development only
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Error fetching featured projects:', error)
+    }
     // Continue with null featuredProjects - page will render without featured projects section
   }
 

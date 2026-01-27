@@ -1,17 +1,17 @@
 # Crafted Bathrooms Website
 
-A luxury bathroom fittings ecommerce website built with Next.js 14, TypeScript, Tailwind CSS, and Supabase.
+A luxury bathroom fittings ecommerce website built with Next.js 16, TypeScript, Tailwind CSS, and Supabase.
 
 ## Tech Stack
 
-- **Framework:** Next.js 14 (App Router)
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS
-- **State Management:** Zustand
+- **Framework:** Next.js 16.1.1 (App Router)
+- **Language:** TypeScript 5.9.3
+- **Styling:** Tailwind CSS 3.4.19
 - **Forms:** React Hook Form + Zod
 - **Database:** Supabase (PostgreSQL)
 - **Authentication:** Supabase Auth
 - **Icons:** Lucide React
+- **Deployment:** OpenNext Cloudflare adapter
 
 ## Getting Started
 
@@ -21,13 +21,12 @@ npm install
 ```
 
 2. Set up environment variables:
-```bash
-cp .env.local.example .env.local
-```
 
-Fill in your Supabase credentials in `.env.local`:
-- `NEXT_PUBLIC_SUPABASE_URL`
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+Create a `.env.local` file in the project root with your Supabase credentials:
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
 
 3. Run the development server:
 ```bash
@@ -48,7 +47,7 @@ Before `git push` (or before triggering a Cloudflare deploy), run `npm run build
 
 - [ ] **New page with `params`?** – Typed as `Promise<{ ... }>`, and you `await params` before use.
 - [ ] **New page with `searchParams`?** – Typed as `Promise<{ ... }>`, and you `await searchParams` before use.
-- [ ] **New dynamic route** (Supabase/cookies)? – It has `export const runtime = 'edge'`.
+- [ ] **New dynamic route** (Supabase/cookies)? – Do NOT add `export const runtime = 'edge'` (OpenNext doesn't support it).
 - [ ] **New Supabase** `.single()` / `.insert()`? – No “never” type errors; add a type assertion if needed.
 - [ ] **New assets** under `public/`? – Folder and file names use **hyphens** (e.g. `hero-assets/`), no spaces.
 - [ ] **New `/assets/...` references in code?** – Path matches the actual path on disk.
@@ -66,8 +65,6 @@ Full table and examples: **DEPLOYMENT_AND_DEVELOPMENT_NOTES.md** §7.
 │   ├── supabase/          # Supabase client configuration
 │   └── services/          # Business logic services
 ├── hooks/                  # Custom React hooks
-├── store/                  # Zustand state stores
-├── types/                  # TypeScript type definitions
 └── public/                 # Static assets
 ```
 
@@ -80,11 +77,8 @@ Full table and examples: **DEPLOYMENT_AND_DEVELOPMENT_NOTES.md** §7.
 
 ## Features
 
-- Product catalog with advanced filtering
-- Quote-based cart system
-- Dynamic pricing for different user types
-- Showroom booking system
-- Authentication and user management
-- Responsive design
-
-## Version Control Test on Local Git (xiey)
+- Product catalog and project showcase
+- Quote-based inquiry system
+- Showroom directory and contact forms
+- Responsive design with luxury aesthetic
+- Server-side rendering with Supabase integration

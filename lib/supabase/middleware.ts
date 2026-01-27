@@ -56,7 +56,10 @@ export async function updateSession(request: NextRequest) {
   } catch (error) {
     // If Supabase connection fails, continue without authentication
     // This prevents the middleware from hanging if Supabase is not configured
-    console.error('Supabase auth error in middleware:', error)
+    // Only log in development to avoid exposing errors in production
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Supabase auth error in middleware:', error)
+    }
   }
 
   // IMPORTANT: You *must* return the supabaseResponse object as it is. If you're

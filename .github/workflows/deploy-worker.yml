@@ -1,7 +1,7 @@
-name: Deploy Worker to Cloudflare Pages
+name: Deploy to Cloudflare Pages
 
-# This workflow deploys the Worker function that Cloudflare Pages Git integration might miss
-# Only use this if the Worker is not showing in the Functions tab after Git deployment
+# This workflow deploys the OpenNext application to Cloudflare Pages
+# It ensures the Worker function and all dependencies are properly deployed
 
 on:
   push:
@@ -26,34 +26,22 @@ jobs:
         run: npm ci
 
       - name: Build with OpenNext
-        run: npx opennextjs-cloudflare build
+        run: npm run build:cloudflare
         env:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
 
-      - name: Copy public assets to build output
-        # OpenNext should copy public/ automatically, but ensure it's there
+      - name: Verify build output
         run: |
-          if [ -d "public" ]; then
-            cp -r public/* .open-next/assets/ || true
+          if [ ! -f ".open-next/_worker.js" ]; then
+            echo "Error: _worker.js not found in build output"
+            exit 1
           fi
-
-      - name: Prepare Pages build output
-        # Fix path mismatch: Copy assets to root so /_next/static/ paths work
-        # Cloudflare Pages uses .open-next/ as root, so files must be at root level
-        run: |
-          # Copy all assets to root (this moves _next/static/ to the correct location)
-          cp -r .open-next/assets/* .open-next/ || true
-          # Copy worker.js as _worker.js
-          cp .open-next/worker.js .open-next/_worker.js
-          # Copy all dependencies that _worker.js imports
-          cp -r .open-next/cloudflare .open-next/ || true
-          cp -r .open-next/middleware .open-next/ || true
-          cp -r .open-next/.build .open-next/ || true
-          cp -r .open-next/server-functions .open-next/ || true
-          # Create _routes.json to exclude static assets from Worker processing
-          # This allows Cloudflare CDN to serve CSS/JS directly (faster, cheaper)
-          node -e "require('fs').writeFileSync('.open-next/_routes.json', JSON.stringify({version:1,include:['/*'],exclude:['/_next/static/*','/_next/data/*','/assets/*','/favicon.ico','/robots.txt','/sitemap.xml','/404.html']},null,2))"
+          if [ ! -f ".open-next/_routes.json" ]; then
+            echo "Error: _routes.json not found in build output"
+            exit 1
+          fi
+          echo "Build verification passed"
 
       - name: Deploy to Cloudflare Pages
         # Deploy Pages with _worker.js and _routes.json in root directory

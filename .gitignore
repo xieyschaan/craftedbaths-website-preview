@@ -29,6 +29,9 @@ pnpm-debug.log*
 .env*.local
 .env
 
+# Cloudflare local dev files
+.dev.vars
+
 # vercel
 .vercel
 
@@ -49,7 +52,6 @@ next-env.d.ts
 .antigravity/
 
 # OS files
-.DS_Store
 Thumbs.db
 desktop.ini
 *.lnk
