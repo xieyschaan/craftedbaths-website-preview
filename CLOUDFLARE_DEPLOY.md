@@ -63,7 +63,7 @@ Use these settings and the project name below.
 | **Project name** | `craftedbaths-website-preview` |
 | **Production branch** | `main` |
 | **Framework preset** | `None` (or leave blank) |
-| **Build command** | `npx opennextjs-cloudflare build` |
+| **Build command** | `npx opennextjs-cloudflare build && cp .open-next/worker.js .open-next/assets/_worker.js` |
 | **Build output directory** | `.open-next/assets` |
 | **Root directory** | *(leave blank)* |
 
