@@ -1,25 +1,29 @@
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
+import dynamic from 'next/dynamic'
 import PageBanner from '@/components/layout/PageBanner'
-import { getRandomBannerImage } from '@/lib/banner'
+
+// Dynamically import client components to reduce bundle size
+const Header = dynamic(() => import('@/components/layout/Header'), {
+  ssr: true,
+})
+const Footer = dynamic(() => import('@/components/layout/Footer'), {
+  ssr: true,
+})
 
 /**
  * Standard layout for content pages:
  * - Same horizontal margins as homepage: mx-3.5 md:mx-7 lg:mx-9 xl:mx-12
- * - Top panoramic banner 20vh, filled with a random project image from DB (or fallback)
+ * - Top panoramic banner 20vh, uses fallback image (no blocking DB query)
  */
-export default async function StandardPageTemplate({
+export default function StandardPageTemplate({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const bannerImage = await getRandomBannerImage()
-
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
       <div className="mx-3.5 md:mx-7 lg:mx-9 xl:mx-12">
-        <PageBanner imageUrl={bannerImage} alt="" />
+        <PageBanner imageUrl={null} alt="" />
       </div>
       <main className="flex-grow">
         <div className="mx-3.5 md:mx-7 lg:mx-9 xl:mx-12">

@@ -72,21 +72,16 @@ const { error } = await (supabase as any)
 
 ## 3. Edge runtime for Cloudflare (dynamic routes)
 
-The Cloudflare Pages build uses `@cloudflare/next-on-pages`. **Non-static routes must run on the Edge runtime.**
+**IMPORTANT:** This project now uses **OpenNext** (`@opennextjs/cloudflare`), not `@cloudflare/next-on-pages`.
 
-Add to any page that uses server-side Supabase, `cookies()`, or other dynamic data and is not statically generated:
+**Do NOT use `export const runtime = 'edge'`** - OpenNext does not support edge runtime. All pages run on the Node.js-compatible runtime with `nodejs_compat` flag.
 
-```ts
-export const runtime = 'edge'
-```
+**Current status:**
+- All pages are configured for OpenNext (no edge runtime declarations)
+- Dynamic pages (homepage, contact, project detail) work without edge runtime
+- Static pages are properly pre-rendered
 
-**Current pages that use it:**
-
-- `app/page.tsx` (home; uses Supabase + cookies)
-- `app/contact/page.tsx`
-- `app/projects/[slug]/page.tsx`
-
-**When to apply:** Any new **dynamic** route (e.g. `app/something/[id]/page.tsx` or a page that calls `createClient()` or `cookies()`). Do **not** add it to static-only pages (e.g. `about`, `services`, `faq` if they stay static).
+**When to apply:** When adding new dynamic routes, do NOT add `export const runtime = 'edge'`. OpenNext handles routing automatically.
 
 ---
 
@@ -128,8 +123,8 @@ Paths under `public/assets/` are used in code and must work on Cloudflare static
 
 These are configured in the Cloudflare project, not in the repo:
 
-- **Compatibility flag:** In **Settings → Functions → Compatibility flags**, add `nodejs_compat` for **Production** (and Preview if used). Needed for `@cloudflare/next-on-pages`.
-- **Build:** Framework preset **Next.js**, build command as set by the preset (e.g. `npx @cloudflare/next-on-pages@1`), output directory as per preset (e.g. `./.vercel/output/static`).
+- **Compatibility flag:** In **Settings → Functions → Compatibility flags**, add `nodejs_compat` for **Production** (and Preview if used). Required for OpenNext.
+- **Build:** Framework preset **None** (or leave blank), build command: `npx opennextjs-cloudflare build`, output directory: `.open-next/assets`.
 - **Env vars:** `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` for Production (and Preview if needed).
 
 See **CLOUDFLARE_DEPLOY.md** for step-by-step setup.
@@ -144,7 +139,7 @@ Before pushing changes that might affect build or production:
 |------|--------|
 | **New page with `params`** | Type as `Promise<{ ... }>` and `await params` before use. |
 | **New page with `searchParams`** | Type as `Promise<{ ... }>` and `await searchParams` before use. |
-| **New dynamic route** | Add `export const runtime = 'edge'` if it uses Supabase or cookies. |
+| **New dynamic route** | Do NOT add `export const runtime = 'edge'` - OpenNext doesn't support it. |
 | **New Supabase query** | If you see a “never” type error, add an explicit type or `as T` assertion. |
 | **New asset (image/font)** | Put it under `public/assets/` with **hyphenated** names (no spaces). |
 | **New reference to `/assets/...`** | Use the same path as on disk (e.g. `/assets/hero-assets/...`). |
@@ -161,7 +156,7 @@ Running `npm run build` locally is a quick way to catch TypeScript and build-tim
 |-------|-----------------|
 | Params/searchParams async | `app/contact/page.tsx`, `app/projects/[slug]/page.tsx` |
 | Supabase type assertions | `app/contact/page.tsx`, `app/projects/[slug]/page.tsx`, `components/forms/ContactForm.tsx` |
-| Edge runtime | `app/page.tsx`, `app/contact/page.tsx`, `app/projects/[slug]/page.tsx` |
+| OpenNext adapter | `package.json`, `wrangler.jsonc`, `open-next.config.ts`, `next.config.js` |
 | Unoptimized images | `next.config.js` |
 | Asset path rules | `public/assets/` structure; `components/hero/HeroSection.tsx`, `components/ui/Logo.tsx`, `app/page.tsx` |
 

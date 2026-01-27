@@ -1,7 +1,5 @@
 import StandardPageTemplate from '@/components/layout/StandardPageTemplate'
 
-export const runtime = 'edge'
-
 export default function ShowroomsPage() {
   return (
     <StandardPageTemplate>

@@ -62,9 +62,9 @@ Use these settings and the project name below.
 |--------|--------|
 | **Project name** | `craftedbaths-website-preview` |
 | **Production branch** | `main` |
-| **Framework preset** | `Next.js` |
-| **Build command** | `npm run build` |
-| **Build output directory** | *(leave as set by Next.js preset)* |
+| **Framework preset** | `None` (or leave blank) |
+| **Build command** | `npx opennextjs-cloudflare build` |
+| **Build output directory** | `.open-next/assets` |
 | **Root directory** | *(leave blank)* |
 
 ---

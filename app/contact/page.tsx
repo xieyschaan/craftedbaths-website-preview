@@ -2,9 +2,6 @@ import StandardPageTemplate from '@/components/layout/StandardPageTemplate'
 import ContactForm from '@/components/forms/ContactForm'
 import { createClient } from '@/lib/supabase/server'
 
-// Cloudflare Pages: dynamic route needs Edge runtime. See DEPLOYMENT_AND_DEVELOPMENT_NOTES.md
-export const runtime = 'edge'
-
 interface ContactPageProps {
   searchParams: Promise<{ showroom?: string }>
 }

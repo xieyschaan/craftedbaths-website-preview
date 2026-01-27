@@ -9,12 +9,11 @@
 - **Framework:** Next.js 16.1.1 (App Router)
 - **Language:** TypeScript 5.9.3
 - **Styling:** Tailwind CSS 3.4.19
-- **State Management:** Zustand 5.0.9
+- **Deployment:** OpenNext Cloudflare adapter (`@opennextjs/cloudflare`)
 - **Forms:** React Hook Form 7.69.0 + Zod 4.3.4
 - **Database:** Supabase (PostgreSQL) with Row Level Security
 - **Authentication:** Supabase Auth
-- **Icons:** Lucide React 0.562.0
-- **Date Handling:** date-fns 4.1.0
+- **Icons:** Lucide React 0.562.0 (tree-shaking optimized)
 
 ## Architecture Decisions
 

@@ -1,11 +1,11 @@
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
+import dynamic from 'next/dynamic'
 import { createClient } from '@/lib/supabase/server'
 
-// Cloudflare Pages: dynamic route needs Edge runtime. See DEPLOYMENT_AND_DEVELOPMENT_NOTES.md
-export const runtime = 'edge'
+// Dynamically import client components to reduce bundle size
+const Header = dynamic(() => import('@/components/layout/Header'), { ssr: true })
+const Footer = dynamic(() => import('@/components/layout/Footer'), { ssr: true })
 
 interface ProjectDetailPageProps {
   params: Promise<{ slug: string }>

@@ -13,3 +13,7 @@ const nextConfig = {
 
 module.exports = nextConfig
 
+// Initialize OpenNext Cloudflare adapter for local development
+const { initOpenNextCloudflareForDev } = require('@opennextjs/cloudflare')
+initOpenNextCloudflareForDev()
+

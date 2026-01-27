@@ -1,16 +1,16 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
-import HeroSection from '@/components/hero/HeroSection'
-import ShopCard from '@/components/shop/ShopCard'
-import BrandSlider from '@/components/brands/BrandSlider'
+import dynamic from 'next/dynamic'
 import { Button } from '@/components/ui'
 import { createClient } from '@/lib/supabase/server'
 import { ExternalLink } from 'lucide-react'
 
-// Cloudflare Pages: dynamic route needs Edge runtime. See DEPLOYMENT_AND_DEVELOPMENT_NOTES.md
-export const runtime = 'edge'
+// Dynamically import client components to reduce bundle size
+const Header = dynamic(() => import('@/components/layout/Header'), { ssr: true })
+const Footer = dynamic(() => import('@/components/layout/Footer'), { ssr: true })
+const HeroSection = dynamic(() => import('@/components/hero/HeroSection'), { ssr: true })
+const ShopCard = dynamic(() => import('@/components/shop/ShopCard'), { ssr: true })
+const BrandSlider = dynamic(() => import('@/components/brands/BrandSlider'), { ssr: true })
 
 export default async function Home() {
   // Fetch featured projects for homepage
