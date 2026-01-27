@@ -31,16 +31,12 @@ jobs:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
 
-      - name: Deploy Worker (for Pages to use)
-        # First deploy the Worker function
-        run: npx wrangler deploy
+      - name: Deploy to Cloudflare (Workers + Pages)
+        # opennextjs-cloudflare deploy handles both Worker and assets
+        # This deploys to Cloudflare Workers, which can serve the Next.js app
+        run: npx opennextjs-cloudflare deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-      
-      - name: Deploy Assets to Cloudflare Pages
-        # Then deploy Pages assets - wrangler will auto-detect wrangler.jsonc in root
-        run: npx wrangler pages deploy .open-next/assets --project-name=craftedbaths-website-preview --branch=main
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
