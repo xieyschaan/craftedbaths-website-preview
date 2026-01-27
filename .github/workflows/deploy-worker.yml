@@ -42,6 +42,8 @@ jobs:
           cp -r .open-next/middleware .open-next/assets/
           cp -r .open-next/.build .open-next/assets/
           cp -r .open-next/server-functions .open-next/assets/
+          # Create .assetsignore to exclude Worker files from static asset serving
+          echo -e "_worker.js\ncloudflare/\nmiddleware/\n.build/\nserver-functions/" > .open-next/assets/.assetsignore
 
       - name: Deploy to Cloudflare Pages
         # Deploy Pages with _worker.js in assets directory
