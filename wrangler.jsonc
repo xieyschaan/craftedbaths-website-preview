@@ -9,18 +9,18 @@
     "nodejs_compat",
     // Allow to fetch URLs in your app
     // see https://developers.cloudflare.com/workers/configuration/compatibility-flags/#global-fetch-strictly-public
-    "global_fetch_strictly_public",
+    "global_fetch_strictly_public"
   ],
   "assets": {
     "directory": ".open-next/assets",
-    "binding": "ASSETS",
+    "binding": "ASSETS"
   },
   "services": [
     {
       "binding": "WORKER_SELF_REFERENCE",
       // The service should match the "name" of your worker
-      "service": "crafted-bathrooms-website",
-    },
+      "service": "crafted-bathrooms-website"
+    }
   ],
   // Uncomment to enable R2 caching for Next.js incremental cache
   // "r2_buckets": [
@@ -32,6 +32,6 @@
   "images": {
     // Enable image optimization
     // see https://opennext.js.org/cloudflare/howtos/image
-    "binding": "IMAGES",
-  },
+    "binding": "IMAGES"
+  }
 }
