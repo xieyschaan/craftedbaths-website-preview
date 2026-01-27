@@ -308,3 +308,14 @@ html {
   box-sizing: border-box;
 }
 
+/* Reduce layout shift during image loading */
+[data-next-image] {
+  display: block;
+}
+
+/* Ensure images don't cause layout shift */
+img[src=""],
+img:not([src]) {
+  opacity: 0;
+}
+
