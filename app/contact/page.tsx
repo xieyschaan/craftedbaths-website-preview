@@ -2,6 +2,8 @@ import StandardPageTemplate from '@/components/layout/StandardPageTemplate'
 import ContactForm from '@/components/forms/ContactForm'
 import { createClient } from '@/lib/supabase/server'
 
+// OpenNext does not support edge runtime - removed for Cloudflare deployment
+
 interface ContactPageProps {
   searchParams: Promise<{ showroom?: string }>
 }

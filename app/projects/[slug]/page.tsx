@@ -1,8 +1,10 @@
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
-import { createClient } from '@/lib/supabase/server'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import { createClient } from '@/lib/supabase/server'
+
+// OpenNext does not support edge runtime - removed for Cloudflare deployment
 
 interface ProjectDetailPageProps {
   params: Promise<{ slug: string }>
@@ -46,7 +48,6 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
               src={project.featured_image}
               alt={project.title}
               fill
-              sizes="100vw"
               className="object-cover"
               priority
             />
@@ -101,9 +102,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
                         src={image}
                         alt={`${project.title} - Image ${index + 1}`}
                         fill
-                        sizes="(max-width: 768px) 100vw, 50vw"
                         className="object-cover"
-                        loading="lazy"
                       />
                     </div>
                   ))}

@@ -1,13 +1,15 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Button } from '@/components/ui'
-import { createClient } from '@/lib/supabase/server'
-import { ExternalLink } from 'lucide-react'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import HeroSection from '@/components/hero/HeroSection'
 import ShopCard from '@/components/shop/ShopCard'
 import BrandSlider from '@/components/brands/BrandSlider'
+import { Button } from '@/components/ui'
+import { createClient } from '@/lib/supabase/server'
+import { ExternalLink } from 'lucide-react'
+
+// OpenNext does not support edge runtime - removed for Cloudflare deployment
 
 export default async function Home() {
   // Fetch featured projects for homepage
@@ -31,18 +33,15 @@ export default async function Home() {
       .limit(3)
     featuredProjects = data
   } catch (error) {
-    // Log error in development only
-    if (process.env.NODE_ENV === 'development') {
-      console.error('Error fetching featured projects:', error)
-    }
+    console.error('Error fetching featured projects:', error)
     // Continue with null featuredProjects - page will render without featured projects section
   }
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="min-h-screen flex flex-col">
       <Header />
 
-      <main className="flex-grow w-full flex-shrink-0">
+      <main className="flex-grow">
         {/* Hero Section - Full Page with Carousel */}
         <HeroSection />
 
@@ -151,9 +150,7 @@ export default async function Home() {
                 src="/assets/hero-assets/dominik-5z7ERdLbJ0U-unsplash.webp"
                 alt="Luxury bathroom brands"
                 fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1440px"
                 className="object-cover"
-                priority
               />
             </div>
             
@@ -199,9 +196,7 @@ export default async function Home() {
                   src="/assets/hero-assets/smart-renovations-qiclFfG4KFM-unsplash.webp"
                   alt="Get a quote for your bathroom project"
                   fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover"
-                  loading="lazy"
                 />
               </div>
               
@@ -242,9 +237,7 @@ export default async function Home() {
                 src="/assets/hero-assets/lotus-design-n-print-Dk_o7KQyGkI-unsplash.webp"
                 alt="Luxury bathroom design"
                 fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1440px"
                 className="object-cover"
-                loading="lazy"
               />
             </div>
             
@@ -380,7 +373,7 @@ export default async function Home() {
         </section>
 
         {/* Featured Projects Section */}
-        {featuredProjects && featuredProjects.length > 0 ? (
+        {featuredProjects && featuredProjects.length > 0 && (
           <section className="py-section-md bg-gray-50">
             <div className="mx-3.5 md:mx-7 lg:mx-9 xl:mx-12">
               <div className="mb-spacing-xl">
@@ -398,20 +391,13 @@ export default async function Home() {
                     href={`/projects/${project.slug}`}
                     className="group bg-white border-2 border-gray-200 overflow-hidden hover:border-primary-900 transition-colors"
                   >
-                    {project.featured_image ? (
+                    {project.featured_image && (
                       <div className="relative w-full h-64 bg-gray-100 overflow-hidden">
-                        <Image
+                        <img
                           src={project.featured_image}
                           alt={project.title}
-                          fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          className="object-cover group-hover:scale-105 transition-transform duration-300"
-                          loading="lazy"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
-                      </div>
-                    ) : (
-                      <div className="relative w-full h-64 bg-gray-100 flex items-center justify-center">
-                        <span className="text-gray-400 font-body text-sm">No Image</span>
                       </div>
                     )}
                     <div className="p-spacing-lg">
@@ -442,7 +428,7 @@ export default async function Home() {
               </div>
             </div>
           </section>
-        ) : null}
+        )}
       </main>
 
       <Footer />

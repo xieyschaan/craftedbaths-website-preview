@@ -12,9 +12,8 @@
     "global_fetch_strictly_public"
   ],
   "assets": {
-    "directory": ".open-next",
-    "binding": "ASSETS",
-    "run_worker_first": false
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
   },
   "services": [
     {
@@ -23,16 +22,17 @@
       "service": "crafted-bathrooms-website"
     }
   ],
-  // Uncomment to enable R2 caching for Next.js incremental cache
-  // "r2_buckets": [
-  //   {
-  //     "binding": "NEXT_INC_CACHE_R2_BUCKET",
-  //     "bucket_name": "<<BUCKET_NAME>>",
-  //   },
-  // ],
   "images": {
     // Enable image optimization
     // see https://opennext.js.org/cloudflare/howtos/image
     "binding": "IMAGES"
   }
+  // Optional: Add R2 bucket for Next.js incremental cache
+  // Uncomment and configure if you want to use R2 caching:
+  // "r2_buckets": [
+  //   {
+  //     "binding": "NEXT_INC_CACHE_R2_BUCKET",
+  //     "bucket_name": "<<BUCKET_NAME>>"
+  //   }
+  // ]
 }

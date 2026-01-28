@@ -62,11 +62,12 @@ Use these settings and the project name below.
 |--------|--------|
 | **Project name** | `craftedbaths-website-preview` |
 | **Production branch** | `main` |
-| **Framework preset** | `None` (or leave blank) |
+| **Framework preset** | `Custom` |
 | **Build command** | `npm run build:cloudflare` |
 | **Build output directory** | `.open-next` |
-| **Note** | The build script automatically handles copying assets, creating `_worker.js`, and generating `_routes.json` |
 | **Root directory** | *(leave blank)* |
+
+**Important:** The project now uses OpenNext for Cloudflare deployment. The build command runs `next build` first, then applies Cloudflare-specific transformations.
 
 ---
 
@@ -87,38 +88,9 @@ Use these settings and the project name below.
 
 ## 6. Deploy
 
-### Option A: Git Integration (Automatic)
-
 1. Click **Save and Deploy**.
-2. Wait for the build to finish.
-3. **Important:** After the build completes, check the **Functions** tab in the deployment details. If you see a Worker function listed, the deployment is complete. If not, the Worker may not have been deployed - use Option B below.
-
-### Option B: Manual Deploy with Wrangler (If Worker Not Deployed)
-
-If the Worker function is not showing in the Functions tab after Git deployment, deploy it manually:
-
-1. Install Wrangler globally (if not already installed):
-   ```powershell
-   npm install -g wrangler
-   ```
-
-2. Authenticate with Cloudflare:
-   ```powershell
-   npx wrangler login
-   ```
-
-3. Build and deploy:
-   ```powershell
-   npm run deploy
-   ```
-   Or manually:
-   ```powershell
-   npx opennextjs-cloudflare build
-   npx opennextjs-cloudflare deploy
-   ```
-
-The site will be at:
-- **Production:** `https://craftedbaths-website-preview.pages.dev`
+2. Wait for the build to finish. The site will be at:
+   - **Production:** `https://craftedbaths-website-preview.pages.dev`
 
 ---
 
@@ -138,13 +110,13 @@ Cloudflare Pages will auto-build and deploy from the `main` branch.
 
 ## Before each deploy (checklist)
 
-- [ ] `npm run build` passes locally.
+- [ ] `npm run build:cloudflare` passes locally.
 - [ ] Any new page with `params` / `searchParams` uses `Promise<…>` and `await`.
-- [ ] Any new dynamic route that uses Supabase or cookies does NOT have `export const runtime = 'edge'` (OpenNext doesn't support it).
+- [ ] **No `export const runtime = 'edge'`** - OpenNext does not support edge runtime yet. Remove any edge runtime declarations.
 - [ ] Any new Supabase query that errors with “never” has a type assertion.
 - [ ] Any new assets use hyphenated paths (e.g. `hero-assets/`), no spaces.
 - [ ] `images.unoptimized` is still `true` in `next.config.js` (for Cloudflare).
-- [ ] Cloudflare project has `nodejs_compat` set (Settings → Functions) for Production (and Preview if used).
+- [ ] Cloudflare project has `nodejs_compat` compatibility flag set (configured in `wrangler.jsonc`).
 
 Full checklist and patterns: **DEPLOYMENT_AND_DEVELOPMENT_NOTES.md** §7.
 
@@ -155,7 +127,32 @@ Full checklist and patterns: **DEPLOYMENT_AND_DEVELOPMENT_NOTES.md** §7.
 If a deploy fails or images/scripts break, use the checklist in **DEPLOYMENT_AND_DEVELOPMENT_NOTES.md**. In particular:
 
 - New pages with **`params` or `searchParams`** must use `Promise<…>` and `await`.
-- New **dynamic** routes that use Supabase or cookies should NOT have `export const runtime = 'edge'` (OpenNext doesn't support it).
+- **Remove `export const runtime = 'edge'`** from all pages - OpenNext does not support edge runtime.
 - New **Supabase** `.single()` / `.insert()` may need explicit types or assertions if the build reports `never`.
 - New **assets** under `public/`: use hyphenated paths (e.g. `hero-assets/`), no spaces.
-- **Compatibility flag** `nodejs_compat` must be set in Cloudflare (Settings → Functions) for Production (and Preview if used).
+- **Compatibility flags** (`nodejs_compat`, `global_fetch_strictly_public`) are configured in `wrangler.jsonc`.
+
+---
+
+## OpenNext Setup Notes
+
+This project uses **OpenNext** (`@opennextjs/cloudflare`) for Cloudflare deployment, which is the recommended approach for Next.js apps on Cloudflare Workers/Pages.
+
+### Local Development
+- Run `npm run dev` for standard Next.js development (no OpenNext interference)
+- CSS processing works normally with Turbopack
+
+### Production Builds
+- Run `npm run build:cloudflare` to build for Cloudflare
+- This runs `next build` first, then applies OpenNext transformations
+- Build output is in `.open-next/` directory
+
+### Configuration Files
+- `wrangler.jsonc` - Cloudflare Workers configuration
+- `open-next.config.ts` - OpenNext-specific settings
+- `.dev.vars` - Local development environment variables
+- `public/_headers` - Static asset caching headers
+
+### Testing Locally
+- `npm run preview` - Builds and previews using Cloudflare Workers runtime locally
+- `npm run deploy` - Builds and deploys directly to Cloudflare

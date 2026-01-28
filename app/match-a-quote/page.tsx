@@ -1,5 +1,7 @@
 import StandardPageTemplate from '@/components/layout/StandardPageTemplate'
 
+// OpenNext does not support edge runtime - removed for Cloudflare deployment
+
 export default function MatchAQuotePage() {
   return (
     <StandardPageTemplate>
