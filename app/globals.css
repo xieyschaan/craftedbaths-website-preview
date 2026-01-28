@@ -290,6 +290,12 @@ body {
   padding: 0;
 }
 
+/* Ensure menu panel is flush with left edge */
+[data-menu-panel] {
+  left: 0 !important;
+  margin-left: 0 !important;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: var(--color-background);
@@ -297,6 +303,61 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+}
+
+/* Desktop menu open: shift main content to the right (but NOT the panel) */
+@media (min-width: 768px) {
+  html.menu-open-desktop {
+    overflow: hidden;
+  }
+  
+  /* Shift only the main content wrapper, not the panel */
+  html.menu-open-desktop #main-content-wrapper {
+    transform: translateX(340px);
+    transition: transform 0.3s ease-in-out;
+    will-change: transform;
+  }
+  
+  /* Panel stays fixed at left edge - completely unaffected, with smooth slide animation */
+  html.menu-open-desktop [data-menu-panel] {
+    left: 0 !important;
+    position: fixed !important;
+  }
+  
+  /* Slide in animation for panel when opening */
+  [data-menu-panel].opening {
+    animation: slideInLeft 0.3s ease-in-out forwards;
+  }
+  
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  /* Slide out animation when closing */
+  [data-menu-panel].closing {
+    animation: slideOutLeft 0.3s ease-in-out forwards;
+  }
+  
+  @keyframes slideOutLeft {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+  
+  /* Adjust transform for larger screens */
+  @media (min-width: 1024px) {
+    html.menu-open-desktop #main-content-wrapper {
+      transform: translateX(380px);
+    }
+  }
 }
 
 /* Prevent layout shift for images */

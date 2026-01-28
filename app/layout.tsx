@@ -101,8 +101,10 @@ export default function RootLayout({
       </head>
       <body className="h-full">
         <ErrorBoundary>
-          {children}
-          <BackToTop />
+          <div id="main-content-wrapper" className="h-full">
+            {children}
+            <BackToTop />
+          </div>
         </ErrorBoundary>
       </body>
     </html>
