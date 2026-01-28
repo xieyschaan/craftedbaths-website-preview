@@ -9,7 +9,7 @@
        url('/assets/fonts/Gilroy/gilroy-thin-webfont.woff') format('woff');
   font-weight: 100;
   font-style: normal;
-  font-display: optional;
+  font-display: swap;
 }
 
 @font-face {
@@ -17,7 +17,7 @@
   src: url('/assets/fonts/Gilroy/gilroy-ultralightitalic-webfont.woff') format('woff');
   font-weight: 100;
   font-style: italic;
-  font-display: optional;
+  font-display: swap;
 }
 
 @font-face {
@@ -26,7 +26,7 @@
        url('/assets/fonts/Gilroy/gilroy-light-webfont.woff') format('woff');
   font-weight: 300;
   font-style: normal;
-  font-display: optional;
+  font-display: swap;
 }
 
 @font-face {
@@ -35,7 +35,7 @@
        url('/assets/fonts/Gilroy/gilroy-lightitalic-webfont.woff') format('woff');
   font-weight: 300;
   font-style: italic;
-  font-display: optional;
+  font-display: swap;
 }
 
 @font-face {
@@ -44,7 +44,7 @@
        url('/assets/fonts/Gilroy/gilroy-regular-webfont.woff') format('woff');
   font-weight: 400;
   font-style: normal;
-  font-display: optional;
+  font-display: swap;
 }
 
 @font-face {
@@ -53,7 +53,7 @@
        url('/assets/fonts/Gilroy/gilroy-regularitalic-webfont.woff') format('woff');
   font-weight: 400;
   font-style: italic;
-  font-display: optional;
+  font-display: swap;
 }
 
 @font-face {
@@ -62,7 +62,7 @@
        url('/assets/fonts/Gilroy/gilroy-medium-webfont.woff') format('woff');
   font-weight: 500;
   font-style: normal;
-  font-display: optional;
+  font-display: swap;
 }
 
 @font-face {
@@ -71,7 +71,7 @@
        url('/assets/fonts/Gilroy/gilroy-mediumitalic-webfont.woff') format('woff');
   font-weight: 500;
   font-style: italic;
-  font-display: optional;
+  font-display: swap;
 }
 
 @font-face {
@@ -80,7 +80,7 @@
        url('/assets/fonts/Gilroy/gilroy-semibold-webfont.woff') format('woff');
   font-weight: 600;
   font-style: normal;
-  font-display: optional;
+  font-display: swap;
 }
 
 @font-face {
@@ -89,7 +89,7 @@
        url('/assets/fonts/Gilroy/gilroy-semibolditalic-webfont.woff') format('woff');
   font-weight: 600;
   font-style: italic;
-  font-display: optional;
+  font-display: swap;
 }
 
 @font-face {
@@ -98,7 +98,7 @@
        url('/assets/fonts/Gilroy/gilroy-bold-webfont.woff') format('woff');
   font-weight: 700;
   font-style: normal;
-  font-display: optional;
+  font-display: swap;
 }
 
 @font-face {
@@ -107,7 +107,7 @@
        url('/assets/fonts/Gilroy/gilroy-bolditalic-webfont.woff') format('woff');
   font-weight: 700;
   font-style: italic;
-  font-display: optional;
+  font-display: swap;
 }
 
 @font-face {
@@ -116,7 +116,7 @@
        url('/assets/fonts/Gilroy/gilroy-extrabold-webfont.woff') format('woff');
   font-weight: 800;
   font-style: normal;
-  font-display: optional;
+  font-display: swap;
 }
 
 @font-face {
@@ -125,7 +125,7 @@
        url('/assets/fonts/Gilroy/gilroy-extrabolditalic-webfont.woff') format('woff');
   font-weight: 800;
   font-style: italic;
-  font-display: optional;
+  font-display: swap;
 }
 
 @font-face {
@@ -134,7 +134,7 @@
        url('/assets/fonts/Gilroy/gilroy-heavy-webfont.woff') format('woff');
   font-weight: 900;
   font-style: normal;
-  font-display: optional;
+  font-display: swap;
 }
 
 @font-face {
@@ -143,7 +143,7 @@
        url('/assets/fonts/Gilroy/gilroy-heavyitalic-webfont.woff') format('woff');
   font-weight: 900;
   font-style: italic;
-  font-display: optional;
+  font-display: swap;
 }
 
 @font-face {
@@ -152,7 +152,7 @@
        url('/assets/fonts/Gilroy/gilroy-black-webfont.woff') format('woff');
   font-weight: 950;
   font-style: normal;
-  font-display: optional;
+  font-display: swap;
 }
 
 @font-face {
@@ -161,7 +161,7 @@
        url('/assets/fonts/Gilroy/gilroy-blackitalic-webfont.woff') format('woff');
   font-weight: 950;
   font-style: italic;
-  font-display: optional;
+  font-display: swap;
 }
 
 /* Rexton Font Family */
@@ -171,7 +171,7 @@
        url('/assets/fonts/Rexton/rexton_light-webfont.woff') format('woff');
   font-weight: 300;
   font-style: normal;
-  font-display: optional;
+  font-display: swap;
 }
 
 @font-face {
@@ -180,7 +180,7 @@
        url('/assets/fonts/Rexton/rexton_regular-webfont.woff') format('woff');
   font-weight: 400;
   font-style: normal;
-  font-display: optional;
+  font-display: swap;
 }
 
 @font-face {
@@ -189,7 +189,7 @@
        url('/assets/fonts/Rexton/rexton_medium-webfont.woff') format('woff');
   font-weight: 500;
   font-style: normal;
-  font-display: optional;
+  font-display: swap;
 }
 
 @font-face {
@@ -198,7 +198,7 @@
        url('/assets/fonts/Rexton/rexton_bold-webfont.woff') format('woff');
   font-weight: 700;
   font-style: normal;
-  font-display: optional;
+  font-display: swap;
 }
 
 @font-face {
@@ -207,7 +207,7 @@
        url('/assets/fonts/Rexton/rexton_extra_bold-webfont.woff') format('woff');
   font-weight: 800;
   font-style: normal;
-  font-display: optional;
+  font-display: swap;
 }
 
 @font-face {
@@ -216,7 +216,7 @@
        url('/assets/fonts/Rexton/rexton_black-webfont.woff') format('woff');
   font-weight: 900;
   font-style: normal;
-  font-display: optional;
+  font-display: swap;
 }
 
 :root {
@@ -304,27 +304,62 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
+  /* Prevent layout shift */
+  aspect-ratio: attr(width) / attr(height);
 }
 
-/* Smooth scrolling */
+/* Smooth scrolling with performance optimization */
 html {
   scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 
-/* Prevent content flash during load */
+/* Optimize scroll performance */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* GPU acceleration and performance optimizations */
 * {
   box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optimize image rendering */
+img,
+[data-next-image] {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 /* Reduce layout shift during image loading */
 [data-next-image] {
   display: block;
+  /* Prevent layout shift during load */
+  min-height: 1px;
 }
 
 /* Ensure images don't cause layout shift */
 img[src=""],
 img:not([src]) {
   opacity: 0;
+}
+
+/* Optimize transitions and animations */
+.transition-opacity,
+.transition-transform,
+.transition-all {
+  will-change: opacity, transform;
+}
+
+/* Remove will-change after animation completes to free GPU memory */
+.group:hover .transition-transform {
+  will-change: transform;
 }
 
 /* Prevent content from disappearing */
@@ -348,5 +383,25 @@ main {
 /* Ensure all content is visible */
 div[class*="flex"] {
   min-height: 0;
+}
+
+/* Optimize scroll performance - prevent jank */
+section,
+main,
+article {
+  contain: layout style paint;
+  content-visibility: auto;
+}
+
+/* Optimize transitions and animations */
+.transition-opacity,
+.transition-transform,
+.transition-all {
+  will-change: opacity, transform;
+}
+
+/* Remove will-change after animation completes to free GPU memory */
+.group:hover .transition-transform {
+  will-change: transform;
 }
 

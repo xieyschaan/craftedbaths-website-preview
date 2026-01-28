@@ -54,7 +54,10 @@ export default function HeroSection() {
                   className={`absolute inset-0 transition-opacity duration-1000 ${
                     isVisible ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
                   }`}
-                  style={{ display: isVisible || index === 0 ? 'block' : 'none' }}
+                  style={{ 
+                    willChange: index === currentIndex ? 'opacity' : 'auto',
+                    transform: 'translateZ(0)' // GPU acceleration
+                  }}
                 >
                   <Image
                     src={image}
@@ -62,8 +65,7 @@ export default function HeroSection() {
                     fill
                     sizes="100vw"
                     className="object-cover"
-                    priority={index === 0}
-                    loading={index === 0 ? undefined : 'lazy'}
+                    priority={index < 2}
                     onLoad={() => handleImageLoad(index)}
                   />
                 </div>

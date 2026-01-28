@@ -40,6 +40,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 className={`object-cover group-hover:scale-105 transition-opacity duration-300 ${
                   imageLoaded ? 'opacity-100' : 'opacity-0'
                 }`}
+                style={{ 
+                  willChange: imageLoaded ? 'transform' : 'opacity',
+                  transform: 'translateZ(0)' // GPU acceleration
+                }}
                 loading="lazy"
                 onLoad={() => setImageLoaded(true)}
                 onError={() => setImageLoaded(true)} // Show placeholder even on error

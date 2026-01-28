@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
+import BackToTop from "@/components/ui/BackToTop";
 
 export const metadata: Metadata = {
   title: {
@@ -74,9 +75,34 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full">
+      <head>
+        {/* Preload critical fonts */}
+        <link
+          rel="preload"
+          href="/assets/fonts/Gilroy/gilroy-regular-webfont.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/assets/fonts/Gilroy/gilroy-bold-webfont.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/assets/fonts/Rexton/rexton_regular-webfont.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className="h-full">
         <ErrorBoundary>
           {children}
+          <BackToTop />
         </ErrorBoundary>
       </body>
     </html>

@@ -58,22 +58,43 @@ export default function Header() {
             />
           </Link>
 
-          {/* Right side: menu icon only */}
-          <button
-            onClick={toggleMenu}
-            className="flex items-center justify-center p-2 -mr-2 transition-colors"
-            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-          >
-            {isMenuOpen ? (
-              <X className="h-8 w-8 md:w-[60px] text-black stroke-[1px]" />
-            ) : (
-              <div className="flex flex-col gap-1.5 w-6 md:w-[30px]">
-                <div className="h-[1px] w-full bg-black" />
-                <div className="h-[1px] w-full bg-black" />
-                <div className="h-[1px] w-full bg-black" />
-              </div>
+          {/* Right side: Desktop - Main Menu + Shop Online, Mobile - menu icon only */}
+          <div className="flex items-center gap-6 lg:gap-8">
+            {/* Main Menu Button - Desktop shows icon + text, Mobile shows icon only */}
+            <button
+              onClick={toggleMenu}
+              className="flex items-center gap-3 md:gap-[18px] p-2 -mr-2 transition-colors"
+              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+            >
+              {/* Menu Icon */}
+              {isMenuOpen ? (
+                <X className="h-8 w-8 md:w-[60px] text-black stroke-[1px]" />
+              ) : (
+                <div className="flex flex-col gap-1.5 w-6 md:w-[30px]">
+                  <div className="h-[1px] w-full bg-black" />
+                  <div className="h-[1px] w-full bg-black" />
+                  <div className="h-[1px] w-full bg-black" />
+                </div>
+              )}
+              
+              {/* Main Menu Text - Desktop Only, Hidden when menu is open */}
+              {!isMenuOpen && (
+                <span className="hidden md:block font-gilroy text-black text-sm lg:text-base">
+                  Main Menu
+                </span>
+              )}
+            </button>
+
+            {/* Online Shop Link - Desktop Only, Hidden when menu is open */}
+            {!isMenuOpen && (
+              <Link
+                href="#"
+                className="hidden md:block font-gilroy text-black hover:text-gray-800 transition-colors text-sm lg:text-base"
+              >
+                Online Shop
+              </Link>
             )}
-          </button>
+          </div>
         </div>
       </header>
 
@@ -83,18 +104,31 @@ export default function Header() {
           className="fixed inset-0 bg-white z-40 pt-20 md:pt-28 lg:pt-[120px] overflow-y-auto"
           onClick={closeMenu}
         >
-          <div className="container max-w-content px-container-base py-section-md">
-            <nav className="space-y-8">
-              {pageLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  onClick={closeMenu}
-                  className="block text-black hover:text-gray-800 transition-colors"
-                >
-                  <h2 className="text-[44px] font-light">{link.name}</h2>
-                </Link>
-              ))}
+          <div className="ml-3.5 md:ml-7 lg:ml-9 xl:ml-12 pt-4 md:pt-6">
+            <nav>
+              {/* Online Shop Link - Standout at top */}
+              <Link
+                href="#"
+                onClick={closeMenu}
+                className="block text-black hover:text-gray-800 transition-colors mb-12 md:mb-16"
+                style={{ textDecoration: 'underline', textDecorationThickness: '0.5px', textUnderlineOffset: '2px' }}
+              >
+                <h2 className="text-[20px] font-light">Online Shop</h2>
+              </Link>
+              
+              {/* Menu Items */}
+              <div className="space-y-8">
+                {pageLinks.map((link) => (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    onClick={closeMenu}
+                    className="block text-black hover:text-gray-800 transition-colors"
+                  >
+                    <h2 className="text-[20px] font-light">{link.name}</h2>
+                  </Link>
+                ))}
+              </div>
             </nav>
           </div>
         </div>
