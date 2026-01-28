@@ -136,7 +136,21 @@ If a deploy fails or images/scripts break, use the checklist in **DEPLOYMENT_AND
 
 ## OpenNext Setup Notes
 
-This project uses **OpenNext** (`@opennextjs/cloudflare`) for Cloudflare deployment, which is the recommended approach for Next.js apps on Cloudflare Workers/Pages.
+This project uses **OpenNext** (`@opennextjs/cloudflare`) for Cloudflare deployment. **Important:** OpenNext is designed for **Cloudflare Workers**, not Cloudflare Pages.
+
+### Deployment Options
+
+**Option 1: Cloudflare Workers (Recommended)**
+- Use `npm run deploy` which runs `opennextjs-cloudflare deploy`
+- This deploys to Cloudflare Workers (not Pages)
+- Workers support full Next.js features including SSR, dynamic routes, etc.
+- Configure via Workers dashboard or `wrangler.jsonc`
+
+**Option 2: Cloudflare Pages (Current Setup - May Have Limitations)**
+- Build output directory: `.open-next`
+- Cloudflare Pages will attempt to use the Worker file
+- **Note:** Pages Advanced Mode may try to re-bundle the worker, causing issues
+- If deployment fails, consider switching to Workers deployment
 
 ### Local Development
 - Run `npm run dev` for standard Next.js development (no OpenNext interference)
@@ -155,4 +169,4 @@ This project uses **OpenNext** (`@opennextjs/cloudflare`) for Cloudflare deploym
 
 ### Testing Locally
 - `npm run preview` - Builds and previews using Cloudflare Workers runtime locally
-- `npm run deploy` - Builds and deploys directly to Cloudflare
+- `npm run deploy` - Builds and deploys directly to Cloudflare Workers
