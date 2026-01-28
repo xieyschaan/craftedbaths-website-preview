@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Hero section responsive heights */
+[data-hero-section] {
+  height: 50vh; /* Mobile default */
+}
+
+@media (min-width: 768px) {
+  [data-hero-section] {
+    height: 60vh; /* Tablet */
+  }
+}
+
+@media (min-width: 1024px) {
+  [data-hero-section] {
+    height: auto; /* Desktop uses dynamic calculation */
+  }
+}
+
 /* Gilroy Font Family */
 @font-face {
   font-family: 'Gilroy';

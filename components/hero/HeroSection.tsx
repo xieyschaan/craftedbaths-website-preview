@@ -16,29 +16,33 @@ export default function HeroSection() {
   const [imagesLoaded, setImagesLoaded] = useState<boolean[]>(new Array(heroImages.length).fill(false))
   const [heroHeight, setHeroHeight] = useState<number | null>(null)
 
-  // Calculate hero section height dynamically based on viewport
+  // Calculate hero section height dynamically based on viewport (Desktop only)
   useEffect(() => {
     const calculateHeight = () => {
-      const viewportHeight = window.innerHeight
       const width = window.innerWidth
       
-      // Get header height dynamically
-      const header = document.querySelector('header')
-      const headerHeight = header ? header.offsetHeight : 0
-      
-      // Calculate bottom margin to match horizontal margins (responsive)
-      let bottomMargin = 14 // Mobile: mx-3.5 = 14px
-      if (width >= 1280) {
-        bottomMargin = 48 // xl: mx-12 = 48px
-      } else if (width >= 1024) {
-        bottomMargin = 36 // lg: mx-9 = 36px
-      } else if (width >= 768) {
-        bottomMargin = 28 // md: mx-7 = 28px
+      // Only calculate dynamically for desktop (1024px and above)
+      // Mobile and Tablet use CSS vh units (50vh and 60vh)
+      if (width >= 1024) {
+        const viewportHeight = window.innerHeight
+        
+        // Get header height dynamically
+        const header = document.querySelector('header')
+        const headerHeight = header ? header.offsetHeight : 0
+        
+        // Calculate bottom margin to match horizontal margins (responsive)
+        let bottomMargin = 36 // lg: mx-9 = 36px
+        if (width >= 1280) {
+          bottomMargin = 48 // xl: mx-12 = 48px
+        }
+        
+        // Hero height = viewport height - header height - bottom margin
+        const calculatedHeight = viewportHeight - headerHeight - bottomMargin
+        setHeroHeight(calculatedHeight)
+      } else {
+        // Mobile/Tablet: Use CSS vh, clear any pixel height
+        setHeroHeight(null)
       }
-      
-      // Hero height = viewport height - header height - bottom margin
-      const calculatedHeight = viewportHeight - headerHeight - bottomMargin
-      setHeroHeight(calculatedHeight)
     }
 
     // Calculate on mount (with slight delay to ensure header is rendered)
@@ -75,9 +79,10 @@ export default function HeroSection() {
 
   return (
     <section 
+      data-hero-section
       className="relative bg-white flex items-center mx-3.5 md:mx-7 lg:mx-9 xl:mx-12"
       style={{ 
-        height: heroHeight ? `${heroHeight}px` : '60vh',
+        height: heroHeight ? `${heroHeight}px` : undefined,
         minHeight: '400px' // Minimum height fallback
       }}
     >
