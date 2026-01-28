@@ -1,6 +1,6 @@
 # Deployment & Development Notes
 
-This document records fixes and patterns from the Cloudflare Pages deployment. **Follow these when adding or changing code** so the same issues do not resurface.
+This document records fixes and patterns from the Cloudflare Workers deployment. **Follow these when adding or changing code** so the same issues do not resurface.
 
 ---
 
@@ -108,14 +108,14 @@ Paths under `public/assets/` are used in code and must work on Cloudflare static
 
 ## 5. Images: unoptimized on Cloudflare
 
-`next.config.js` has `images: { unoptimized: true }` because Cloudflare Pages does not run the Node-based Next.js image optimizer.
+`next.config.js` has `images: { unoptimized: true }` because Cloudflare Workers does not run the Node-based Next.js image optimizer.
 
 **Consequences:**
 
 - No `/_next/image` optimization; images are served directly from `/assets/...`.
 - Images can load more slowly than on Vercel or with a separate image CDN.
 
-**Do not remove** `unoptimized: true` if you keep deploying to Cloudflare Pages with the current setup. If you move to Vercel or use an image CDN later, you can switch back to optimized images and adjust config.
+**Do not remove** `unoptimized: true` if you keep deploying to Cloudflare Workers with the current setup. If you move to Vercel or use an image CDN later, you can switch back to optimized images and adjust config.
 
 ---
 
@@ -143,7 +143,7 @@ Before pushing changes that might affect build or production:
 | **New Supabase query** | If you see a “never” type error, add an explicit type or `as T` assertion. |
 | **New asset (image/font)** | Put it under `public/assets/` with **hyphenated** names (no spaces). |
 | **New reference to `/assets/...`** | Use the same path as on disk (e.g. `/assets/hero-assets/...`). |
-| **Changing `next.config.js`** | Do not remove `images.unoptimized` while deploying to Cloudflare Pages. |
+| **Changing `next.config.js`** | Do not remove `images.unoptimized` while deploying to Cloudflare Workers. |
 | **New Cloudflare deploy** | Ensure `nodejs_compat` is set for the right environment. |
 
 Running `npm run build` locally is a quick way to catch TypeScript and build-time issues before deploy.

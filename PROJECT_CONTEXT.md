@@ -47,7 +47,7 @@
 
 ## Deployment & compatibility
 
-When adding or changing pages, Supabase usage, or static assets, follow **DEPLOYMENT_AND_DEVELOPMENT_NOTES.md**. It documents patterns that keep the app building and deploying correctly (e.g. Next.js 15/16 async params/searchParams, Supabase type assertions, Edge runtime for Cloudflare, asset path rules). Cloudflare setup steps are in **CLOUDFLARE_DEPLOY.md**.
+When adding or changing pages, Supabase usage, or static assets, follow **DEPLOYMENT_AND_DEVELOPMENT_NOTES.md**. It documents patterns that keep the app building and deploying correctly (e.g. Next.js 15/16 async params/searchParams, Supabase type assertions, Workers runtime, asset path rules). Cloudflare Workers setup steps are in **CLOUDFLARE_DEPLOY.md**.
 
 ## Database Schema
 

@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    unoptimized: true, // Required for Cloudflare Pages – no Node image optimizer on Edge
+    unoptimized: true, // Required for Cloudflare Workers – no Node image optimizer on Edge
     remotePatterns: [
       {
         protocol: 'https',
@@ -17,7 +17,6 @@ const nextConfig = {
 
 module.exports = nextConfig
 
-// Initialize OpenNext Cloudflare adapter for local development
-const { initOpenNextCloudflareForDev } = require('@opennextjs/cloudflare')
-initOpenNextCloudflareForDev()
+// OpenNext Cloudflare adapter is only used during build/deploy
+// Local dev uses standard Next.js (no OpenNext interference)
 

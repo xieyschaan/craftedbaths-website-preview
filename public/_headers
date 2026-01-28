@@ -1,4 +1,5 @@
-# Cloudflare Pages Headers Configuration
+# Static Asset Caching Headers
+# Note: This file is for reference. Cloudflare Workers handles caching through the Worker code.
 # See: https://opennext.js.org/cloudflare/caching#static-assets-caching
 
 # Cache Next.js static assets with long-term caching

@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://craftedbaths-website-preview.pages.dev/sitemap.xml
+Sitemap: https://crafted-bathrooms-website.xiey-inc.workers.dev/sitemap.xml

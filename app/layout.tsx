@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://craftedbaths-website-preview.pages.dev'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://crafted-bathrooms-website.xiey-inc.workers.dev'),
   alternates: {
     canonical: '/',
   },
