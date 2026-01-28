@@ -1,6 +1,6 @@
 import StandardPageTemplate from '@/components/layout/StandardPageTemplate'
 
-export const runtime = 'edge'
+// OpenNext does not support edge runtime - removed for Cloudflare deployment
 
 export default function BrochuresPage() {
   return (

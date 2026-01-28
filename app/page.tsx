@@ -9,8 +9,7 @@ import { Button } from '@/components/ui'
 import { createClient } from '@/lib/supabase/server'
 import { ExternalLink } from 'lucide-react'
 
-// Cloudflare Pages: dynamic route needs Edge runtime. See DEPLOYMENT_AND_DEVELOPMENT_NOTES.md
-export const runtime = 'edge'
+// OpenNext does not support edge runtime - removed for Cloudflare deployment
 
 export default async function Home() {
   // Fetch featured projects for homepage

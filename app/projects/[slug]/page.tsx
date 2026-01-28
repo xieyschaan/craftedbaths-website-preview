@@ -4,8 +4,7 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import { createClient } from '@/lib/supabase/server'
 
-// Cloudflare Pages: dynamic route needs Edge runtime. See DEPLOYMENT_AND_DEVELOPMENT_NOTES.md
-export const runtime = 'edge'
+// OpenNext does not support edge runtime - removed for Cloudflare deployment
 
 interface ProjectDetailPageProps {
   params: Promise<{ slug: string }>
