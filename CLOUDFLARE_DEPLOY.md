@@ -64,7 +64,7 @@ Use these settings and the project name below.
 | **Production branch** | `main` |
 | **Framework preset** | `Custom` |
 | **Build command** | `npm run build:cloudflare` |
-| **Build output directory** | `.open-next` |
+| **Build output directory** | `.open-next/assets` |
 | **Root directory** | *(leave blank)* |
 
 **Important:** The project now uses OpenNext for Cloudflare deployment. The build command runs `next build` first, then applies Cloudflare-specific transformations.
