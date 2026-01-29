@@ -3,6 +3,8 @@ import "./globals.css";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import BackToTop from "@/components/ui/BackToTop";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://crafted-bathrooms-website.xiey-inc.workers.dev';
+
 export const metadata: Metadata = {
   title: {
     default: "Crafted Bathrooms | Luxury Bathroom Fittings & Fixtures",
@@ -11,14 +13,12 @@ export const metadata: Metadata = {
   description: "Luxury bathroom fittings and fixtures. Explore our projects, services, and showrooms across the UK.",
   keywords: ["bathroom fittings", "luxury bathrooms", "bathroom fixtures", "bathroom design", "UK bathrooms"],
   authors: [{ name: "Crafted Bathrooms" }],
-  creator: "Crafted Bathrooms",
-  publisher: "Crafted Bathrooms",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://crafted-bathrooms-website.xiey-inc.workers.dev'),
+  metadataBase: new URL(siteUrl),
   alternates: {
     canonical: '/',
   },
@@ -59,7 +59,6 @@ export const metadata: Metadata = {
     icon: [
       { url: '/assets/favicon.ico/16x16.png', sizes: '16x16', type: 'image/png' },
       { url: '/assets/favicon.ico/32x32.png', sizes: '32x32', type: 'image/png' },
-      { url: '/assets/favicon.ico/192x192.png', sizes: '192x192', type: 'image/png' },
       { url: '/assets/favicon.ico/180x180.png', sizes: '180x180', type: 'image/png' },
     ],
     apple: [
@@ -75,30 +74,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full">
-      <head>
-        {/* Preload critical fonts */}
-        <link
-          rel="preload"
-          href="/assets/fonts/Gilroy/gilroy-regular-webfont.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/assets/fonts/Gilroy/gilroy-bold-webfont.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/assets/fonts/Rexton/rexton_regular-webfont.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-      </head>
       <body className="h-full">
         <ErrorBoundary>
           <div id="main-content-wrapper" className="h-full">

@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  poweredByHeader: false,
   images: {
     unoptimized: true, // Required for Cloudflare Workers – no Node image optimizer on Edge
     remotePatterns: [

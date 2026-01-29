@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /
-
-# Sitemap
-Sitemap: https://crafted-bathrooms-website.xiey-inc.workers.dev/sitemap.xml

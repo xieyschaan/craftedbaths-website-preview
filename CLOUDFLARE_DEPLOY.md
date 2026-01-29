@@ -48,6 +48,7 @@ For production, set environment variables in Cloudflare Dashboard:
 2. Navigate to **Workers & Pages** → **crafted-bathrooms-website**
 3. Go to **Settings** → **Variables and Secrets**
 4. Add your environment variables:
+   - `NEXT_PUBLIC_SITE_URL` – Your production domain (e.g. `https://craftedbathrooms.com`). Use a custom domain for a professional appearance; omit to use the default workers.dev URL.
    - `NEXT_PUBLIC_SUPABASE_URL`
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
    - Any other required variables
@@ -164,11 +165,12 @@ This creates a new version without immediately switching traffic (useful for tes
 
 ## Custom Domain
 
-To use a custom domain:
+To use a custom domain for a professional appearance (hides workers.dev in metadata and inspect view):
 
 1. Go to Cloudflare Dashboard → **Workers & Pages** → **crafted-bathrooms-website**
 2. Navigate to **Settings** → **Triggers**
 3. Add a custom domain under **Routes**
+4. Set `NEXT_PUBLIC_SITE_URL` to your domain (e.g. `https://craftedbathrooms.com`) in GitHub Secrets (for CI) or Cloudflare Variables (for manual deploy)
 
 ---
 
