@@ -91,9 +91,9 @@ Paths under `public/assets/` are used in code and must work on Cloudflare static
 
 **Rules:**
 
-- Use **hyphens** in folder and file names: `hero-assets`, `shop-online`, `Logo-SVG-Black.svg`.
-- Do **not** use spaces or `+` in asset paths.
-- Reference them in code exactly as on disk: `/assets/hero-assets/...`, `/assets/logo/Logo-SVG-Black.svg`, `/assets/shop-online/...`.
+- Use **hyphens** in folder and file names where possible: `hero-assets`, `shop-online`.
+- Logo files use spaces in names: `Logo SVG-Black.svg`, `Logo + Tagline-SVG-Black.svg`.
+- Reference them in code exactly as on disk: `/assets/hero-assets/...`, `/assets/logo/Logo SVG-Black.svg`, `/assets/shop-online/...`.
 
 **Current layout:**
 

@@ -3,25 +3,25 @@ import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <footer className="bg-white pt-[30px] pb-[15px] w-full mt-auto flex-shrink-0">
+    <footer className="bg-primary-900 pt-[30px] pb-[15px] w-full mt-auto flex-shrink-0 ">
       <div className="mx-3.5 md:mx-7 lg:mx-9 xl:mx-12 py-spacing-xl">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-gap-lg w-full">
           {/* Column 1 - Logo */}
           <div>
             <Link href="/">
-              <Logo variant="black" width={180} height={54} />
+              <Logo variant="white" width={180} height={54} />
             </Link>
-            <div className="mt-spacing-md pt-[20px] font-body font-light text-gray-600">
+            <div className="mt-spacing-md pt-[20px] font-body font-light text-white/60">
               <p className="mb-spacing-sm">
                 80 St Johns Rd, Huddersfield HD1 5EY
               </p>
               <p className="mb-spacing-sm">
-                <a href="mailto:info@craftedbaths.com" className="hover:text-black hover:underline transition-colors">
+                <a href="mailto:info@craftedbaths.com" className="hover:text-white hover:underline transition-colors">
                   info@craftedbaths.com
                 </a>
               </p>
               <p>
-                <a href="tel:01484509357" className="hover:text-black hover:underline transition-colors">
+                <a href="tel:01484509357" className="hover:text-white hover:underline transition-colors">
                   01484 509357
                 </a>
               </p>
@@ -33,50 +33,50 @@ export default function Footer() {
 
           {/* Column 3 - Quick Links */}
           <div>
-            <h3 className="font-h6 mb-spacing-md text-black">Quick Links</h3>
-            <ul className="space-y-spacing-sm font-body font-light text-gray-600">
+            <h3 className="font-h6 mb-spacing-md text-white">Quick Links</h3>
+            <ul className="space-y-spacing-sm font-body font-light text-white/60">
               <li>
-                <Link href="/about" className="hover:text-black hover:underline transition-colors">
+                <Link href="/about" className="hover:text-white hover:underline transition-colors">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/projects" className="hover:text-black hover:underline transition-colors">
+                <Link href="/projects" className="hover:text-white hover:underline transition-colors">
                   Projects
                 </Link>
               </li>
               <li>
-                <Link href="/design-services" className="hover:text-black hover:underline transition-colors">
+                <Link href="/design-services" className="hover:text-white hover:underline transition-colors">
                   Design Services
                 </Link>
               </li>
               <li>
-                <Link href="/showrooms" className="hover:text-black hover:underline transition-colors">
+                <Link href="/showrooms" className="hover:text-white hover:underline transition-colors">
                   Showrooms
                 </Link>
               </li>
               <li>
-                <Link href="/faq" className="hover:text-black hover:underline transition-colors">
+                <Link href="/faq" className="hover:text-white hover:underline transition-colors">
                   FAQs
                 </Link>
               </li>
               <li>
-                <Link href="/brands" className="hover:text-black hover:underline transition-colors">
+                <Link href="/brands" className="hover:text-white hover:underline transition-colors">
                   Brands
                 </Link>
               </li>
               <li>
-                <Link href="/inspiration" className="hover:text-black hover:underline transition-colors">
+                <Link href="/inspiration" className="hover:text-white hover:underline transition-colors">
                   Inspiration
                 </Link>
               </li>
               <li>
-                <Link href="/brochures" className="hover:text-black hover:underline transition-colors">
+                <Link href="/brochures" className="hover:text-white hover:underline transition-colors">
                   Brochures
                 </Link>
               </li>
               <li>
-                <Link href="/match-a-quote" className="hover:text-black hover:underline transition-colors">
+                <Link href="/match-a-quote" className="hover:text-white hover:underline transition-colors">
                   Match a Quote
                 </Link>
               </li>
@@ -85,10 +85,10 @@ export default function Footer() {
 
           {/* Column 4 - Contact */}
           <div>
-            <h3 className="font-h6 mb-spacing-md text-black">Contact</h3>
-            <ul className="space-y-spacing-sm font-body font-light text-gray-600">
+            <h3 className="font-h6 mb-spacing-md text-white">Contact</h3>
+            <ul className="space-y-spacing-sm font-body font-light text-white/60">
               <li>
-                <Link href="/contact" className="hover:text-black hover:underline transition-colors">
+                <Link href="/contact" className="hover:text-white hover:underline transition-colors">
                   Contact Us
                 </Link>
               </li>
@@ -97,20 +97,20 @@ export default function Footer() {
 
           {/* Column 5 - Social Media */}
           <div>
-            <h3 className="font-h6 mb-spacing-md text-black">Follow Us</h3>
-            <ul className="space-y-spacing-sm font-body font-light text-gray-600">
+            <h3 className="font-h6 mb-spacing-md text-white">Follow Us</h3>
+            <ul className="space-y-spacing-sm font-body font-light text-white/60">
               <li>
-                <Link href="#" className="hover:text-black hover:underline transition-colors">
+                <Link href="#" className="hover:text-white hover:underline transition-colors">
                   Instagram
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-black hover:underline transition-colors">
+                <Link href="#" className="hover:text-white hover:underline transition-colors">
                   Facebook
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-black hover:underline transition-colors">
+                <Link href="#" className="hover:text-white hover:underline transition-colors">
                   TikTok
                 </Link>
               </li>
@@ -120,7 +120,7 @@ export default function Footer() {
 
             {/* Copyright */}
             <div className="mt-[84px] py-spacing-xl text-center flex items-center justify-center">
-              <p className="text-gray-500 text-xs font-light uppercase">
+              <p className="text-white/40 text-xs font-light uppercase">
                 © {new Date().getFullYear()} Crafted Bathrooms. All rights reserved.
               </p>
             </div>

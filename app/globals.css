@@ -237,14 +237,14 @@
 }
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 255, 255, 255;
-  --background-end-rgb: 255, 255, 255;
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 48, 38, 32;
+  --background-end-rgb: 48, 38, 32;
   
   /* Brand colors */
   --color-primary: #302620;
   --color-accent: #bea98e;
-  --color-background: #ffffff;
+  --color-background: #302620;
   
   /* Container & Content Widths */
   --container-max-width: 1440px;
@@ -307,10 +307,10 @@ body {
   padding: 0;
 }
 
-/* Ensure menu panel is flush with left edge */
+/* Menu panel GPU acceleration */
 [data-menu-panel] {
-  left: 0 !important;
-  margin-left: 0 !important;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 body {
@@ -322,60 +322,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Desktop menu open: shift main content to the right (but NOT the panel) */
-@media (min-width: 768px) {
-  html.menu-open-desktop {
-    overflow: hidden;
-  }
-  
-  /* Shift only the main content wrapper, not the panel */
-  html.menu-open-desktop #main-content-wrapper {
-    transform: translateX(340px);
-    transition: transform 0.3s ease-in-out;
-    will-change: transform;
-  }
-  
-  /* Panel stays fixed at left edge - completely unaffected, with smooth slide animation */
-  html.menu-open-desktop [data-menu-panel] {
-    left: 0 !important;
-    position: fixed !important;
-  }
-  
-  /* Slide in animation for panel when opening */
-  [data-menu-panel].opening {
-    animation: slideInLeft 0.3s ease-in-out forwards;
-  }
-  
-  @keyframes slideInLeft {
-    from {
-      transform: translateX(-100%);
-    }
-    to {
-      transform: translateX(0);
-    }
-  }
-  
-  /* Slide out animation when closing */
-  [data-menu-panel].closing {
-    animation: slideOutLeft 0.3s ease-in-out forwards;
-  }
-  
-  @keyframes slideOutLeft {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-100%);
-    }
-  }
-  
-  /* Adjust transform for larger screens */
-  @media (min-width: 1024px) {
-    html.menu-open-desktop #main-content-wrapper {
-      transform: translateX(380px);
-    }
-  }
-}
 
 /* Prevent layout shift for images */
 img {

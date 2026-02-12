@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { cn } from '@/lib/utils'
 
 interface LogoProps {
-  variant?: 'black' | 'white' | 'with-tagline'
+  variant?: 'black' | 'white' | 'beige' | 'brown' | 'tagline-black' | 'tagline-white'
   className?: string
   width?: number
   height?: number
@@ -17,12 +17,18 @@ export default function Logo({
   const getLogoSrc = () => {
     switch (variant) {
       case 'white':
-        return '/assets/logo/Logo-SVG-White.svg'
-      case 'with-tagline':
-        return '/assets/logo/Logo-Tagline.png'
+        return '/assets/logo/Logo SVG-White.svg'
+      case 'beige':
+        return '/assets/logo/Logo SVG-Beige.svg'
+      case 'brown':
+        return '/assets/logo/Logo SVG-Brown.svg'
+      case 'tagline-black':
+        return '/assets/logo/Logo + Tagline-SVG-Black.svg'
+      case 'tagline-white':
+        return '/assets/logo/Logo + Tagline-SVG-White.svg'
       case 'black':
       default:
-        return '/assets/logo/Logo-SVG-Black.svg'
+        return '/assets/logo/Logo SVG-Black.svg'
     }
   }
 

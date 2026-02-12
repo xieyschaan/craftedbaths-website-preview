@@ -76,10 +76,8 @@ export default function RootLayout({
     <html lang="en" className="h-full">
       <body className="h-full">
         <ErrorBoundary>
-          <div id="main-content-wrapper" className="h-full">
-            {children}
-            <BackToTop />
-          </div>
+          {children}
+          <BackToTop />
         </ErrorBoundary>
       </body>
     </html>

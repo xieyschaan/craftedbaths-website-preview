@@ -17,9 +17,9 @@ export default function ShopCard({ title, image, href = '#', showText = true }: 
 
   const content = (
     <div className="group">
-      <div className="bg-white overflow-hidden">
+      <div className="overflow-hidden">
         {/* Image */}
-        <div className="relative w-full h-64 md:h-80 bg-gray-100 overflow-hidden">
+        <div className="relative w-full h-64 md:h-80 bg-primary-800 overflow-hidden">
           {!imageLoaded && (
             <div className="absolute inset-0">
               <Skeleton className="w-full h-full" />
@@ -45,7 +45,7 @@ export default function ShopCard({ title, image, href = '#', showText = true }: 
         {/* Text */}
         {showText && (
           <div className="p-spacing-md pt-[18px]">
-            <p className="font-h2 text-black">
+            <p className="font-h2 text-white">
               {title}
             </p>
           </div>

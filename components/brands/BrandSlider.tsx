@@ -129,10 +129,10 @@ export default function BrandSlider() {
       style={{ willChange: 'transform' }}
     >
       {/* Left fade gradient */}
-      <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+      <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-primary-900 to-transparent z-10 pointer-events-none" />
       
       {/* Right fade gradient */}
-      <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-primary-900 to-transparent z-10 pointer-events-none" />
       
       {/* Slider container */}
       <div className="flex" ref={sliderRef}>
@@ -141,7 +141,7 @@ export default function BrandSlider() {
             key={`${brand}-${index}`}
             className="flex-shrink-0 px-8 md:px-12 lg:px-16 select-none"
           >
-            <span className="font-body text-black text-lg md:text-xl lg:text-2xl whitespace-nowrap">
+            <span className="font-body text-white text-lg md:text-xl lg:text-2xl whitespace-nowrap">
               {brand}
             </span>
           </div>
