@@ -12,15 +12,28 @@ interface ProjectDetailPageProps {
 export default async function ProjectDetailPage({ params }: ProjectDetailPageProps) {
   const { slug } = await params
   const supabase = await createClient()
-  const { data: project, error } = await supabase
+  const { data, error } = await supabase
     .from('projects')
     .select('*')
     .eq('slug', slug)
     .eq('is_published', true)
     .single()
 
-  if (error || !project) {
-    notFound()
+  if (error || !data) {
+    return notFound()
+  }
+
+  const project = data as {
+    id: string
+    title: string
+    slug: string
+    description: string | null
+    featured_image: string | null
+    images: string[] | null
+    category: string | null
+    location: string | null
+    completed_date: string | null
+    tags: string[] | null
   }
 
   return (

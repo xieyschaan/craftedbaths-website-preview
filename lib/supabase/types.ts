@@ -44,6 +44,7 @@ export interface Database {
           created_at?: string
           updated_at?: string
         }
+        Relationships: []
       }
       brands: {
         Row: {
@@ -73,6 +74,7 @@ export interface Database {
           created_at?: string
           updated_at?: string
         }
+        Relationships: []
       }
       products: {
         Row: {
@@ -132,6 +134,7 @@ export interface Database {
           created_at?: string
           updated_at?: string
         }
+        Relationships: []
       }
       user_profiles: {
         Row: {
@@ -167,6 +170,7 @@ export interface Database {
           created_at?: string
           updated_at?: string
         }
+        Relationships: []
       }
       pricing_tiers: {
         Row: {
@@ -199,6 +203,7 @@ export interface Database {
           created_at?: string
           updated_at?: string
         }
+        Relationships: []
       }
       showrooms: {
         Row: {
@@ -249,6 +254,7 @@ export interface Database {
           created_at?: string
           updated_at?: string
         }
+        Relationships: []
       }
       cart_items: {
         Row: {
@@ -281,6 +287,7 @@ export interface Database {
           created_at?: string
           updated_at?: string
         }
+        Relationships: []
       }
       quotes: {
         Row: {
@@ -316,6 +323,7 @@ export interface Database {
           created_at?: string
           updated_at?: string
         }
+        Relationships: []
       }
       bookings: {
         Row: {
@@ -354,6 +362,7 @@ export interface Database {
           created_at?: string
           updated_at?: string
         }
+        Relationships: []
       }
       projects: {
         Row: {
@@ -407,6 +416,7 @@ export interface Database {
           created_at?: string
           updated_at?: string
         }
+        Relationships: []
       }
       contact_submissions: {
         Row: {
@@ -445,14 +455,13 @@ export interface Database {
           metadata?: Json
           created_at?: string
         }
+        Relationships: []
       }
     }
     Views: {
       products_with_pricing: {
-        Row: {
-          // This view combines products with pricing tiers
-          // Structure matches products table with additional pricing fields
-        }
+        Row: Record<string, unknown>
+        Relationships: []
       }
     }
     Functions: {
