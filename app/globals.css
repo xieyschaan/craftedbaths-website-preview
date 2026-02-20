@@ -2,184 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Hero section responsive heights */
-[data-hero-section] {
-  height: 50vh; /* Mobile default */
-}
-
-@media (min-width: 768px) {
-  [data-hero-section] {
-    height: 60vh; /* Tablet */
+@layer utilities {
+  .page-mx {
+    @apply mx-3.5 md:mx-7 lg:mx-9 xl:mx-12;
   }
 }
 
-@media (min-width: 1024px) {
-  [data-hero-section] {
-    height: auto; /* Desktop uses dynamic calculation */
-  }
-}
-
-/* Gilroy Font Family */
-@font-face {
-  font-family: 'Gilroy';
-  src: url('/assets/fonts/Gilroy/gilroy-thin-webfont.woff2') format('woff2'),
-       url('/assets/fonts/Gilroy/gilroy-thin-webfont.woff') format('woff');
-  font-weight: 100;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Gilroy';
-  src: url('/assets/fonts/Gilroy/gilroy-ultralightitalic-webfont.woff') format('woff');
-  font-weight: 100;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Gilroy';
-  src: url('/assets/fonts/Gilroy/gilroy-light-webfont.woff2') format('woff2'),
-       url('/assets/fonts/Gilroy/gilroy-light-webfont.woff') format('woff');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Gilroy';
-  src: url('/assets/fonts/Gilroy/gilroy-lightitalic-webfont.woff2') format('woff2'),
-       url('/assets/fonts/Gilroy/gilroy-lightitalic-webfont.woff') format('woff');
-  font-weight: 300;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Gilroy';
-  src: url('/assets/fonts/Gilroy/gilroy-regular-webfont.woff2') format('woff2'),
-       url('/assets/fonts/Gilroy/gilroy-regular-webfont.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Gilroy';
-  src: url('/assets/fonts/Gilroy/gilroy-regularitalic-webfont.woff2') format('woff2'),
-       url('/assets/fonts/Gilroy/gilroy-regularitalic-webfont.woff') format('woff');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Gilroy';
-  src: url('/assets/fonts/Gilroy/gilroy-medium-webfont.woff2') format('woff2'),
-       url('/assets/fonts/Gilroy/gilroy-medium-webfont.woff') format('woff');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Gilroy';
-  src: url('/assets/fonts/Gilroy/gilroy-mediumitalic-webfont.woff2') format('woff2'),
-       url('/assets/fonts/Gilroy/gilroy-mediumitalic-webfont.woff') format('woff');
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Gilroy';
-  src: url('/assets/fonts/Gilroy/gilroy-semibold-webfont.woff2') format('woff2'),
-       url('/assets/fonts/Gilroy/gilroy-semibold-webfont.woff') format('woff');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Gilroy';
-  src: url('/assets/fonts/Gilroy/gilroy-semibolditalic-webfont.woff2') format('woff2'),
-       url('/assets/fonts/Gilroy/gilroy-semibolditalic-webfont.woff') format('woff');
-  font-weight: 600;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Gilroy';
-  src: url('/assets/fonts/Gilroy/gilroy-bold-webfont.woff2') format('woff2'),
-       url('/assets/fonts/Gilroy/gilroy-bold-webfont.woff') format('woff');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Gilroy';
-  src: url('/assets/fonts/Gilroy/gilroy-bolditalic-webfont.woff2') format('woff2'),
-       url('/assets/fonts/Gilroy/gilroy-bolditalic-webfont.woff') format('woff');
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Gilroy';
-  src: url('/assets/fonts/Gilroy/gilroy-extrabold-webfont.woff2') format('woff2'),
-       url('/assets/fonts/Gilroy/gilroy-extrabold-webfont.woff') format('woff');
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Gilroy';
-  src: url('/assets/fonts/Gilroy/gilroy-extrabolditalic-webfont.woff2') format('woff2'),
-       url('/assets/fonts/Gilroy/gilroy-extrabolditalic-webfont.woff') format('woff');
-  font-weight: 800;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Gilroy';
-  src: url('/assets/fonts/Gilroy/gilroy-heavy-webfont.woff2') format('woff2'),
-       url('/assets/fonts/Gilroy/gilroy-heavy-webfont.woff') format('woff');
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Gilroy';
-  src: url('/assets/fonts/Gilroy/gilroy-heavyitalic-webfont.woff2') format('woff2'),
-       url('/assets/fonts/Gilroy/gilroy-heavyitalic-webfont.woff') format('woff');
-  font-weight: 900;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Gilroy';
-  src: url('/assets/fonts/Gilroy/gilroy-black-webfont.woff2') format('woff2'),
-       url('/assets/fonts/Gilroy/gilroy-black-webfont.woff') format('woff');
-  font-weight: 950;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Gilroy';
-  src: url('/assets/fonts/Gilroy/gilroy-blackitalic-webfont.woff2') format('woff2'),
-       url('/assets/fonts/Gilroy/gilroy-blackitalic-webfont.woff') format('woff');
-  font-weight: 950;
-  font-style: italic;
-  font-display: swap;
-}
 
 /* Rexton Font Family */
 @font-face {
@@ -237,67 +65,8 @@
 }
 
 :root {
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 48, 38, 32;
-  --background-end-rgb: 48, 38, 32;
-  
-  /* Brand colors */
-  --color-primary: #302620;
-  --color-accent: #bea98e;
-  --color-background: #302620;
-  
-  /* Container & Content Widths */
-  --container-max-width: 1440px;
-  --container-narrow-width: 1280px;
-  --container-tight-width: 1120px;
-  --text-max-width: 65ch;
-  --text-narrow-width: 55ch;
-  
-  /* Container Padding */
-  --container-padding-mobile: 1rem;      /* 16px */
-  --container-padding-sm: 1.5rem;        /* 24px */
-  --container-padding-lg: 2rem;          /* 32px */
-  --container-padding-xl: 2.5rem;        /* 40px */
-  
-  /* Section Spacing (Vertical) */
-  --spacing-section: 120px;              /* Large sections */
-  --spacing-section-md: 80px;            /* Medium sections */
-  --spacing-section-sm: 60px;            /* Small sections */
-  
-  /* Component Spacing */
-  --spacing-xs: 0.25rem;                 /* 4px */
-  --spacing-sm: 0.5rem;                  /* 8px */
-  --spacing-md: 1rem;                    /* 16px */
-  --spacing-lg: 1.5rem;                  /* 24px */
-  --spacing-xl: 2rem;                    /* 32px */
-  --spacing-2xl: 3rem;                   /* 48px */
-  --spacing-3xl: 4rem;                   /* 64px */
-  
-  /* Grid Gaps */
-  --gap-sm: 1rem;                        /* 16px */
-  --gap-md: 1.5rem;                      /* 24px */
-  --gap-lg: 2rem;                        /* 32px */
-  --gap-xl: 3rem;                        /* 48px */
-  
-  /* Header & Footer */
-  --header-height: 80px;
-  --footer-padding: 3rem;
-  
-  /* Border Widths */
-  --border-thin: 1px;
-  --border-medium: 2px;
-  --border-thick: 3px;
-  
-  /* Border Colors */
-  --border-color-light: #e5e5e5;
-  --border-color-medium: #d4d4d4;
-  --border-color-dark: #a3a3a3;
-  
-  /* Shadows (for depth and luxury feel) */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04);
+  --foreground-rgb: 48, 38, 32;
+  --color-background: #fcfbfa;
 }
 
 html,
@@ -316,55 +85,37 @@ body {
 body {
   color: rgb(var(--foreground-rgb));
   background: var(--color-background);
-  font-family: 'Gilroy', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: var(--font-jost), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
 
-/* Prevent layout shift for images */
 img {
   max-width: 100%;
   height: auto;
   display: block;
-  /* Prevent layout shift */
-  aspect-ratio: attr(width) / attr(height);
 }
 
-/* Smooth scrolling with performance optimization */
-html {
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Optimize scroll performance */
+/* Smooth scrolling - respects user preference for reduced motion */
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
   }
 }
 
-/* GPU acceleration and performance optimizations */
-* {
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+html {
+  -webkit-overflow-scrolling: touch;
 }
 
-/* Optimize image rendering */
-img,
-[data-next-image] {
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-  backface-visibility: hidden;
-  transform: translateZ(0);
+* {
+  box-sizing: border-box;
 }
 
 /* Reduce layout shift during image loading */
 [data-next-image] {
   display: block;
-  /* Prevent layout shift during load */
   min-height: 1px;
 }
 
@@ -374,58 +125,9 @@ img:not([src]) {
   opacity: 0;
 }
 
-/* Optimize transitions and animations */
-.transition-opacity,
-.transition-transform,
-.transition-all {
-  will-change: opacity, transform;
-}
-
-/* Remove will-change after animation completes to free GPU memory */
-.group:hover .transition-transform {
-  will-change: transform;
-}
-
-/* Prevent content from disappearing */
-section {
-  min-height: 0;
-  position: relative;
-}
-
-/* Ensure footer is always visible */
 footer {
   flex-shrink: 0;
   position: relative;
   z-index: 1;
-}
-
-/* Prevent layout collapse */
-main {
-  min-height: 0;
-}
-
-/* Ensure all content is visible */
-div[class*="flex"] {
-  min-height: 0;
-}
-
-/* Optimize scroll performance - prevent jank */
-section,
-main,
-article {
-  contain: layout style paint;
-  content-visibility: auto;
-}
-
-/* Optimize transitions and animations */
-.transition-opacity,
-.transition-transform,
-.transition-all {
-  will-change: opacity, transform;
-}
-
-/* Remove will-change after animation completes to free GPU memory */
-.group:hover .transition-transform {
-  will-change: transform;
 }
 

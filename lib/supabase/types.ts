@@ -355,6 +355,59 @@ export interface Database {
           updated_at?: string
         }
       }
+      projects: {
+        Row: {
+          id: string
+          title: string
+          slug: string
+          short_description: string | null
+          description: string | null
+          featured_image: string | null
+          images: string[] | null
+          category: string | null
+          location: string | null
+          completed_date: string | null
+          tags: string[] | null
+          is_published: boolean
+          is_featured: boolean
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          id?: string
+          title: string
+          slug: string
+          short_description?: string | null
+          description?: string | null
+          featured_image?: string | null
+          images?: string[] | null
+          category?: string | null
+          location?: string | null
+          completed_date?: string | null
+          tags?: string[] | null
+          is_published?: boolean
+          is_featured?: boolean
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          id?: string
+          title?: string
+          slug?: string
+          short_description?: string | null
+          description?: string | null
+          featured_image?: string | null
+          images?: string[] | null
+          category?: string | null
+          location?: string | null
+          completed_date?: string | null
+          tags?: string[] | null
+          is_published?: boolean
+          is_featured?: boolean
+          created_at?: string
+          updated_at?: string
+        }
+      }
       contact_submissions: {
         Row: {
           id: string

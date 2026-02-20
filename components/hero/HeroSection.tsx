@@ -11,7 +11,6 @@ interface HeroSlide {
 }
 
 const heroSlides: HeroSlide[] = [
-  { type: 'color', bgColor: '#302620', text: 'Brands' },
   { type: 'image', src: '/assets/hero-assets/dominik-5z7ERdLbJ0U-unsplash.webp', text: 'Sales' },
   { type: 'image', src: '/assets/hero-assets/lotus-design-n-print-Dk_o7KQyGkI-unsplash.webp', text: 'Tiles' },
   { type: 'image', src: '/assets/hero-assets/smart-renovations-qiclFfG4KFM-unsplash.webp', text: 'Bath Craft' },
@@ -24,56 +23,26 @@ export default function HeroSection() {
   const [imagesLoaded, setImagesLoaded] = useState<boolean[]>(
     heroSlides.map((slide) => slide.type === 'color')
   )
-  const [heroHeight, setHeroHeight] = useState<number | null>(null)
 
-  // Calculate hero section height dynamically based on viewport (Desktop only)
+  const [isPaused, setIsPaused] = useState(false)
+
   useEffect(() => {
-    const calculateHeight = () => {
-      const width = window.innerWidth
-      
-      // Only calculate dynamically for desktop (1024px and above)
-      // Mobile and Tablet use CSS vh units (50vh and 60vh)
-      if (width >= 1024) {
-        const viewportHeight = window.innerHeight
-        
-        // Get header height dynamically
-        const header = document.querySelector('header')
-        const headerHeight = header ? header.offsetHeight : 0
-        
-        // Calculate bottom margin to match horizontal margins (responsive)
-        let bottomMargin = 36 // lg: mx-9 = 36px
-        if (width >= 1280) {
-          bottomMargin = 48 // xl: mx-12 = 48px
-        }
-        
-        // Hero height = viewport height - header height - bottom margin
-        const calculatedHeight = viewportHeight - headerHeight - bottomMargin
-        setHeroHeight(calculatedHeight)
-      } else {
-        // Mobile/Tablet: Use CSS vh, clear any pixel height
-        setHeroHeight(null)
-      }
-    }
-
-    // Calculate on mount (with slight delay to ensure header is rendered)
-    const timer = setTimeout(calculateHeight, 0)
-
-    // Recalculate on resize
-    window.addEventListener('resize', calculateHeight)
-
-    return () => {
-      clearTimeout(timer)
-      window.removeEventListener('resize', calculateHeight)
-    }
+    const observer = new MutationObserver(() => {
+      setIsPaused(document.documentElement.hasAttribute('data-menu-open'))
+    })
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-menu-open'] })
+    return () => observer.disconnect()
   }, [])
 
   useEffect(() => {
+    if (isPaused) return
+
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % heroSlides.length)
-    }, 5000) // Change image every 5 seconds
+    }, 5000)
 
     return () => clearInterval(interval)
-  }, [])
+  }, [isPaused])
 
   const handleImageLoad = (index: number) => {
     setImagesLoaded((prev) => {
@@ -90,18 +59,14 @@ export default function HeroSection() {
   return (
     <section 
       data-hero-section
-      className="relative bg-primary-900 flex items-center mx-3.5 md:mx-7 lg:mx-9 xl:mx-12"
+      className="relative bg-primary-900 flex items-center page-mx mt-2 md:mt-3 flex-1"
       style={{ 
-        height: heroHeight ? `${heroHeight}px` : undefined,
-        minHeight: '400px' // Minimum height fallback
+        minHeight: '300px'
       }}
     >
-      {/* Background Carousel */}
       <div className="absolute inset-0 z-0">
         <div className="relative w-full h-full overflow-hidden">
-          {/* Slides */}
           <div className="relative w-full h-full">
-            {/* Loading placeholder - show until first slide is ready */}
             {!imagesLoaded[0] && heroSlides[0].type === 'image' && (
               <div className="absolute inset-0 bg-gray-100 animate-pulse z-0" />
             )}
@@ -139,7 +104,6 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Content - Centered within hero section */}
       <div className="relative z-10 container max-w-content w-full h-full flex items-center justify-center pointer-events-none">
         <div className="px-8 md:px-16 lg:px-24 xl:px-32 w-full">
           <div className="max-w-content mx-auto text-center relative">
@@ -162,7 +126,6 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Dots Indicator - Above content layer */}
       <div className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2">
         {heroSlides.map((_, index) => (
           <button

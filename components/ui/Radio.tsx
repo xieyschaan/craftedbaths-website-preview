@@ -36,7 +36,7 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>(
             <label
               htmlFor={radioId}
               className={cn(
-                'ml-3 text-sm font-gilroy',
+                'ml-3 text-sm font-jost',
                 error ? 'text-red-600' : 'text-neutral-700'
               )}
             >
@@ -46,7 +46,7 @@ const Radio = forwardRef<HTMLInputElement, RadioProps>(
           )}
         </div>
         {error && (
-          <p className="mt-2 text-sm font-gilroy text-red-600">{error}</p>
+          <p className="mt-2 text-sm font-jost text-red-600">{error}</p>
         )}
       </div>
     )

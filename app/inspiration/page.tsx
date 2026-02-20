@@ -1,6 +1,11 @@
+import type { Metadata } from 'next'
 import StandardPageTemplate from '@/components/layout/StandardPageTemplate'
 
-// OpenNext does not support edge runtime - removed for Cloudflare deployment
+
+export const metadata: Metadata = {
+  title: 'Inspiration',
+  description: 'Browse bathroom design inspiration and ideas for your next project.',
+}
 
 export default function InspirationPage() {
   return (
@@ -10,7 +15,7 @@ export default function InspirationPage() {
           Inspiration
         </h1>
         <p className="font-body text-gray-700 max-w-text">
-          Content for Inspiration will be added here.
+          Coming soon.
         </p>
       </section>
     </StandardPageTemplate>

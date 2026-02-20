@@ -2,11 +2,6 @@ import Header from './Header'
 import Footer from './Footer'
 import PageBanner from './PageBanner'
 
-/**
- * Standard layout for content pages:
- * - Same horizontal margins as homepage: mx-3.5 md:mx-7 lg:mx-9 xl:mx-12
- * - Top panoramic banner 20vh, uses fallback image (no blocking DB query)
- */
 export default function StandardPageTemplate({
   children,
 }: {
@@ -15,11 +10,11 @@ export default function StandardPageTemplate({
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <div className="mx-3.5 md:mx-7 lg:mx-9 xl:mx-12">
+      <div className="page-mx">
         <PageBanner imageUrl={null} alt="" />
       </div>
       <main className="flex-grow">
-        <div className="mx-3.5 md:mx-7 lg:mx-9 xl:mx-12">
+        <div className="page-mx">
           {children}
         </div>
       </main>

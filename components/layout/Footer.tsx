@@ -3,10 +3,9 @@ import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <footer className="bg-primary-900 pt-[30px] pb-[15px] w-full mt-auto flex-shrink-0 ">
-      <div className="mx-3.5 md:mx-7 lg:mx-9 xl:mx-12 py-spacing-xl">
+    <footer className="bg-secondary pt-[30px] pb-[15px] w-full mt-auto flex-shrink-0 ">
+      <div className="page-mx py-spacing-xl pt-16">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-gap-lg w-full">
-          {/* Column 1 - Logo */}
           <div>
             <Link href="/">
               <Logo variant="white" width={180} height={54} />
@@ -28,10 +27,37 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2 - Empty */}
-          <div></div>
+          <div className="ml-[100px]">
+            <h3 className="font-h6 mb-spacing-md text-white">Brands</h3>
+            <ul className="space-y-spacing-sm font-body font-light text-white/60">
+              <li>
+                <Link href="/brands/jtp" className="hover:text-white hover:underline transition-colors">
+                  JTP
+                </Link>
+              </li>
+              <li>
+                <Link href="/brands" className="hover:text-white hover:underline transition-colors">
+                  Crosswater
+                </Link>
+              </li>
+              <li>
+                <Link href="/brands" className="hover:text-white hover:underline transition-colors">
+                  Roca
+                </Link>
+              </li>
+              <li>
+                <Link href="/brands" className="hover:text-white hover:underline transition-colors">
+                  Burlington
+                </Link>
+              </li>
+              <li>
+                <Link href="/brands" className="hover:text-white hover:underline transition-colors">
+                  Geberit
+                </Link>
+              </li>
+            </ul>
+          </div>
 
-          {/* Column 3 - Quick Links */}
           <div>
             <h3 className="font-h6 mb-spacing-md text-white">Quick Links</h3>
             <ul className="space-y-spacing-sm font-body font-light text-white/60">
@@ -56,34 +82,13 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/faq" className="hover:text-white hover:underline transition-colors">
-                  FAQs
-                </Link>
-              </li>
-              <li>
                 <Link href="/brands" className="hover:text-white hover:underline transition-colors">
                   Brands
-                </Link>
-              </li>
-              <li>
-                <Link href="/inspiration" className="hover:text-white hover:underline transition-colors">
-                  Inspiration
-                </Link>
-              </li>
-              <li>
-                <Link href="/brochures" className="hover:text-white hover:underline transition-colors">
-                  Brochures
-                </Link>
-              </li>
-              <li>
-                <Link href="/match-a-quote" className="hover:text-white hover:underline transition-colors">
-                  Match a Quote
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Column 4 - Contact */}
           <div>
             <h3 className="font-h6 mb-spacing-md text-white">Contact</h3>
             <ul className="space-y-spacing-sm font-body font-light text-white/60">
@@ -95,7 +100,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 5 - Social Media */}
           <div>
             <h3 className="font-h6 mb-spacing-md text-white">Follow Us</h3>
             <ul className="space-y-spacing-sm font-body font-light text-white/60">
@@ -118,7 +122,6 @@ export default function Footer() {
           </div>
         </div>
 
-            {/* Copyright */}
             <div className="mt-[84px] py-spacing-xl text-center flex items-center justify-center">
               <p className="text-white/40 text-xs font-light uppercase">
                 © {new Date().getFullYear()} Crafted Bathrooms. All rights reserved.

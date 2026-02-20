@@ -75,6 +75,14 @@ const config: Config = {
           900: '#66593e',
           950: '#50452a',
         },
+        // Secondary color - darker brown
+        secondary: {
+          DEFAULT: '#261e1a',
+        },
+        // Background color
+        background: {
+          DEFAULT: '#fcfbfa',
+        },
         // Neutral grays
         neutral: {
           50: '#fafafa',
@@ -90,9 +98,9 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ['Gilroy', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-jost)', 'system-ui', 'sans-serif'],
         serif: ['Rexton', 'Georgia', 'serif'],
-        gilroy: ['Gilroy', 'sans-serif'],
+        jost: ['var(--font-jost)', 'sans-serif'],
         rexton: ['Rexton', 'serif'],
       },
       fontSize: {

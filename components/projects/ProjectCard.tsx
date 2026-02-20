@@ -23,7 +23,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <Link href={`/projects/${project.slug}`} className="group">
       <div className="bg-white border-2 border-gray-200 overflow-hidden transition-all hover:border-primary-900">
-        {/* Image */}
         <div className="relative w-full h-64 bg-gray-100 overflow-hidden">
           {project.featured_image ? (
             <>
@@ -42,21 +41,20 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 }`}
                 style={{ 
                   willChange: imageLoaded ? 'transform' : 'opacity',
-                  transform: 'translateZ(0)' // GPU acceleration
+                  transform: 'translateZ(0)'
                 }}
                 loading="lazy"
                 onLoad={() => setImageLoaded(true)}
-                onError={() => setImageLoaded(true)} // Show placeholder even on error
+                onError={() => setImageLoaded(true)}
               />
             </>
           ) : (
             <div className="w-full h-full flex items-center justify-center">
-              <span className="text-gray-400 font-gilroy">No Image</span>
+              <span className="text-gray-400 font-jost">No Image</span>
             </div>
           )}
         </div>
 
-        {/* Content */}
         <div className="p-spacing-md">
           {project.category && (
             <span className="inline-block font-body-sm text-gray-500 mb-spacing-sm">

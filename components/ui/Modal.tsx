@@ -61,10 +61,7 @@ export default function Modal({
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
       onClick={onClose}
     >
-      {/* Backdrop */}
       <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
-
-      {/* Modal */}
       <div
         className={cn(
           'relative bg-white shadow-2xl w-full',
@@ -73,7 +70,6 @@ export default function Modal({
         )}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header */}
         {(title || showCloseButton) && (
           <div className="flex items-center justify-between p-6 border-b border-neutral-200">
             {title && (
@@ -93,10 +89,7 @@ export default function Modal({
           </div>
         )}
 
-        {/* Content */}
         <div className="flex-1 overflow-y-auto p-6">{children}</div>
-
-        {/* Footer */}
         {footer && (
           <div className="p-6 border-t border-neutral-200">{footer}</div>
         )}

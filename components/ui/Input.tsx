@@ -19,7 +19,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label
             htmlFor={inputId}
-            className="block text-sm font-gilroy font-medium text-neutral-700 mb-2"
+            className="block text-sm font-jost font-medium text-neutral-700 mb-2"
           >
             {label}
             {props.required && <span className="text-accent-500 ml-1">*</span>}
@@ -29,7 +29,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           id={inputId}
           className={cn(
-            'w-full px-4 py-3 font-gilroy text-base',
+            'w-full px-4 py-3 font-jost text-base',
             'border-2 transition-all duration-200',
             'focus:outline-none focus:ring-2 focus:ring-offset-2',
             error
@@ -42,10 +42,10 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           {...props}
         />
         {error && (
-          <p className="mt-2 text-sm font-gilroy text-red-600">{error}</p>
+          <p className="mt-2 text-sm font-jost text-red-600">{error}</p>
         )}
         {helperText && !error && (
-          <p className="mt-2 text-sm font-gilroy text-neutral-500">
+          <p className="mt-2 text-sm font-jost text-neutral-500">
             {helperText}
           </p>
         )}

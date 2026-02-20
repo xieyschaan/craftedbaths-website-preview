@@ -23,13 +23,7 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    // Always log errors to help debug production issues
     console.error('ErrorBoundary caught an error:', error, errorInfo)
-    
-    // In production, you might want to send this to an error tracking service
-    if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {
-      // Could send to error tracking service here
-    }
   }
 
   render() {
@@ -39,20 +33,20 @@ export class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoun
       }
 
       return (
-        <div className="min-h-screen flex items-center justify-center bg-white">
+        <div className="min-h-screen flex items-center justify-center bg-primary-900">
           <div className="text-center px-4">
-            <h1 className="text-2xl font-bold text-gray-900 mb-4">
+            <h1 className="text-2xl font-bold text-white mb-4 font-rexton">
               Something went wrong
             </h1>
-            <p className="text-gray-600 mb-6">
-              We're sorry, but something unexpected happened. Please try refreshing the page.
+            <p className="text-white/60 mb-6 font-jost">
+              We&apos;re sorry, but something unexpected happened. Please try refreshing the page.
             </p>
             <button
               onClick={() => {
                 this.setState({ hasError: false, error: undefined })
                 window.location.reload()
               }}
-              className="px-6 py-3 bg-black text-white rounded hover:bg-gray-800 transition-colors"
+              className="px-6 py-3 bg-accent-500 text-primary-900 font-jost font-medium hover:bg-accent-600 transition-colors"
             >
               Refresh Page
             </button>

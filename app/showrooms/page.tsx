@@ -1,6 +1,11 @@
+import type { Metadata } from 'next'
 import StandardPageTemplate from '@/components/layout/StandardPageTemplate'
 
-// OpenNext does not support edge runtime - removed for Cloudflare deployment
+
+export const metadata: Metadata = {
+  title: 'Showrooms',
+  description: 'Visit our bathroom showrooms across the UK to experience our products in person.',
+}
 
 export default function ShowroomsPage() {
   return (
@@ -10,7 +15,7 @@ export default function ShowroomsPage() {
           Showrooms
         </h1>
         <p className="font-body text-gray-700 max-w-text">
-          Content for Showrooms will be added here.
+          Coming soon.
         </p>
       </section>
     </StandardPageTemplate>

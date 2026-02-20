@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 const brands = [
   'VADO',
@@ -32,44 +32,38 @@ const brands = [
 export default function BrandSlider() {
   const sliderRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
-  const [isHovered, setIsHovered] = useState(false)
   const [isDragging, setIsDragging] = useState(false)
   const dragStartRef = useRef({ x: 0, position: 0 })
   const positionRef = useRef(0)
+  const pausedRef = useRef(false)
+  const animationIdRef = useRef<number | null>(null)
 
   useEffect(() => {
     const slider = sliderRef.current
     if (!slider) return
 
-    let animationId: number | null = null
-    const speed = 0.3 // pixels per frame
+    const speed = 0.3
 
     const animate = () => {
-      // Only animate if not hovering and not dragging
-      if (!isHovered && !isDragging && slider) {
+      if (!pausedRef.current && slider) {
         positionRef.current -= speed
-        
-        // Reset position when we've scrolled through one set of brands
         const totalWidth = slider.scrollWidth / 2
         if (Math.abs(positionRef.current) >= totalWidth) {
           positionRef.current = 0
         }
-        
         slider.style.transform = `translateX(${positionRef.current}px)`
-        animationId = requestAnimationFrame(animate)
-      } else if (slider) {
-        animationId = requestAnimationFrame(animate)
       }
+      animationIdRef.current = requestAnimationFrame(animate)
     }
 
-    animationId = requestAnimationFrame(animate)
+    animationIdRef.current = requestAnimationFrame(animate)
 
     return () => {
-      if (animationId !== null) {
-        cancelAnimationFrame(animationId)
+      if (animationIdRef.current !== null) {
+        cancelAnimationFrame(animationIdRef.current)
       }
     }
-  }, [isHovered, isDragging])
+  }, [])
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -77,18 +71,18 @@ export default function BrandSlider() {
 
       const deltaX = e.clientX - dragStartRef.current.x
       positionRef.current = dragStartRef.current.position + deltaX
-      
-      // Keep position within bounds
+
       const totalWidth = sliderRef.current.scrollWidth / 2
       if (Math.abs(positionRef.current) >= totalWidth) {
         positionRef.current = positionRef.current % totalWidth
       }
-      
+
       sliderRef.current.style.transform = `translateX(${positionRef.current}px)`
     }
 
     const handleMouseUp = () => {
       setIsDragging(false)
+      pausedRef.current = false
     }
 
     if (isDragging) {
@@ -106,6 +100,7 @@ export default function BrandSlider() {
     if (!sliderRef.current) return
     
     e.preventDefault()
+    pausedRef.current = true
     setIsDragging(true)
     dragStartRef.current = {
       x: e.clientX,
@@ -113,35 +108,28 @@ export default function BrandSlider() {
     }
   }
 
-  // Duplicate brands for seamless loop
   const duplicatedBrands = [...brands, ...brands]
 
   return (
     <div 
       className="relative w-full overflow-hidden py-8 cursor-grab active:cursor-grabbing"
       ref={containerRef}
-      onMouseEnter={() => setIsHovered(true)}
+      onMouseEnter={() => { pausedRef.current = true }}
       onMouseLeave={() => {
-        setIsHovered(false)
+        pausedRef.current = false
         setIsDragging(false)
       }}
       onMouseDown={handleMouseDown}
-      style={{ willChange: 'transform' }}
     >
-      {/* Left fade gradient */}
-      <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-primary-900 to-transparent z-10 pointer-events-none" />
-      
-      {/* Right fade gradient */}
-      <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-primary-900 to-transparent z-10 pointer-events-none" />
-      
-      {/* Slider container */}
+      <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
       <div className="flex" ref={sliderRef}>
         {duplicatedBrands.map((brand, index) => (
           <div
             key={`${brand}-${index}`}
             className="flex-shrink-0 px-8 md:px-12 lg:px-16 select-none"
           >
-            <span className="font-body text-white text-lg md:text-xl lg:text-2xl whitespace-nowrap">
+            <span className="font-body text-primary-900 text-lg md:text-xl lg:text-2xl whitespace-nowrap">
               {brand}
             </span>
           </div>

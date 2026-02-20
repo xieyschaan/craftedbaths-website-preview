@@ -1,8 +1,13 @@
+import type { Metadata } from 'next'
 import StandardPageTemplate from '@/components/layout/StandardPageTemplate'
 import ContactForm from '@/components/forms/ContactForm'
 import { createClient } from '@/lib/supabase/server'
 
-// OpenNext does not support edge runtime - removed for Cloudflare deployment
+
+export const metadata: Metadata = {
+  title: 'Contact Us',
+  description: "Get in touch with Crafted Bathrooms — we'd love to help with your bathroom project.",
+}
 
 interface ContactPageProps {
   searchParams: Promise<{ showroom?: string }>
@@ -31,7 +36,6 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
 
   return (
     <StandardPageTemplate>
-      {/* Hero Section */}
       <section className="bg-white py-section-md">
         <div className="max-w-content-narrow">
             <h1 className="font-display text-black mb-spacing-md">
@@ -43,11 +47,9 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
           </div>
         </section>
 
-      {/* Contact Form Section */}
       <section className="bg-gray-50 py-section-md">
         <div className="max-w-content-tight">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-gap-xl">
-              {/* Contact Form */}
               <div className="bg-white border-2 border-gray-200 p-spacing-lg">
                 <h2 className="font-h3 text-black mb-spacing-lg">
                   Send us a Message
@@ -63,7 +65,6 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
                 />
               </div>
 
-              {/* Contact Information */}
               <div className="space-y-spacing-lg">
                 <div>
                   <h2 className="font-h3 text-black mb-spacing-md">

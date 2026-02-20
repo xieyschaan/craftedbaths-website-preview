@@ -1,7 +1,15 @@
 import type { Metadata } from "next";
+import { Jost } from "next/font/google";
 import "./globals.css";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import BackToTop from "@/components/ui/BackToTop";
+
+const jost = Jost({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-jost",
+  display: "swap",
+});
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://crafted-bathrooms-website.xiey-inc.workers.dev';
 
@@ -73,7 +81,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" className={`h-full ${jost.variable}`}>
       <body className="h-full">
         <ErrorBoundary>
           {children}

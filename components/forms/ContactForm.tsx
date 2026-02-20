@@ -31,8 +31,7 @@ export default function ContactForm({
     setLoading(true)
 
     try {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Supabase insert infers 'never'. See DEPLOYMENT_AND_DEVELOPMENT_NOTES.md §2
-      const { error: submitError } = await (supabase as any)
+      const { error: submitError } = await supabase
         .from('contact_submissions')
         .insert({
           form_type: formType,
@@ -66,7 +65,7 @@ export default function ContactForm({
   if (success) {
     return (
       <div className="bg-green-50 border-2 border-green-200 p-spacing-lg">
-        <p className="font-gilroy text-body text-green-700">
+        <p className="font-jost text-body text-green-700">
           Thank you for your message! We'll get back to you soon.
         </p>
       </div>
@@ -77,7 +76,7 @@ export default function ContactForm({
     <form onSubmit={handleSubmit} className="space-y-spacing-md">
       {error && (
         <div className="bg-red-50 border-2 border-red-200 p-spacing-md">
-          <p className="font-gilroy text-sm text-red-600">{error}</p>
+          <p className="font-jost text-sm text-red-600">{error}</p>
         </div>
       )}
 

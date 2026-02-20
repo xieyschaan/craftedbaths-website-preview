@@ -79,7 +79,7 @@ export function CardDescription({
 }: HTMLAttributes<HTMLParagraphElement>) {
   return (
     <p
-      className={cn('font-gilroy text-sm text-neutral-600 mt-2', className)}
+      className={cn('font-jost text-sm text-neutral-600 mt-2', className)}
       {...props}
     >
       {children}
@@ -93,7 +93,7 @@ export function CardContent({
   ...props
 }: HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className={cn('font-gilroy text-neutral-700', className)} {...props}>
+    <div className={cn('font-jost text-neutral-700', className)} {...props}>
       {children}
     </div>
   )

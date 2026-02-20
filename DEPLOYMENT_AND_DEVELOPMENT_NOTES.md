@@ -100,7 +100,7 @@ Paths under `public/assets/` are used in code and must work on Cloudflare static
 - `public/assets/hero-assets/` – hero images
 - `public/assets/shop-online/` – shop category images
 - `public/assets/logo/` – logo SVGs and tagline PNG
-- `public/assets/fonts/` – Gilroy, Rexton (no spaces)
+- `public/assets/fonts/` – Rexton (no spaces). Jost loaded via `next/font/google`.
 
 **When to apply:** Whenever adding or renaming files/folders under `public/` or new references in components.
 

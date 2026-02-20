@@ -1,6 +1,11 @@
+import type { Metadata } from 'next'
 import StandardPageTemplate from '@/components/layout/StandardPageTemplate'
 
-// OpenNext does not support edge runtime - removed for Cloudflare deployment
+
+export const metadata: Metadata = {
+  title: 'Match a Quote',
+  description: "Found a better price? Share your quote and we'll work to match or beat it.",
+}
 
 export default function MatchAQuotePage() {
   return (
@@ -10,7 +15,7 @@ export default function MatchAQuotePage() {
           Match a Quote
         </h1>
         <p className="font-body text-gray-700 max-w-text">
-          Content for Match a Quote will be added here.
+          Coming soon.
         </p>
       </section>
     </StandardPageTemplate>

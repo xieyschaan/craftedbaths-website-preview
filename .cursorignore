@@ -1,0 +1,6 @@
+﻿.next/
+node_modules/
+.open-next/
+out/
+build/
+.vercel/

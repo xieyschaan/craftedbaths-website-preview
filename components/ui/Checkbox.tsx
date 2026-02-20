@@ -36,7 +36,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
             <label
               htmlFor={checkboxId}
               className={cn(
-                'ml-3 text-sm font-gilroy',
+                'ml-3 text-sm font-jost',
                 error ? 'text-red-600' : 'text-neutral-700'
               )}
             >
@@ -46,7 +46,7 @@ const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           )}
         </div>
         {error && (
-          <p className="mt-2 text-sm font-gilroy text-red-600">{error}</p>
+          <p className="mt-2 text-sm font-jost text-red-600">{error}</p>
         )}
       </div>
     )

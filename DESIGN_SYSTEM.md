@@ -4,19 +4,15 @@
 
 ### Font Families
 
-#### Gilroy (Primary - Sans Serif)
+#### Jost (Primary - Sans Serif, via `next/font/google`)
 - **Usage:** Body text, headings, UI elements
 - **Weights Available:**
-  - Thin (100)
   - Light (300)
   - Regular (400)
   - Medium (500)
   - Semibold (600)
   - Bold (700)
-  - Extra Bold (800)
-  - Heavy (900)
-  - Black (950)
-- **Tailwind Classes:** `font-gilroy` or `font-sans` (default)
+- **Tailwind Classes:** `font-jost` or `font-sans` (default)
 
 #### Rexton (Secondary - Serif)
 - **Usage:** Headings, display text, elegant typography
@@ -32,8 +28,8 @@
 ### Usage Examples
 
 ```tsx
-// Gilroy (default)
-<h1 className="font-gilroy font-bold">Heading</h1>
+// Jost (default)
+<h1 className="font-jost font-bold">Heading</h1>
 <p className="font-sans">Body text</p>
 
 // Rexton
@@ -74,8 +70,7 @@ import Logo from '@/components/ui/Logo'
 ```
 public/assets/
 ├── fonts/
-│   ├── Gilroy/          # Primary font family
-│   └── Rexton/          # Secondary font family
+│   └── Rexton/          # Secondary font family (Jost loaded via next/font/google)
 ├── logo.svg/
 │   ├── Logo SVG-Black.svg
 │   ├── Logo SVG-White.svg

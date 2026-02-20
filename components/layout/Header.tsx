@@ -4,33 +4,97 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import Logo from '@/components/ui/Logo'
 import Link from 'next/link'
-import { X } from 'lucide-react'
+import { X, Search, BookOpen, Phone, Palette } from 'lucide-react'
+import SocialIcons from '@/components/ui/SocialIcons'
 
 export default function Header() {
-  // showPanel: controls whether the panel DOM is rendered
-  // panelVisible: controls the slide-in/out transition (toggled one frame after mount)
   const [showPanel, setShowPanel] = useState(false)
   const [panelVisible, setPanelVisible] = useState(false)
   const panelRef = useRef<HTMLDivElement>(null)
+  const headerRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    if (headerRef.current) {
+      const h = headerRef.current.offsetHeight
+      document.documentElement.style.setProperty('--header-h', `${h}px`)
+    }
+  }, [])
+
+  const [headerState, setHeaderState] = useState({ visible: true, scrolled: false })
+  const headerStateRef = useRef(headerState)
+  const lastScrollY = useRef(0)
+  const ticking = useRef(false)
+
+  useEffect(() => {
+    headerStateRef.current = headerState
+  }, [headerState])
 
   const isMenuOpen = showPanel
 
-  // Lock/unlock body scroll
+  useEffect(() => {
+    const SCROLL_DOWN_THRESHOLD = 50
+    const SCROLL_UP_THRESHOLD = 10
+    const HIDE_AFTER = 100
+
+    const onScroll = () => {
+      if (ticking.current) return
+      ticking.current = true
+
+      requestAnimationFrame(() => {
+        const currentScrollY = window.scrollY
+        const prev = headerStateRef.current
+
+        let nextScrolled: boolean
+        if (currentScrollY > SCROLL_DOWN_THRESHOLD) {
+          nextScrolled = true
+        } else if (currentScrollY <= SCROLL_UP_THRESHOLD) {
+          nextScrolled = false
+        } else {
+          nextScrolled = prev.scrolled
+        }
+
+        let nextVisible = prev.visible
+        const delta = currentScrollY - lastScrollY.current
+        if (delta > 8 && currentScrollY > HIDE_AFTER) {
+          nextVisible = false
+        } else if (delta < -8) {
+          nextVisible = true
+        }
+
+        lastScrollY.current = currentScrollY
+
+        if (nextVisible !== prev.visible || nextScrolled !== prev.scrolled) {
+          setHeaderState({ visible: nextVisible, scrolled: nextScrolled })
+        }
+
+        ticking.current = false
+      })
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   useEffect(() => {
     if (showPanel) {
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth
       document.body.style.overflow = 'hidden'
+      document.body.style.paddingRight = `${scrollbarWidth}px`
+      document.documentElement.setAttribute('data-menu-open', 'true')
     } else {
       document.body.style.overflow = 'unset'
+      document.body.style.paddingRight = '0px'
+      document.documentElement.removeAttribute('data-menu-open')
     }
     return () => {
       document.body.style.overflow = 'unset'
+      document.body.style.paddingRight = '0px'
+      document.documentElement.removeAttribute('data-menu-open')
     }
   }, [showPanel])
 
-  // When showPanel becomes true, wait one frame then trigger the slide-in
   useEffect(() => {
     if (showPanel) {
-      // Force a layout read, then set visible on the next frame
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           setPanelVisible(true)
@@ -39,17 +103,18 @@ export default function Header() {
     }
   }, [showPanel])
 
+  const [menuOpenedScrolled, setMenuOpenedScrolled] = useState(false)
+
   const openMenu = useCallback(() => {
+    setMenuOpenedScrolled(headerStateRef.current.scrolled)
     setShowPanel(true)
   }, [])
 
   const closeMenu = useCallback(() => {
-    // Start slide-out transition
     setPanelVisible(false)
-    // After transition ends, unmount the panel
     setTimeout(() => {
       setShowPanel(false)
-    }, 350) // Slightly longer than transition duration to ensure it completes
+    }, 350)
   }, [])
 
   const toggleMenu = useCallback(() => {
@@ -60,7 +125,6 @@ export default function Header() {
     }
   }, [showPanel, closeMenu, openMenu])
 
-  // Handle click outside menu panel (desktop only)
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (showPanel && panelVisible && window.innerWidth >= 768) {
@@ -88,12 +152,6 @@ export default function Header() {
     }
   }, [showPanel, panelVisible, closeMenu])
 
-  const shopLinks = [
-    { name: 'Shop Bathroom', href: '/shop-bathroom' },
-    { name: 'Shop Tiles', href: '/shop-tiles' },
-    { name: 'Shop Bespoke', href: '/shop-bespoke' },
-  ]
-
   const pageLinks = [
     { name: 'About Us', href: '/about' },
     { name: 'Projects', href: '/projects' },
@@ -109,73 +167,89 @@ export default function Header() {
 
   return (
     <>
-      <header className="bg-primary-900 relative z-50">
-        {/* Top strip */}
-        <div className="flex items-center justify-end gap-4 md:gap-6 pt-[20px] pb-2 ml-3.5 md:ml-7 lg:ml-9 xl:ml-12 mr-3.5 md:mr-7 lg:mr-9 xl:mr-12 ">
-          <a
-            href="tel:01484509357"
-            className="font-gilroy text-[11px] md:text-[14px] text-white/70 hover:text-white transition-colors"
-          >
-            01484 509357
-          </a>
-          <Link
-            href="/brochures"
-            className="font-gilroy text-[11px] md:text-[14px] text-white/70 hover:text-white transition-colors"
-          >
-            Request a Brochure
-          </Link>
+      <header
+        ref={headerRef}
+        className={`sticky top-0 z-50 ${
+          headerState.scrolled ? 'bg-secondary' : 'bg-secondary'
+        }`}
+        style={{
+          transform: headerState.visible || isMenuOpen ? 'translateY(0)' : 'translateY(-100%)',
+          transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.4s ease',
+          willChange: 'transform',
+        }}
+      >
+        <div
+          className="bg-background overflow-hidden transition-all duration-300"
+          style={{
+            maxHeight: headerState.scrolled ? 0 : 40,
+            opacity: headerState.scrolled ? 0 : 1,
+          }}
+        >
+          <div className="flex items-center justify-end gap-5 md:gap-7 py-2 page-mx">
+            <a
+              href="tel:01484509357"
+              className="inline-flex items-center gap-1.5 font-jost text-[11px] md:text-[13px] transition-colors duration-300 uppercase text-primary-900/70 hover:text-primary-900"
+            >
+              <Phone className="w-3.5 h-3.5 stroke-[1.5px]" />
+              01484 509357
+            </a>
+            <Link
+              href="#"
+              className="inline-flex items-center gap-1.5 font-jost text-[11px] md:text-[13px] transition-colors duration-300 uppercase text-primary-900/70 hover:text-primary-900"
+            >
+              <Palette className="w-3.5 h-3.5 stroke-[1.5px]" />
+              Moodboard
+            </Link>
+            <Link
+              href="/brochures"
+              className="inline-flex items-center gap-1.5 font-jost text-[11px] md:text-[13px] transition-colors duration-300 uppercase text-primary-900/70 hover:text-primary-900"
+            >
+              <BookOpen className="w-3.5 h-3.5 stroke-[1.5px]" />
+              Brochures
+            </Link>
+          </div>
         </div>
-
-        {/* Main header */}
-        <div className="relative flex items-center justify-between pt-2 pb-4 md:pt-3 md:pb-6 lg:pt-4 lg:pb-8 ml-3.5 md:ml-7 lg:ml-9 xl:ml-12 mr-3.5 md:mr-7 lg:mr-9 xl:mr-12">
-          {/* Logo - Left */}
-          <Link href="/" className="flex items-center" onClick={closeMenu}>
+        <div className="relative flex items-center justify-between pt-5 pb-3 md:pt-6 md:pb-4 lg:pt-7 lg:pb-5 ml-3.5 md:ml-7 lg:ml-9 xl:ml-12 mr-3.5 md:mr-7 lg:mr-9 xl:mr-12">
+          <Link href="/" className={`flex items-center ${isMenuOpen ? 'invisible' : ''}`} onClick={closeMenu}>
             <Logo 
-              variant="white" 
+              variant="beige"
               width={180} 
               height={54} 
-              className="w-36 md:w-40 lg:w-[180px] h-auto"
+              className="w-36 md:w-40 lg:w-[180px] h-auto transition-opacity duration-300"
             />
           </Link>
 
-          {/* Right side: Nav links + Menu icon */}
-          <div className="flex items-center gap-6 lg:gap-8">
-            {/* Shop Navigation Links - Desktop Only, Hidden when menu is open */}
-            <nav className={`hidden md:flex items-center gap-6 lg:gap-8 ${isMenuOpen ? 'md:hidden' : ''}`}>
+          <div className="flex items-center gap-4 lg:gap-6">
+            <nav className={`hidden md:flex items-center ${isMenuOpen ? 'md:hidden' : ''}`}>
               <Link
-                href="/shop-bathroom"
-                className="font-gilroy text-white hover:text-white/70 transition-colors text-sm lg:text-base"
+                href="/shop"
+                className="font-jost font-light transition-colors duration-300 text-xs lg:text-sm uppercase text-background hover:text-background/70 tracking-widest"
               >
-                Shop Bathroom
-              </Link>
-              <Link
-                href="/shop-tiles"
-                className="font-gilroy text-white hover:text-white/70 transition-colors text-sm lg:text-base"
-              >
-                Shop Tiles
-              </Link>
-              <Link
-                href="/shop-bespoke"
-                className="font-gilroy text-white hover:text-white/70 transition-colors text-sm lg:text-base"
-              >
-                Shop Bespoke
+                Online Shop
               </Link>
             </nav>
 
-            {/* Menu Icon - Rightmost */}
+            <button
+              className="hidden md:flex items-center gap-1.5 p-1 transition-colors duration-300 text-background hover:text-background/70"
+              aria-label="Search"
+            >
+              <Search className="w-[18px] h-[18px] stroke-[1.5px]" />
+              <span className="font-jost font-light text-[10px] lg:text-xs uppercase tracking-widest underline underline-offset-2 relative -top-[1px]">Search</span>
+            </button>
+
             <button
               data-menu-button
               onClick={toggleMenu}
-              className="flex items-center p-2 -mr-2 transition-colors"
+              className="flex items-center p-2 -mr-2 transition-colors duration-300"
               aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
             >
               {isMenuOpen ? (
-                <X className="h-8 w-8 md:w-[60px] text-white stroke-[1px]" />
+                <X className="h-8 w-8 md:w-[60px] stroke-[1px] transition-colors duration-300 text-background" />
               ) : (
                 <div className="flex flex-col gap-1 w-5 md:w-6">
-                  <div className="h-[1px] w-full bg-white" />
-                  <div className="h-[1px] w-full bg-white" />
-                  <div className="h-[1px] w-full bg-white" />
+                  <div className="h-[1px] w-full bg-background" />
+                  <div className="h-[1px] w-full bg-background" />
+                  <div className="h-[1px] w-full bg-background" />
                 </div>
               )}
             </button>
@@ -183,55 +257,66 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Menu Overlay - Full screen on mobile, left panel on desktop */}
       {isMenuOpen && (
         <>
-          {/* Mobile: Full screen overlay */}
           <div 
-            className="fixed inset-0 bg-primary-900 z-40 pt-20 md:pt-28 lg:pt-[120px] overflow-y-auto md:hidden"
+            className="fixed inset-0 z-40 pt-20 md:pt-28 lg:pt-[120px] overflow-y-auto md:hidden bg-background"
             onClick={closeMenu}
           >
             <div className="ml-3.5 md:ml-7 lg:ml-9 xl:ml-12 pt-4 md:pt-6">
+              <Link href="/" onClick={closeMenu} className="inline-block mb-10">
+                <Logo 
+                  variant="brown" 
+                  width={180} 
+                  height={54} 
+                  className="w-36 md:w-40 h-auto"
+                />
+              </Link>
               <nav>
-                {/* Shop Links - Standout at top */}
-                <div className="mb-10 space-y-3">
-                  {shopLinks.map((link) => (
-                    <Link
-                      key={link.name}
-                      href={link.href}
-                      onClick={closeMenu}
-                      className="block text-white hover:text-white/70 transition-colors"
-                      style={{ textDecoration: 'underline', textDecorationThickness: '0.5px', textUnderlineOffset: '2px' }}
-                    >
-                      <h2 className="text-[20px] font-light">{link.name}</h2>
-                    </Link>
-                  ))}
+                <div className="mb-10">
+                  <Link
+                    href="/shop"
+                    onClick={closeMenu}
+                    className="block text-secondary hover:text-secondary/70 transition-colors"
+                    style={{ textDecoration: 'underline', textDecorationThickness: '0.5px', textUnderlineOffset: '2px' }}
+                  >
+                    <h2 className="text-[20px] font-light">Online Shop</h2>
+                  </Link>
                 </div>
                 
-                {/* Menu Items */}
                 <div className="space-y-5">
                   {pageLinks.map((link) => (
                     <Link
                       key={link.name}
                       href={link.href}
                       onClick={closeMenu}
-                      className="block text-white hover:text-white/70 transition-colors"
+                      className="block text-secondary hover:text-secondary/70 transition-colors"
                     >
                       <h2 className="text-[20px] font-light">{link.name}</h2>
                     </Link>
                   ))}
                 </div>
               </nav>
+
+              <Link
+                href="/login"
+                onClick={closeMenu}
+                className="inline-flex items-center gap-1.5 text-secondary hover:text-secondary/70 transition-colors mt-12"
+              >
+                <span className="text-[16px] font-light">Login</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+              </Link>
+
+              <SocialIcons className="mt-6 pb-8" />
             </div>
           </div>
 
-          {/* Desktop: Right side panel - Render via portal */}
           {typeof window !== 'undefined' && showPanel && createPortal(
             <>
               <div 
                 ref={panelRef}
                 data-menu-panel
-                className="hidden md:block fixed top-0 right-0 h-full w-[340px] lg:w-[380px] bg-primary-900 z-50 shadow-2xl overflow-y-auto"
+                className="hidden md:block fixed top-0 right-0 h-full w-[340px] lg:w-[380px] z-50 shadow-2xl overflow-y-auto bg-background"
                 style={{
                   transform: panelVisible ? 'translateX(0)' : 'translateX(100%)',
                   transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -239,44 +324,55 @@ export default function Header() {
                 }}
                 onClick={(e) => e.stopPropagation()}
               >
-                {/* Collapse Button - Top Left of Panel */}
                 <button
                   onClick={closeMenu}
-                  className="absolute top-4 left-4 p-2 hover:bg-white/10 rounded-full transition-colors z-10"
+                  className="absolute top-4 right-4 p-2 hover:bg-secondary/10 rounded-full transition-colors z-10"
                   aria-label="Close menu"
                 >
-                  <X className="h-5 w-5 text-white stroke-[1px]" />
+                  <X className="h-5 w-5 text-secondary stroke-[1px]" />
                 </button>
 
-                <div className="pl-9 lg:pl-10 pr-9 lg:pr-10 pt-20 lg:pt-24">
+                <div className="flex flex-col h-full pl-9 lg:pl-10 pr-9 lg:pr-10 pt-[52px] lg:pt-[60px]">
+                  <Link href="/" onClick={closeMenu} className="inline-block mb-10 lg:mb-12">
+                    <Logo 
+                      variant="brown" 
+                      width={160} 
+                      height={48} 
+                      className="w-32 lg:w-[160px] h-auto"
+                    />
+                  </Link>
                   <nav>
-                    {/* Menu Items */}
                     <div className="space-y-5">
                       {pageLinks.map((link) => (
                         <Link
                           key={link.name}
                           href={link.href}
                           onClick={closeMenu}
-                          className="block text-white hover:text-white/70 transition-colors"
+                          className="block text-secondary hover:text-secondary/70 transition-colors"
                         >
                           <h2 className="text-[20px] font-light">{link.name}</h2>
                         </Link>
                       ))}
                     </div>
                   </nav>
+
+                  <Link
+                    href="/login"
+                    onClick={closeMenu}
+                    className="inline-flex items-center gap-1.5 text-secondary hover:text-secondary/70 transition-colors mt-auto"
+                  >
+                    <span className="text-[16px] font-light">Login</span>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+                  </Link>
+
+                  <SocialIcons className="mt-6 pb-10" />
                 </div>
               </div>
 
-              {/* Desktop: Overlay backdrop */}
               <div 
                 className="hidden md:block fixed inset-0 z-40 cursor-pointer"
                 onClick={closeMenu}
-                style={{
-                  backgroundColor: 'rgba(0, 0, 0, 0.2)',
-                  opacity: panelVisible ? 1 : 0,
-                  transition: 'opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-                  pointerEvents: 'auto',
-                }}
+                style={{ pointerEvents: 'auto' }}
               />
             </>,
             document.body

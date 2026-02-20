@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes, forwardRef } from 'react'
 import { cn } from '@/lib/utils'
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'accent'
+  variant?: 'primary' | 'secondary' | 'outline' | 'outline-light' | 'outline-dark' | 'ghost' | 'accent'
   size?: 'sm' | 'md' | 'lg'
   isLoading?: boolean
   fullWidth?: boolean
@@ -23,7 +23,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseStyles =
-      'inline-flex items-center justify-center font-gilroy font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed'
+      'inline-flex items-center justify-center font-jost font-medium tracking-widest transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed'
 
     const variants = {
       primary:
@@ -32,6 +32,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         'bg-neutral-200 text-neutral-900 hover:bg-neutral-300 focus:ring-neutral-500 active:bg-neutral-400',
       outline:
         'border-2 border-primary-900 text-black hover:bg-primary-50 focus:ring-primary-500 active:bg-primary-100',
+      'outline-light':
+        'bg-transparent border border-white text-white hover:bg-white/10 focus:ring-white/50 uppercase text-[12px] px-[39px] py-2',
+      'outline-dark':
+        'bg-transparent border border-primary-900 text-primary-900 hover:bg-accent-500 hover:border-accent-500 hover:text-white focus:ring-accent-500/50 uppercase text-[12px] px-[39px] py-2',
       ghost:
         'text-black hover:bg-neutral-100 focus:ring-primary-500 active:bg-neutral-200',
       accent:

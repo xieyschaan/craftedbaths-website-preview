@@ -37,7 +37,7 @@
 - Most page components are Server Components
 
 ### Design System
-- **Primary Font:** Gilroy (sans-serif) - used for body text and UI
+- **Primary Font:** Jost (sans-serif, via `next/font/google`) - used for body text and UI
 - **Secondary Font:** Rexton (serif) - used for elegant headings
 - **Primary Color:** `#302620` (dark brown/charcoal)
 - **Accent Color:** `#bea98e` (beige/taupe)

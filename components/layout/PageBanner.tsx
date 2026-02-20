@@ -15,7 +15,7 @@ interface PageBannerProps {
 export default function PageBanner({ imageUrl, alt = 'Page banner' }: PageBannerProps) {
   const src = imageUrl && imageUrl.trim() ? imageUrl : FALLBACK_BANNER
   return (
-    <section className="relative w-full h-[20vh] min-h-[120px] bg-gray-100 overflow-hidden" aria-hidden>
+    <section className="relative w-full h-[25vh] min-h-[150px] mt-[36px] bg-gray-100 overflow-hidden" aria-hidden>
       <Image
         src={src}
         alt={alt}
