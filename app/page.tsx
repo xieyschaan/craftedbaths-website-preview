@@ -68,7 +68,7 @@ export default async function Home() {
                 <p className="font-body text-primary-900/60 flex-grow">
                   Personalized guidance for your bathroom project.
                 </p>
-                <span className="mt-6 font-body-sm text-primary-900 group-hover:text-accent-500 transition-colors">
+                <span className="mt-6 font-body-sm text-primary-900 transition-colors">
                   Learn More →
                 </span>
               </Link>
@@ -84,7 +84,7 @@ export default async function Home() {
                 <p className="font-body text-primary-900/60 flex-grow">
                   Experience our products in person across the UK.
                 </p>
-                <span className="mt-6 font-body-sm text-primary-900 group-hover:text-accent-500 transition-colors">
+                <span className="mt-6 font-body-sm text-primary-900 transition-colors">
                   Find a Showroom →
                 </span>
               </Link>
@@ -100,7 +100,7 @@ export default async function Home() {
                 <p className="font-body text-primary-900/60 flex-grow">
                   Completed projects showcasing exceptional design.
                 </p>
-                <span className="mt-6 font-body-sm text-primary-900 group-hover:text-accent-500 transition-colors">
+                <span className="mt-6 font-body-sm text-primary-900 transition-colors">
                   View Projects →
                 </span>
               </Link>
@@ -116,7 +116,7 @@ export default async function Home() {
                 <p className="font-body text-primary-900/60 flex-grow">
                   Found a better price? Share it and we'll match or beat it.
                 </p>
-                <span className="mt-6 font-body-sm text-primary-900 group-hover:text-accent-500 transition-colors">
+                <span className="mt-6 font-body-sm text-primary-900 transition-colors">
                   Get a Match →
                 </span>
               </Link>

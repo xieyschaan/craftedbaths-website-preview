@@ -82,7 +82,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`h-full ${jost.variable}`}>
-      <body className="h-full">
+      <body className="h-full" suppressHydrationWarning>
         <ErrorBoundary>
           {children}
           <BackToTop />

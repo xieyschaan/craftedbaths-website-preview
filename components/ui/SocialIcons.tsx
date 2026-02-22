@@ -20,7 +20,7 @@ export default function SocialIcons({ className = '' }: { className?: string }) 
   return (
     <div className={`flex items-center gap-5 ${className}`}>
       {socialLinks.map(({ key, href, label }) => (
-        <a key={key} href={href} aria-label={label} className="text-accent-500 hover:text-accent-500/70 transition-colors">
+        <a key={key} href={href} aria-label={label} className="text-secondary hover:text-secondary/60 transition-colors">
           {icons[key]}
         </a>
       ))}

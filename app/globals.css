@@ -6,6 +6,24 @@
   .page-mx {
     @apply mx-3.5 md:mx-7 lg:mx-9 xl:mx-12;
   }
+
+  .menu-link {
+    position: relative;
+    display: inline-block;
+  }
+  .menu-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 1px;
+    background-color: currentColor;
+    transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .menu-link:hover::after {
+    width: 100%;
+  }
 }
 
 
